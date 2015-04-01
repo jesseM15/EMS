@@ -1,0 +1,31 @@
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\bin\Debug\ems.exe.config
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\bin\Debug\DbEms.mdf
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\bin\Debug\DbEms_log.ldf
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\bin\Debug\ems.exe
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\bin\Debug\ems.pdb
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\bin\Debug\ems.xml
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\bin\Debug\DBlib.dll
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\bin\Debug\DBlib.pdb
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\bin\Debug\DBlib.xml
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\obj\Debug\ems.vbprojResolveAssemblyReference.cache
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\obj\Debug\ems.Form1.resources
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\obj\Debug\ems.Resources.resources
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\obj\Debug\ems.vbproj.GenerateResource.Cache
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\obj\Debug\ems.exe
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\obj\Debug\ems.xml
+C:\Users\J\Documents\Visual Studio 2012\Projects\ems\ems\obj\Debug\ems.pdb
+C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\ems.exe.config
+C:\Users\J\Documents\ems_repository\ems\ems\obj\Debug\ems.exe
+C:\Users\J\Documents\ems_repository\ems\ems\obj\Debug\ems.xml
+C:\Users\J\Documents\ems_repository\ems\ems\obj\Debug\ems.pdb
+C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\ems.exe
+C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\ems.pdb
+C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\ems.xml
+C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\DBlib.pdb
+C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\DBlib.xml
+C:\Users\J\Documents\ems_repository\ems\ems\obj\Debug\ems.vbprojResolveAssemblyReference.cache
+C:\Users\J\Documents\ems_repository\ems\ems\obj\Debug\ems.Form1.resources
+C:\Users\J\Documents\ems_repository\ems\ems\obj\Debug\ems.Resources.resources
+C:\Users\J\Documents\ems_repository\ems\ems\obj\Debug\ems.vbproj.GenerateResource.Cache
+C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\App_Data\DbEms.mdf
+C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\App_Data\DbEms_log.ldf

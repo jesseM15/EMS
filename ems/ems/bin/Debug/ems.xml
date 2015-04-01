@@ -1,0 +1,108 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ems
+</name>
+</assembly>
+<members>
+<member name="T:ems.DbEmsDataSet.MessagesDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ems.DbEmsDataSet.TimesDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ems.DbEmsDataSet.UsersDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:ems.DbEmsDataSet.MessagesRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ems.DbEmsDataSet.TimesRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ems.DbEmsDataSet.UsersRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:ems.DbEmsDataSet.MessagesRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ems.DbEmsDataSet.TimesRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ems.DbEmsDataSet.UsersRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:ems.DbEmsDataSet">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:ems.DbEmsDataSetTableAdapters.MessagesTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ems.DbEmsDataSetTableAdapters.TimesTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:ems.DbEmsDataSetTableAdapters.UsersTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:ems.DbEmsDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(ems.DbEmsDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:ems.DbEmsDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(ems.DbEmsDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:ems.DbEmsDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(ems.DbEmsDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:ems.DbEmsDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:ems.DbEmsDataSetTableAdapters.TableAdapterManager.UpdateAll(ems.DbEmsDataSet)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:ems.DbEmsDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:ems.DbEmsDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:ems.DbEmsDataSetTableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member><member name="P:ems.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:ems.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:ems.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>
