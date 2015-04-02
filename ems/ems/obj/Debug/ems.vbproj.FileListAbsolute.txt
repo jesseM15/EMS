@@ -29,3 +29,5 @@ C:\Users\J\Documents\ems_repository\ems\ems\obj\Debug\ems.Resources.resources
 C:\Users\J\Documents\ems_repository\ems\ems\obj\Debug\ems.vbproj.GenerateResource.Cache
 C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\App_Data\DbEms.mdf
 C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\App_Data\DbEms_log.ldf
+C:\Users\J\Documents\ems_repository\ems\ems\obj\Debug\ems.Login.resources
+C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\DBlib.dll
