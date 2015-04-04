@@ -1,0 +1,8 @@
+C:\Users\J\Documents\ems_repository\ems\EMSlib\bin\Debug\EMSlib.dll
+C:\Users\J\Documents\ems_repository\ems\EMSlib\bin\Debug\EMSlib.pdb
+C:\Users\J\Documents\ems_repository\ems\EMSlib\bin\Debug\EMSlib.xml
+C:\Users\J\Documents\ems_repository\ems\EMSlib\obj\Debug\EMSlib.Resources.resources
+C:\Users\J\Documents\ems_repository\ems\EMSlib\obj\Debug\EMSlib.vbproj.GenerateResource.Cache
+C:\Users\J\Documents\ems_repository\ems\EMSlib\obj\Debug\EMSlib.dll
+C:\Users\J\Documents\ems_repository\ems\EMSlib\obj\Debug\EMSlib.xml
+C:\Users\J\Documents\ems_repository\ems\EMSlib\obj\Debug\EMSlib.pdb

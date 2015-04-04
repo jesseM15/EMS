@@ -61,10 +61,6 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DBlib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Visual Studio 2012\Projects\db_library_test\DBlib\bin\Debug\DBlib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -185,6 +181,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBlib\DBlib.vbproj">
+      <Project>{8240c18b-2303-422a-872f-0e1d3af8dfb9}</Project>
+      <Name>DBlib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EMSlib\EMSlib.vbproj">
+      <Project>{bdb461c0-5bc5-435a-80f1-6e75572fcc09}</Project>
+      <Name>EMSlib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
