@@ -161,6 +161,53 @@ Namespace EMS
             End Set
         End Property
 
+    End Class
+
+    Public Class Time
+        Private _time_start As Date
+        Private _time_end As Date
+        Private _hours_type As String
+
+        Public Sub New()
+            _time_start = New Date
+            _time_end = New Date
+            _hours_type = "Regular"
+        End Sub
+
+        Public Property time_start() As Date
+            Get
+                Return _time_start
+            End Get
+            Set(ByVal value As Date)
+                _time_start = value
+            End Set
+        End Property
+
+        Public Property time_end() As Date
+            Get
+                Return _time_end
+            End Get
+            Set(ByVal value As Date)
+                _time_end = value
+            End Set
+        End Property
+
+        Public Property hours_type() As String
+            Get
+                Return _hours_type
+            End Get
+            Set(ByVal value As String)
+                _hours_type = value
+            End Set
+        End Property
+
+        Public Sub clockIn(Optional ByVal hours_type As String = "Regular")
+
+        End Sub
+
+        Public Sub clockOut()
+
+        End Sub
 
     End Class
 

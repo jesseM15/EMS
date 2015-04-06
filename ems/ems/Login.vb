@@ -11,7 +11,7 @@ Public Class Login
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
         If dbems.checkLogIn(txtUserName.Text, txtPassword.Text) = True Then
-            Form1.session = dbems.getSession(dbems.getLogInID(txtUserName.Text, txtPassword.Text))
+            Form1.user = dbems.getSession(dbems.getLogInID(txtUserName.Text, txtPassword.Text))
             Me.Close()
         Else
             MessageBox.Show("Username and/or password not found.")

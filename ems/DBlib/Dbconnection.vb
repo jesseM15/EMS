@@ -82,9 +82,11 @@ Namespace DBSQL
         End Function
 
         'checks to see if login credentials exist in the database
-        Public Function checkLogIn(username As String, password As String) As Boolean
+        Public Function checkLogIn(user_name As String, password As String) As Boolean
             initCommand()
-            _cmd.CommandText = "SELECT COUNT(*) FROM Users WHERE user_name='" & username & "' AND password='" & password & "'"
+            _cmd.CommandText = "SELECT COUNT(*) FROM Users WHERE user_name=@user_name AND password=@password"
+            _cmd.Parameters.AddWithValue("@user_name", user_name)
+            _cmd.Parameters.AddWithValue("@password", password)
             _cmd.Connection.Open()
             _cmd.ExecuteNonQuery()
             Dim matchCredentials As Integer = CInt(_cmd.ExecuteScalar)
@@ -97,9 +99,11 @@ Namespace DBSQL
         End Function
 
         'returns the id of the user logging in
-        Public Function getLogInID(username As String, password As String) As Integer
+        Public Function getLogInID(user_name As String, password As String) As Integer
             initCommand()
-            _cmd.CommandText = "SELECT id FROM Users WHERE user_name='" & username & "' AND password='" & password & "'"
+            _cmd.CommandText = "SELECT id FROM Users WHERE user_name=@user_name AND password=@password"
+            _cmd.Parameters.AddWithValue("@user_name", user_name)
+            _cmd.Parameters.AddWithValue("@password", password)
             _cmd.Connection.Open()
             Dim id As Integer = CInt(_cmd.ExecuteScalar())
             _cmd.Connection.Close()
@@ -109,9 +113,9 @@ Namespace DBSQL
         'gets the user data by id and returns a User object with the user's data
         Public Function getSession(ByVal id As Integer) As User
             initCommand()
-            _cmd.CommandText = "SELECT * FROM Users WHERE id=" & id
+            _cmd.CommandText = "SELECT * FROM Users WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
             _cmd.Connection.Open()
-            'Dim results As New System.Text.StringBuilder
             Dim r As IAsyncResult = _cmd.BeginExecuteReader
             Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
             Dim u As New User()
@@ -136,14 +140,61 @@ Namespace DBSQL
             Return u
         End Function
 
-        'returns the user_type from the user id
-        Public Function getUserType(id As Integer) As String
+        'returns true if current user has Times data that does not have a time_end value
+        Public Function checkClockedIn(ByVal user_id As Integer) As Boolean
             initCommand()
-            _cmd.CommandText = "SELECT user_type FROM Users WHERE id=" & id
+            _cmd.CommandText = "SELECT COUNT(*) FROM Times WHERE user_id=@user_id AND time_end IS NULL"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
             _cmd.Connection.Open()
-            Dim userType As String = CStr(_cmd.ExecuteScalar())
+            _cmd.ExecuteNonQuery()
+            Dim numClockIn As Integer = CInt(_cmd.ExecuteScalar)
             _cmd.Connection.Close()
-            Return userType
+            If numClockIn > 0 Then
+                Return True
+            Else
+                Return False
+            End If
+        End Function
+
+        Public Sub clockIn(ByVal user_id As Integer, Optional ByVal hours_type As String = "Regular")
+            initCommand()
+            _cmd.CommandText = "INSERT INTO Times (user_id,time_start,hours_type) VALUES (@user_id, @time_start, @hours_type)"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Parameters.AddWithValue("@time_start", DateAndTime.Now)
+            _cmd.Parameters.AddWithValue("@hours_type", hours_type)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
+        Public Sub clockOut(ByVal user_id As Integer)
+            initCommand()
+            _cmd.CommandText = "UPDATE Times SET time_end=@time_end WHERE user_id=@user_id AND time_end IS NULL"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Parameters.AddWithValue("@time_end", DateAndTime.Now)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
+        '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
+        'returns the time worked for current user
+        Public Function getHoursWorked(ByVal user_id As Integer) As TimeSpan
+            initCommand()
+            _cmd.CommandText = "SELECT * FROM Times WHERE user_id=@user_id AND time_end IS NOT NULL"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Connection.Open()
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            Dim startTime As New Date
+            Dim endTime As New Date
+            While reader.Read
+                startTime = reader(2)
+                endTime = reader(3)
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return endTime - startTime
         End Function
 
         'returns a list of employee names in xml format
