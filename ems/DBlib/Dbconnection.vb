@@ -1,21 +1,23 @@
-﻿Imports System.Data
+﻿Imports EMSlib.EMS
 Imports System.Data.SqlClient
 Imports System.Xml
-Imports EMSlib.EMS
 
 Namespace DBSQL
 
-    Public Class Dbconnection
+    Public Class DbConnection
         Private _con As String
         Private _cmd As SqlCommand
 
+        '===Initialization======================================================================
+
         'Constructor for a new dbconnection instance
-        Public Sub New(con As String)
+        Public Sub New(ByVal con As String)
             _con = con
+            _cmd = New SqlCommand
         End Sub
 
         'sets the connection string for the database
-        Public Sub setConnectionString(con As String)
+        Public Sub setConnectionString(ByVal con As String)
             _con = con
         End Sub
 
@@ -31,84 +33,7 @@ Namespace DBSQL
             _cmd.CommandType = CommandType.Text
         End Sub
 
-        'returns a datatable from a table using all columns
-        Public Function getDataTable(table As String) As DataTable
-            initCommand()
-            _cmd.CommandText += "SELECT * FROM " + table
-            Dim da As SqlDataAdapter
-            Dim dt As New DataTable()
-            _cmd.Connection.Open()
-            _cmd.ExecuteNonQuery()
-            da = New SqlDataAdapter(_cmd)
-            da.Fill(dt)
-            _cmd.Connection.Close()
-            Return dt
-        End Function
-
-        'returns a datatable from a table using a string array as column names
-        Public Function getDataTable(table As String, columns As String()) As DataTable
-            initCommand()
-            _cmd.CommandText = "SELECT "
-            Dim c As Integer = 1
-            For Each column In columns
-                _cmd.CommandText += column
-                If columns.Count > c Then
-                    _cmd.CommandText += ", "
-                Else
-                    _cmd.CommandText += " "
-                End If
-                c += 1
-            Next
-            _cmd.CommandText += "FROM " + table
-            Dim da As SqlDataAdapter
-            Dim dt As New DataTable()
-            _cmd.Connection.Open()
-            _cmd.ExecuteNonQuery()
-            da = New SqlDataAdapter(_cmd)
-            da.Fill(dt)
-            _cmd.Connection.Close()
-            Return dt
-        End Function
-
-        'returns the number of rows in a table
-        Public Function getTableCount(table As String) As Integer
-            initCommand()
-            _cmd.CommandText = "SELECT COUNT(*) FROM " + table
-            _cmd.Connection.Open()
-            _cmd.ExecuteNonQuery()
-            Dim numEmployees As Integer = CInt(_cmd.ExecuteScalar)
-            _cmd.Connection.Close()
-            Return numEmployees
-        End Function
-
-        'checks to see if login credentials exist in the database
-        Public Function checkLogIn(user_name As String, password As String) As Boolean
-            initCommand()
-            _cmd.CommandText = "SELECT COUNT(*) FROM Users WHERE user_name=@user_name AND password=@password"
-            _cmd.Parameters.AddWithValue("@user_name", user_name)
-            _cmd.Parameters.AddWithValue("@password", password)
-            _cmd.Connection.Open()
-            _cmd.ExecuteNonQuery()
-            Dim matchCredentials As Integer = CInt(_cmd.ExecuteScalar)
-            _cmd.Connection.Close()
-            If matchCredentials = 1 Then
-                Return True
-            Else
-                Return False
-            End If
-        End Function
-
-        'returns the id of the user logging in
-        Public Function getLogInID(user_name As String, password As String) As Integer
-            initCommand()
-            _cmd.CommandText = "SELECT id FROM Users WHERE user_name=@user_name AND password=@password"
-            _cmd.Parameters.AddWithValue("@user_name", user_name)
-            _cmd.Parameters.AddWithValue("@password", password)
-            _cmd.Connection.Open()
-            Dim id As Integer = CInt(_cmd.ExecuteScalar())
-            _cmd.Connection.Close()
-            Return id
-        End Function
+        '===User=================================================================================
 
         'gets the user data by id and returns a User object with the user's data
         Public Function getSession(ByVal id As Integer) As User
@@ -139,6 +64,39 @@ Namespace DBSQL
             _cmd.Connection.Close()
             Return u
         End Function
+
+        '===LogIn/Out==============================================================================
+
+        'checks to see if login credentials exist in the database
+        Public Function checkLogIn(user_name As String, password As String) As Boolean
+            initCommand()
+            _cmd.CommandText = "SELECT COUNT(*) FROM Users WHERE user_name=@user_name AND password=@password"
+            _cmd.Parameters.AddWithValue("@user_name", user_name)
+            _cmd.Parameters.AddWithValue("@password", password)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            Dim matchCredentials As Integer = CInt(_cmd.ExecuteScalar)
+            _cmd.Connection.Close()
+            If matchCredentials = 1 Then
+                Return True
+            Else
+                Return False
+            End If
+        End Function
+
+        'returns the id of the user logging in
+        Public Function getLogInID(user_name As String, password As String) As Integer
+            initCommand()
+            _cmd.CommandText = "SELECT id FROM Users WHERE user_name=@user_name AND password=@password"
+            _cmd.Parameters.AddWithValue("@user_name", user_name)
+            _cmd.Parameters.AddWithValue("@password", password)
+            _cmd.Connection.Open()
+            Dim id As Integer = CInt(_cmd.ExecuteScalar())
+            _cmd.Connection.Close()
+            Return id
+        End Function
+
+        '===ClockIn/Out==============================================================================
 
         'returns true if current user has Times data that does not have a time_end value
         Public Function checkClockedIn(ByVal user_id As Integer) As Boolean
@@ -177,9 +135,28 @@ Namespace DBSQL
             _cmd.Connection.Close()
         End Sub
 
+        Public Function getHoursWorked(ByVal user_id As Integer, ByVal hours_type As String, ByVal HoursStart As Date, ByVal HoursEnd As Date) As TimeSpan
+            initCommand()
+            _cmd.CommandText = "SELECT * FROM Times WHERE user_id=@user_id AND hours_type=@hours_type AND time_end IS NOT NULL AND time_start BETWEEN @HoursStart AND @HoursEnd"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Parameters.AddWithValue("@hours_type", hours_type)
+            _cmd.Parameters.AddWithValue("@HoursStart", HoursStart)
+            _cmd.Parameters.AddWithValue("@HoursEnd", HoursEnd)
+            _cmd.Connection.Open()
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            Dim ts As New TimeSpan
+            While reader.Read
+                ts += reader(3) - reader(2)
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return ts
+        End Function
+
         '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
         'returns the time worked for current user
-        Public Function getHoursWorked(ByVal user_id As Integer) As TimeSpan
+        Public Function getHoursWorked2(ByVal user_id As Integer) As TimeSpan
             initCommand()
             _cmd.CommandText = "SELECT * FROM Times WHERE user_id=@user_id AND time_end IS NOT NULL"
             _cmd.Parameters.AddWithValue("@user_id", user_id)
@@ -195,6 +172,58 @@ Namespace DBSQL
             reader.Close()
             _cmd.Connection.Close()
             Return endTime - startTime
+        End Function
+
+        '===General==============================================================================
+
+        'returns a datatable from a table using all columns
+        Public Function getDataTable(ByVal table As String) As DataTable
+            initCommand()
+            _cmd.CommandText += "SELECT * FROM " + table
+            Dim da As SqlDataAdapter
+            Dim dt As New DataTable()
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            da = New SqlDataAdapter(_cmd)
+            da.Fill(dt)
+            _cmd.Connection.Close()
+            Return dt
+        End Function
+
+        'returns a datatable from a table using a string array as column names
+        Public Function getDataTable(ByVal table As String, ByVal columns As String()) As DataTable
+            initCommand()
+            _cmd.CommandText = "SELECT "
+            Dim c As Integer = 1
+            For Each column In columns
+                _cmd.CommandText += column
+                If columns.Count > c Then
+                    _cmd.CommandText += ", "
+                Else
+                    _cmd.CommandText += " "
+                End If
+                c += 1
+            Next
+            _cmd.CommandText += "FROM " + table
+            Dim da As SqlDataAdapter
+            Dim dt As New DataTable()
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            da = New SqlDataAdapter(_cmd)
+            da.Fill(dt)
+            _cmd.Connection.Close()
+            Return dt
+        End Function
+
+        'returns the number of rows in a table
+        Public Function getTableCount(ByVal table As String) As Integer
+            initCommand()
+            _cmd.CommandText = "SELECT COUNT(*) FROM " + table
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            Dim numEmployees As Integer = CInt(_cmd.ExecuteScalar)
+            _cmd.Connection.Close()
+            Return numEmployees
         End Function
 
         'returns a list of employee names in xml format

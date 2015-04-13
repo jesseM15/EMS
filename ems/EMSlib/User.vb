@@ -14,7 +14,7 @@ Namespace EMS
         Private _state As String
         Private _zip As String
         Private _hire_date As Date
-        Private _pay_rate As Double
+        Private _pay_rate As Decimal
         Private _position As String
         Private _manager_id As Integer
 
@@ -134,11 +134,11 @@ Namespace EMS
             End Set
         End Property
 
-        Public Property pay_rate() As Double
+        Public Property pay_rate() As Decimal
             Get
                 Return _pay_rate
             End Get
-            Set(ByVal value As Double)
+            Set(ByVal value As Decimal)
                 _pay_rate = value
             End Set
         End Property
@@ -160,54 +160,6 @@ Namespace EMS
                 _manager_id = value
             End Set
         End Property
-
-    End Class
-
-    Public Class Time
-        Private _time_start As Date
-        Private _time_end As Date
-        Private _hours_type As String
-
-        Public Sub New()
-            _time_start = New Date
-            _time_end = New Date
-            _hours_type = "Regular"
-        End Sub
-
-        Public Property time_start() As Date
-            Get
-                Return _time_start
-            End Get
-            Set(ByVal value As Date)
-                _time_start = value
-            End Set
-        End Property
-
-        Public Property time_end() As Date
-            Get
-                Return _time_end
-            End Get
-            Set(ByVal value As Date)
-                _time_end = value
-            End Set
-        End Property
-
-        Public Property hours_type() As String
-            Get
-                Return _hours_type
-            End Get
-            Set(ByVal value As String)
-                _hours_type = value
-            End Set
-        End Property
-
-        Public Sub clockIn(Optional ByVal hours_type As String = "Regular")
-
-        End Sub
-
-        Public Sub clockOut()
-
-        End Sub
 
     End Class
 

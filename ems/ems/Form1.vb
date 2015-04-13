@@ -2,7 +2,7 @@
 Imports EMSlib.EMS
 
 Public Class Form1
-    Private dbems As New Dbconnection(My.Settings.DbEmsConnectionString)
+    Public dbems As New DbConnection(My.Settings.DbEmsConnectionString)
     Public user As New User
     Public time As New Time
 
@@ -11,14 +11,19 @@ Public Class Form1
         Me.Show()
         tmiClockInOut.Enabled = False
         tmiEmployee.Enabled = False
-        Login.ShowDialog()
-        If user.id > 0 Then
-            initializeNavigationPanel()
-        End If
+        pnlPaySlip.Visible = False
+        '**Disabled for development**
+        'Login.ShowDialog()
+        'If user.id > 0 Then
+        'initializeNavigationPanel()
+        'End If
+        '**Uncomment and remove following lines during testing**
+        user = dbems.getSession(1)
+        initNavigationPanel()
 
     End Sub
 
-    Private Sub initializeNavigationPanel()
+    Private Sub initNavigationPanel()
         tmiClockInOut.Enabled = True
         tmiEmployee.Enabled = True
         tmiLogInOut.Text = "Log Out"
@@ -32,7 +37,6 @@ Public Class Form1
         SplitContainer1.Visible = True
     End Sub
 
-
     Private Sub tmiLogInOut_Click(sender As Object, e As EventArgs) Handles tmiLogInOut.Click
         If user.id > 0 Then
             user = New User
@@ -43,7 +47,7 @@ Public Class Form1
         Else
             Login.ShowDialog()
             If user.id > 0 Then
-                initializeNavigationPanel()
+                initNavigationPanel()
             End If
         End If
     End Sub
@@ -56,7 +60,7 @@ Public Class Form1
             dbems.clockIn(user.id)
             tmiClockInOut.Text = "Clock Out"
         End If
-        
+
     End Sub
 
     Private Sub tmiExit_Click(sender As Object, e As EventArgs) Handles tmiExit.Click
@@ -64,10 +68,8 @@ Public Class Form1
     End Sub
 
     Private Sub tmiViewPaySlip_Click(sender As Object, e As EventArgs) Handles tmiViewPaySlip.Click
-        '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
-        Dim arf As New TimeSpan
-        arf = dbems.getHoursWorked(user.id)
-        MessageBox.Show(arf.Hours & ":" & arf.Minutes & ":" & arf.Seconds)
+        Dim payslip As New PaySlip()
+        payslip.initPaySlipPanel()
     End Sub
 
     Private Sub tmiRequestVacation_Click(sender As Object, e As EventArgs) Handles tmiRequestVacation.Click
@@ -75,11 +77,18 @@ Public Class Form1
     End Sub
 
     Private Sub tmiViewMessages_Click(sender As Object, e As EventArgs) Handles tmiViewMessages.Click
-
+        '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
+        Dim arf As New TimeSpan
+        arf = dbems.getHoursWorked(user.id, "Regular", time.workWeekStart, time.workWeekEnd)
+        MessageBox.Show("Weekly Hours: " & arf.Hours + (arf.Days * 24) & ":" & arf.Minutes & ":" & arf.Seconds)
     End Sub
 
     Private Sub tmiChangePassword_Click(sender As Object, e As EventArgs) Handles tmiChangePassword.Click
-
+        '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
+        Dim h As Decimal = dbems.getHoursWorked(user.id, "Regular", time.workWeekStart, time.workWeekEnd).TotalHours
+        Dim hourlyPay As Decimal = user.pay_rate / 52 / 40
+        Dim pay As Decimal = hourlyPay * h
+        MessageBox.Show("Weekly Pay: " & pay.ToString("C2"))
     End Sub
 
 

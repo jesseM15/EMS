@@ -30,21 +30,87 @@ Partial Class Form1
         Me.btnViewPaySlip = New System.Windows.Forms.Button()
         Me.lblPosition = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
+        Me.pnlPaySlip = New System.Windows.Forms.Panel()
+        Me.lblNetPayYTD = New System.Windows.Forms.Label()
+        Me.lblNetPayCurrent = New System.Windows.Forms.Label()
+        Me.lblNetPayField = New System.Windows.Forms.Label()
+        Me.lblTaxesYTD = New System.Windows.Forms.Label()
+        Me.lblTaxesCurrent = New System.Windows.Forms.Label()
+        Me.lblTaxesField = New System.Windows.Forms.Label()
+        Me.lblPreTaxYTD = New System.Windows.Forms.Label()
+        Me.lblPreTaxCurrent = New System.Windows.Forms.Label()
+        Me.lblPreTaxField = New System.Windows.Forms.Label()
+        Me.lblGrossYTD = New System.Windows.Forms.Label()
+        Me.lblGrossCurrent = New System.Windows.Forms.Label()
+        Me.lblGrossField = New System.Windows.Forms.Label()
+        Me.lblYTDField = New System.Windows.Forms.Label()
+        Me.lblCurrentField = New System.Windows.Forms.Label()
+        Me.lblSummary = New System.Windows.Forms.Label()
+        Me.lblAnnualSalary = New System.Windows.Forms.Label()
+        Me.lblAnnualSalaryField = New System.Windows.Forms.Label()
+        Me.lblPayRate = New System.Windows.Forms.Label()
+        Me.lblPayRateField = New System.Windows.Forms.Label()
+        Me.lblPayEndDate = New System.Windows.Forms.Label()
+        Me.lblPayEndDateField = New System.Windows.Forms.Label()
+        Me.lblPayStartDate = New System.Windows.Forms.Label()
+        Me.lblPayStartDateField = New System.Windows.Forms.Label()
+        Me.lblPaymentDate = New System.Windows.Forms.Label()
+        Me.lblPaymentDateField = New System.Windows.Forms.Label()
+        Me.lblPayPeriod = New System.Windows.Forms.Label()
+        Me.lblPayPeriodField = New System.Windows.Forms.Label()
+        Me.lblPayPeriodAndSalary = New System.Windows.Forms.Label()
+        Me.lblEmployeeAddress2 = New System.Windows.Forms.Label()
+        Me.lblEmployeeAddress1 = New System.Windows.Forms.Label()
+        Me.lblEmployeeAddressField = New System.Windows.Forms.Label()
+        Me.lblHireDate = New System.Windows.Forms.Label()
+        Me.lblHireDateField = New System.Windows.Forms.Label()
+        Me.lblEmployeeName = New System.Windows.Forms.Label()
+        Me.lblEmployeeNameField = New System.Windows.Forms.Label()
+        Me.lblPaySlip = New System.Windows.Forms.Label()
         Me.mnuNavigation = New System.Windows.Forms.MenuStrip()
         Me.tmiFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiLogInOut = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiClockInOut = New System.Windows.Forms.ToolStripMenuItem()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.tmiExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiEmployee = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiViewPaySlip = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiRequestVacation = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiViewMessages = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiChangePassword = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.lblHoursAndEarnings = New System.Windows.Forms.Label()
+        Me.lblDescriptionField = New System.Windows.Forms.Label()
+        Me.lblRegularPayField = New System.Windows.Forms.Label()
+        Me.lblPersonalPayField = New System.Windows.Forms.Label()
+        Me.lblVacationPayField = New System.Windows.Forms.Label()
+        Me.lblHolidayPayField = New System.Windows.Forms.Label()
+        Me.lblCurrentHoursField = New System.Windows.Forms.Label()
+        Me.lblCurrentHoursRegular = New System.Windows.Forms.Label()
+        Me.lblCurrentHoursPersonal = New System.Windows.Forms.Label()
+        Me.lblCurrentHoursVacation = New System.Windows.Forms.Label()
+        Me.lblCurrentHoursHoliday = New System.Windows.Forms.Label()
+        Me.lblCurrentAmountField = New System.Windows.Forms.Label()
+        Me.lblCurrentAmountRegular = New System.Windows.Forms.Label()
+        Me.lblCurrentAmountPersonal = New System.Windows.Forms.Label()
+        Me.lblCurrentAmountVacation = New System.Windows.Forms.Label()
+        Me.lblCurrentAmountHoliday = New System.Windows.Forms.Label()
+        Me.lblYTDHoursField = New System.Windows.Forms.Label()
+        Me.lblYTDHoursRegular = New System.Windows.Forms.Label()
+        Me.lblYTDHoursPersonal = New System.Windows.Forms.Label()
+        Me.lblYTDHoursVacation = New System.Windows.Forms.Label()
+        Me.lblYTDHoursHoliday = New System.Windows.Forms.Label()
+        Me.lblYTDAmountField = New System.Windows.Forms.Label()
+        Me.lblYTDAmountRegular = New System.Windows.Forms.Label()
+        Me.lblYTDAmountPersonal = New System.Windows.Forms.Label()
+        Me.lblYTDAmountVacation = New System.Windows.Forms.Label()
+        Me.lblYTDAmountHoliday = New System.Windows.Forms.Label()
+        Me.cboWorkPeriod = New System.Windows.Forms.ComboBox()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.pnlNavigation.SuspendLayout()
+        Me.pnlPaySlip.SuspendLayout()
         Me.mnuNavigation.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -60,7 +126,11 @@ Partial Class Form1
         Me.SplitContainer1.Panel1.Controls.Add(Me.pnlNavigation)
         Me.SplitContainer1.Panel1.Controls.Add(Me.lblPosition)
         Me.SplitContainer1.Panel1.Controls.Add(Me.lblName)
-        Me.SplitContainer1.Size = New System.Drawing.Size(826, 438)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
+        Me.SplitContainer1.Size = New System.Drawing.Size(826, 483)
         Me.SplitContainer1.SplitterDistance = 156
         Me.SplitContainer1.TabIndex = 1
         Me.SplitContainer1.Visible = False
@@ -134,6 +204,420 @@ Partial Class Form1
         Me.lblName.TabIndex = 0
         Me.lblName.Text = "Name"
         '
+        'pnlPaySlip
+        '
+        Me.pnlPaySlip.AutoScroll = True
+        Me.pnlPaySlip.Controls.Add(Me.cboWorkPeriod)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDAmountHoliday)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDAmountVacation)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDAmountPersonal)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDAmountRegular)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDAmountField)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursHoliday)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursVacation)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursPersonal)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursRegular)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursField)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountHoliday)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountVacation)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountPersonal)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountRegular)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountField)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursHoliday)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursVacation)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursPersonal)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursRegular)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursField)
+        Me.pnlPaySlip.Controls.Add(Me.lblHolidayPayField)
+        Me.pnlPaySlip.Controls.Add(Me.lblVacationPayField)
+        Me.pnlPaySlip.Controls.Add(Me.lblPersonalPayField)
+        Me.pnlPaySlip.Controls.Add(Me.lblRegularPayField)
+        Me.pnlPaySlip.Controls.Add(Me.lblDescriptionField)
+        Me.pnlPaySlip.Controls.Add(Me.lblHoursAndEarnings)
+        Me.pnlPaySlip.Controls.Add(Me.lblNetPayYTD)
+        Me.pnlPaySlip.Controls.Add(Me.lblNetPayCurrent)
+        Me.pnlPaySlip.Controls.Add(Me.lblNetPayField)
+        Me.pnlPaySlip.Controls.Add(Me.lblTaxesYTD)
+        Me.pnlPaySlip.Controls.Add(Me.lblTaxesCurrent)
+        Me.pnlPaySlip.Controls.Add(Me.lblTaxesField)
+        Me.pnlPaySlip.Controls.Add(Me.lblPreTaxYTD)
+        Me.pnlPaySlip.Controls.Add(Me.lblPreTaxCurrent)
+        Me.pnlPaySlip.Controls.Add(Me.lblPreTaxField)
+        Me.pnlPaySlip.Controls.Add(Me.lblGrossYTD)
+        Me.pnlPaySlip.Controls.Add(Me.lblGrossCurrent)
+        Me.pnlPaySlip.Controls.Add(Me.lblGrossField)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDField)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentField)
+        Me.pnlPaySlip.Controls.Add(Me.lblSummary)
+        Me.pnlPaySlip.Controls.Add(Me.lblAnnualSalary)
+        Me.pnlPaySlip.Controls.Add(Me.lblAnnualSalaryField)
+        Me.pnlPaySlip.Controls.Add(Me.lblPayRate)
+        Me.pnlPaySlip.Controls.Add(Me.lblPayRateField)
+        Me.pnlPaySlip.Controls.Add(Me.lblPayEndDate)
+        Me.pnlPaySlip.Controls.Add(Me.lblPayEndDateField)
+        Me.pnlPaySlip.Controls.Add(Me.lblPayStartDate)
+        Me.pnlPaySlip.Controls.Add(Me.lblPayStartDateField)
+        Me.pnlPaySlip.Controls.Add(Me.lblPaymentDate)
+        Me.pnlPaySlip.Controls.Add(Me.lblPaymentDateField)
+        Me.pnlPaySlip.Controls.Add(Me.lblPayPeriod)
+        Me.pnlPaySlip.Controls.Add(Me.lblPayPeriodField)
+        Me.pnlPaySlip.Controls.Add(Me.lblPayPeriodAndSalary)
+        Me.pnlPaySlip.Controls.Add(Me.lblEmployeeAddress2)
+        Me.pnlPaySlip.Controls.Add(Me.lblEmployeeAddress1)
+        Me.pnlPaySlip.Controls.Add(Me.lblEmployeeAddressField)
+        Me.pnlPaySlip.Controls.Add(Me.lblHireDate)
+        Me.pnlPaySlip.Controls.Add(Me.lblHireDateField)
+        Me.pnlPaySlip.Controls.Add(Me.lblEmployeeName)
+        Me.pnlPaySlip.Controls.Add(Me.lblEmployeeNameField)
+        Me.pnlPaySlip.Controls.Add(Me.lblPaySlip)
+        Me.pnlPaySlip.Location = New System.Drawing.Point(3, 3)
+        Me.pnlPaySlip.Name = "pnlPaySlip"
+        Me.pnlPaySlip.Size = New System.Drawing.Size(658, 454)
+        Me.pnlPaySlip.TabIndex = 0
+        '
+        'lblNetPayYTD
+        '
+        Me.lblNetPayYTD.AutoSize = True
+        Me.lblNetPayYTD.Location = New System.Drawing.Point(420, 394)
+        Me.lblNetPayYTD.Name = "lblNetPayYTD"
+        Me.lblNetPayYTD.Size = New System.Drawing.Size(45, 13)
+        Me.lblNetPayYTD.TabIndex = 35
+        Me.lblNetPayYTD.Text = "Net Pay"
+        '
+        'lblNetPayCurrent
+        '
+        Me.lblNetPayCurrent.AutoSize = True
+        Me.lblNetPayCurrent.Location = New System.Drawing.Point(420, 362)
+        Me.lblNetPayCurrent.Name = "lblNetPayCurrent"
+        Me.lblNetPayCurrent.Size = New System.Drawing.Size(45, 13)
+        Me.lblNetPayCurrent.TabIndex = 34
+        Me.lblNetPayCurrent.Text = "Net Pay"
+        '
+        'lblNetPayField
+        '
+        Me.lblNetPayField.AutoSize = True
+        Me.lblNetPayField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNetPayField.Location = New System.Drawing.Point(420, 331)
+        Me.lblNetPayField.Name = "lblNetPayField"
+        Me.lblNetPayField.Size = New System.Drawing.Size(52, 13)
+        Me.lblNetPayField.TabIndex = 33
+        Me.lblNetPayField.Text = "Net Pay"
+        '
+        'lblTaxesYTD
+        '
+        Me.lblTaxesYTD.AutoSize = True
+        Me.lblTaxesYTD.Location = New System.Drawing.Point(317, 394)
+        Me.lblTaxesYTD.Name = "lblTaxesYTD"
+        Me.lblTaxesYTD.Size = New System.Drawing.Size(36, 13)
+        Me.lblTaxesYTD.TabIndex = 32
+        Me.lblTaxesYTD.Text = "Taxes"
+        '
+        'lblTaxesCurrent
+        '
+        Me.lblTaxesCurrent.AutoSize = True
+        Me.lblTaxesCurrent.Location = New System.Drawing.Point(317, 362)
+        Me.lblTaxesCurrent.Name = "lblTaxesCurrent"
+        Me.lblTaxesCurrent.Size = New System.Drawing.Size(36, 13)
+        Me.lblTaxesCurrent.TabIndex = 31
+        Me.lblTaxesCurrent.Text = "Taxes"
+        '
+        'lblTaxesField
+        '
+        Me.lblTaxesField.AutoSize = True
+        Me.lblTaxesField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTaxesField.Location = New System.Drawing.Point(317, 331)
+        Me.lblTaxesField.Name = "lblTaxesField"
+        Me.lblTaxesField.Size = New System.Drawing.Size(41, 13)
+        Me.lblTaxesField.TabIndex = 30
+        Me.lblTaxesField.Text = "Taxes"
+        '
+        'lblPreTaxYTD
+        '
+        Me.lblPreTaxYTD.AutoSize = True
+        Me.lblPreTaxYTD.Location = New System.Drawing.Point(216, 394)
+        Me.lblPreTaxYTD.Name = "lblPreTaxYTD"
+        Me.lblPreTaxYTD.Size = New System.Drawing.Size(44, 13)
+        Me.lblPreTaxYTD.TabIndex = 29
+        Me.lblPreTaxYTD.Text = "Pre-Tax"
+        '
+        'lblPreTaxCurrent
+        '
+        Me.lblPreTaxCurrent.AutoSize = True
+        Me.lblPreTaxCurrent.Location = New System.Drawing.Point(216, 362)
+        Me.lblPreTaxCurrent.Name = "lblPreTaxCurrent"
+        Me.lblPreTaxCurrent.Size = New System.Drawing.Size(44, 13)
+        Me.lblPreTaxCurrent.TabIndex = 28
+        Me.lblPreTaxCurrent.Text = "Pre-Tax"
+        '
+        'lblPreTaxField
+        '
+        Me.lblPreTaxField.AutoSize = True
+        Me.lblPreTaxField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPreTaxField.Location = New System.Drawing.Point(216, 331)
+        Me.lblPreTaxField.Name = "lblPreTaxField"
+        Me.lblPreTaxField.Size = New System.Drawing.Size(51, 13)
+        Me.lblPreTaxField.TabIndex = 27
+        Me.lblPreTaxField.Text = "Pre-Tax"
+        '
+        'lblGrossYTD
+        '
+        Me.lblGrossYTD.AutoSize = True
+        Me.lblGrossYTD.Location = New System.Drawing.Point(115, 394)
+        Me.lblGrossYTD.Name = "lblGrossYTD"
+        Me.lblGrossYTD.Size = New System.Drawing.Size(34, 13)
+        Me.lblGrossYTD.TabIndex = 26
+        Me.lblGrossYTD.Text = "Gross"
+        '
+        'lblGrossCurrent
+        '
+        Me.lblGrossCurrent.AutoSize = True
+        Me.lblGrossCurrent.Location = New System.Drawing.Point(115, 362)
+        Me.lblGrossCurrent.Name = "lblGrossCurrent"
+        Me.lblGrossCurrent.Size = New System.Drawing.Size(34, 13)
+        Me.lblGrossCurrent.TabIndex = 25
+        Me.lblGrossCurrent.Text = "Gross"
+        '
+        'lblGrossField
+        '
+        Me.lblGrossField.AutoSize = True
+        Me.lblGrossField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblGrossField.Location = New System.Drawing.Point(115, 331)
+        Me.lblGrossField.Name = "lblGrossField"
+        Me.lblGrossField.Size = New System.Drawing.Size(39, 13)
+        Me.lblGrossField.TabIndex = 24
+        Me.lblGrossField.Text = "Gross"
+        '
+        'lblYTDField
+        '
+        Me.lblYTDField.AutoSize = True
+        Me.lblYTDField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblYTDField.Location = New System.Drawing.Point(22, 394)
+        Me.lblYTDField.Name = "lblYTDField"
+        Me.lblYTDField.Size = New System.Drawing.Size(32, 13)
+        Me.lblYTDField.TabIndex = 23
+        Me.lblYTDField.Text = "YTD"
+        '
+        'lblCurrentField
+        '
+        Me.lblCurrentField.AutoSize = True
+        Me.lblCurrentField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCurrentField.Location = New System.Drawing.Point(22, 362)
+        Me.lblCurrentField.Name = "lblCurrentField"
+        Me.lblCurrentField.Size = New System.Drawing.Size(48, 13)
+        Me.lblCurrentField.TabIndex = 22
+        Me.lblCurrentField.Text = "Current"
+        '
+        'lblSummary
+        '
+        Me.lblSummary.AutoSize = True
+        Me.lblSummary.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSummary.Location = New System.Drawing.Point(22, 301)
+        Me.lblSummary.Name = "lblSummary"
+        Me.lblSummary.Size = New System.Drawing.Size(57, 13)
+        Me.lblSummary.TabIndex = 21
+        Me.lblSummary.Text = "Summary"
+        '
+        'lblAnnualSalary
+        '
+        Me.lblAnnualSalary.AutoSize = True
+        Me.lblAnnualSalary.Location = New System.Drawing.Point(497, 249)
+        Me.lblAnnualSalary.Name = "lblAnnualSalary"
+        Me.lblAnnualSalary.Size = New System.Drawing.Size(72, 13)
+        Me.lblAnnualSalary.TabIndex = 20
+        Me.lblAnnualSalary.Text = "Annual Salary"
+        '
+        'lblAnnualSalaryField
+        '
+        Me.lblAnnualSalaryField.AutoSize = True
+        Me.lblAnnualSalaryField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAnnualSalaryField.Location = New System.Drawing.Point(497, 222)
+        Me.lblAnnualSalaryField.Name = "lblAnnualSalaryField"
+        Me.lblAnnualSalaryField.Size = New System.Drawing.Size(85, 13)
+        Me.lblAnnualSalaryField.TabIndex = 19
+        Me.lblAnnualSalaryField.Text = "Annual Salary"
+        '
+        'lblPayRate
+        '
+        Me.lblPayRate.AutoSize = True
+        Me.lblPayRate.Location = New System.Drawing.Point(420, 249)
+        Me.lblPayRate.Name = "lblPayRate"
+        Me.lblPayRate.Size = New System.Drawing.Size(51, 13)
+        Me.lblPayRate.TabIndex = 18
+        Me.lblPayRate.Text = "Pay Rate"
+        '
+        'lblPayRateField
+        '
+        Me.lblPayRateField.AutoSize = True
+        Me.lblPayRateField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPayRateField.Location = New System.Drawing.Point(420, 222)
+        Me.lblPayRateField.Name = "lblPayRateField"
+        Me.lblPayRateField.Size = New System.Drawing.Size(59, 13)
+        Me.lblPayRateField.TabIndex = 17
+        Me.lblPayRateField.Text = "Pay Rate"
+        '
+        'lblPayEndDate
+        '
+        Me.lblPayEndDate.AutoSize = True
+        Me.lblPayEndDate.Location = New System.Drawing.Point(317, 249)
+        Me.lblPayEndDate.Name = "lblPayEndDate"
+        Me.lblPayEndDate.Size = New System.Drawing.Size(73, 13)
+        Me.lblPayEndDate.TabIndex = 16
+        Me.lblPayEndDate.Text = "Pay End Date"
+        '
+        'lblPayEndDateField
+        '
+        Me.lblPayEndDateField.AutoSize = True
+        Me.lblPayEndDateField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPayEndDateField.Location = New System.Drawing.Point(317, 222)
+        Me.lblPayEndDateField.Name = "lblPayEndDateField"
+        Me.lblPayEndDateField.Size = New System.Drawing.Size(85, 13)
+        Me.lblPayEndDateField.TabIndex = 15
+        Me.lblPayEndDateField.Text = "Pay End Date"
+        '
+        'lblPayStartDate
+        '
+        Me.lblPayStartDate.AutoSize = True
+        Me.lblPayStartDate.Location = New System.Drawing.Point(216, 249)
+        Me.lblPayStartDate.Name = "lblPayStartDate"
+        Me.lblPayStartDate.Size = New System.Drawing.Size(76, 13)
+        Me.lblPayStartDate.TabIndex = 14
+        Me.lblPayStartDate.Text = "Pay Start Date"
+        '
+        'lblPayStartDateField
+        '
+        Me.lblPayStartDateField.AutoSize = True
+        Me.lblPayStartDateField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPayStartDateField.Location = New System.Drawing.Point(216, 222)
+        Me.lblPayStartDateField.Name = "lblPayStartDateField"
+        Me.lblPayStartDateField.Size = New System.Drawing.Size(90, 13)
+        Me.lblPayStartDateField.TabIndex = 13
+        Me.lblPayStartDateField.Text = "Pay Start Date"
+        '
+        'lblPaymentDate
+        '
+        Me.lblPaymentDate.AutoSize = True
+        Me.lblPaymentDate.Location = New System.Drawing.Point(115, 249)
+        Me.lblPaymentDate.Name = "lblPaymentDate"
+        Me.lblPaymentDate.Size = New System.Drawing.Size(74, 13)
+        Me.lblPaymentDate.TabIndex = 12
+        Me.lblPaymentDate.Text = "Payment Date"
+        '
+        'lblPaymentDateField
+        '
+        Me.lblPaymentDateField.AutoSize = True
+        Me.lblPaymentDateField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPaymentDateField.Location = New System.Drawing.Point(115, 222)
+        Me.lblPaymentDateField.Name = "lblPaymentDateField"
+        Me.lblPaymentDateField.Size = New System.Drawing.Size(86, 13)
+        Me.lblPaymentDateField.TabIndex = 11
+        Me.lblPaymentDateField.Text = "Payment Date"
+        '
+        'lblPayPeriod
+        '
+        Me.lblPayPeriod.AutoSize = True
+        Me.lblPayPeriod.Location = New System.Drawing.Point(22, 249)
+        Me.lblPayPeriod.Name = "lblPayPeriod"
+        Me.lblPayPeriod.Size = New System.Drawing.Size(58, 13)
+        Me.lblPayPeriod.TabIndex = 10
+        Me.lblPayPeriod.Text = "Pay Period"
+        '
+        'lblPayPeriodField
+        '
+        Me.lblPayPeriodField.AutoSize = True
+        Me.lblPayPeriodField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPayPeriodField.Location = New System.Drawing.Point(22, 222)
+        Me.lblPayPeriodField.Name = "lblPayPeriodField"
+        Me.lblPayPeriodField.Size = New System.Drawing.Size(68, 13)
+        Me.lblPayPeriodField.TabIndex = 9
+        Me.lblPayPeriodField.Text = "Pay Period"
+        '
+        'lblPayPeriodAndSalary
+        '
+        Me.lblPayPeriodAndSalary.AutoSize = True
+        Me.lblPayPeriodAndSalary.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPayPeriodAndSalary.Location = New System.Drawing.Point(22, 191)
+        Me.lblPayPeriodAndSalary.Name = "lblPayPeriodAndSalary"
+        Me.lblPayPeriodAndSalary.Size = New System.Drawing.Size(132, 13)
+        Me.lblPayPeriodAndSalary.TabIndex = 8
+        Me.lblPayPeriodAndSalary.Text = "Pay Period and Salary"
+        '
+        'lblEmployeeAddress2
+        '
+        Me.lblEmployeeAddress2.AutoSize = True
+        Me.lblEmployeeAddress2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmployeeAddress2.Location = New System.Drawing.Point(128, 140)
+        Me.lblEmployeeAddress2.Name = "lblEmployeeAddress2"
+        Me.lblEmployeeAddress2.Size = New System.Drawing.Size(88, 13)
+        Me.lblEmployeeAddress2.TabIndex = 7
+        Me.lblEmployeeAddress2.Text = "City, State Zip"
+        '
+        'lblEmployeeAddress1
+        '
+        Me.lblEmployeeAddress1.AutoSize = True
+        Me.lblEmployeeAddress1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmployeeAddress1.Location = New System.Drawing.Point(128, 111)
+        Me.lblEmployeeAddress1.Name = "lblEmployeeAddress1"
+        Me.lblEmployeeAddress1.Size = New System.Drawing.Size(90, 13)
+        Me.lblEmployeeAddress1.TabIndex = 6
+        Me.lblEmployeeAddress1.Text = "Street Address"
+        '
+        'lblEmployeeAddressField
+        '
+        Me.lblEmployeeAddressField.AutoSize = True
+        Me.lblEmployeeAddressField.Location = New System.Drawing.Point(22, 111)
+        Me.lblEmployeeAddressField.Name = "lblEmployeeAddressField"
+        Me.lblEmployeeAddressField.Size = New System.Drawing.Size(97, 13)
+        Me.lblEmployeeAddressField.TabIndex = 5
+        Me.lblEmployeeAddressField.Text = "Employee Address:"
+        '
+        'lblHireDate
+        '
+        Me.lblHireDate.AutoSize = True
+        Me.lblHireDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHireDate.Location = New System.Drawing.Point(128, 82)
+        Me.lblHireDate.Name = "lblHireDate"
+        Me.lblHireDate.Size = New System.Drawing.Size(61, 13)
+        Me.lblHireDate.TabIndex = 4
+        Me.lblHireDate.Text = "Hire Date"
+        '
+        'lblHireDateField
+        '
+        Me.lblHireDateField.AutoSize = True
+        Me.lblHireDateField.Location = New System.Drawing.Point(22, 82)
+        Me.lblHireDateField.Name = "lblHireDateField"
+        Me.lblHireDateField.Size = New System.Drawing.Size(55, 13)
+        Me.lblHireDateField.TabIndex = 3
+        Me.lblHireDateField.Text = "Hire Date:"
+        '
+        'lblEmployeeName
+        '
+        Me.lblEmployeeName.AutoSize = True
+        Me.lblEmployeeName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmployeeName.Location = New System.Drawing.Point(128, 53)
+        Me.lblEmployeeName.Name = "lblEmployeeName"
+        Me.lblEmployeeName.Size = New System.Drawing.Size(97, 13)
+        Me.lblEmployeeName.TabIndex = 2
+        Me.lblEmployeeName.Text = "Employee Name"
+        '
+        'lblEmployeeNameField
+        '
+        Me.lblEmployeeNameField.AutoSize = True
+        Me.lblEmployeeNameField.Location = New System.Drawing.Point(22, 53)
+        Me.lblEmployeeNameField.Name = "lblEmployeeNameField"
+        Me.lblEmployeeNameField.Size = New System.Drawing.Size(87, 13)
+        Me.lblEmployeeNameField.TabIndex = 1
+        Me.lblEmployeeNameField.Text = "Employee Name:"
+        '
+        'lblPaySlip
+        '
+        Me.lblPaySlip.AutoSize = True
+        Me.lblPaySlip.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPaySlip.Location = New System.Drawing.Point(21, 12)
+        Me.lblPaySlip.Name = "lblPaySlip"
+        Me.lblPaySlip.Size = New System.Drawing.Size(77, 24)
+        Me.lblPaySlip.TabIndex = 0
+        Me.lblPaySlip.Text = "Pay Slip"
+        '
         'mnuNavigation
         '
         Me.mnuNavigation.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tmiFile, Me.tmiEmployee})
@@ -153,27 +637,19 @@ Partial Class Form1
         'tmiLogInOut
         '
         Me.tmiLogInOut.Name = "tmiLogInOut"
-        Me.tmiLogInOut.Size = New System.Drawing.Size(152, 22)
+        Me.tmiLogInOut.Size = New System.Drawing.Size(117, 22)
         Me.tmiLogInOut.Text = "Log In"
         '
         'tmiClockInOut
         '
         Me.tmiClockInOut.Name = "tmiClockInOut"
-        Me.tmiClockInOut.Size = New System.Drawing.Size(152, 22)
+        Me.tmiClockInOut.Size = New System.Drawing.Size(117, 22)
         Me.tmiClockInOut.Text = "Clock In"
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 440)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(826, 22)
-        Me.StatusStrip1.TabIndex = 3
-        Me.StatusStrip1.Text = "StatusStrip1"
         '
         'tmiExit
         '
         Me.tmiExit.Name = "tmiExit"
-        Me.tmiExit.Size = New System.Drawing.Size(152, 22)
+        Me.tmiExit.Size = New System.Drawing.Size(117, 22)
         Me.tmiExit.Text = "Exit"
         '
         'tmiEmployee
@@ -207,11 +683,267 @@ Partial Class Form1
         Me.tmiChangePassword.Size = New System.Drawing.Size(168, 22)
         Me.tmiChangePassword.Text = "Change Password"
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 485)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(826, 22)
+        Me.StatusStrip1.TabIndex = 3
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'lblHoursAndEarnings
+        '
+        Me.lblHoursAndEarnings.AutoSize = True
+        Me.lblHoursAndEarnings.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHoursAndEarnings.Location = New System.Drawing.Point(22, 450)
+        Me.lblHoursAndEarnings.Name = "lblHoursAndEarnings"
+        Me.lblHoursAndEarnings.Size = New System.Drawing.Size(118, 13)
+        Me.lblHoursAndEarnings.TabIndex = 36
+        Me.lblHoursAndEarnings.Text = "Hours and Earnings"
+        '
+        'lblDescriptionField
+        '
+        Me.lblDescriptionField.AutoSize = True
+        Me.lblDescriptionField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDescriptionField.Location = New System.Drawing.Point(22, 486)
+        Me.lblDescriptionField.Name = "lblDescriptionField"
+        Me.lblDescriptionField.Size = New System.Drawing.Size(71, 13)
+        Me.lblDescriptionField.TabIndex = 37
+        Me.lblDescriptionField.Text = "Description"
+        '
+        'lblRegularPayField
+        '
+        Me.lblRegularPayField.AutoSize = True
+        Me.lblRegularPayField.Location = New System.Drawing.Point(22, 520)
+        Me.lblRegularPayField.Name = "lblRegularPayField"
+        Me.lblRegularPayField.Size = New System.Drawing.Size(65, 13)
+        Me.lblRegularPayField.TabIndex = 38
+        Me.lblRegularPayField.Text = "Regular Pay"
+        '
+        'lblPersonalPayField
+        '
+        Me.lblPersonalPayField.AutoSize = True
+        Me.lblPersonalPayField.Location = New System.Drawing.Point(22, 554)
+        Me.lblPersonalPayField.Name = "lblPersonalPayField"
+        Me.lblPersonalPayField.Size = New System.Drawing.Size(69, 13)
+        Me.lblPersonalPayField.TabIndex = 39
+        Me.lblPersonalPayField.Text = "Personal Pay"
+        '
+        'lblVacationPayField
+        '
+        Me.lblVacationPayField.AutoSize = True
+        Me.lblVacationPayField.Location = New System.Drawing.Point(22, 588)
+        Me.lblVacationPayField.Name = "lblVacationPayField"
+        Me.lblVacationPayField.Size = New System.Drawing.Size(70, 13)
+        Me.lblVacationPayField.TabIndex = 40
+        Me.lblVacationPayField.Text = "Vacation Pay"
+        '
+        'lblHolidayPayField
+        '
+        Me.lblHolidayPayField.AutoSize = True
+        Me.lblHolidayPayField.Location = New System.Drawing.Point(22, 623)
+        Me.lblHolidayPayField.Name = "lblHolidayPayField"
+        Me.lblHolidayPayField.Size = New System.Drawing.Size(63, 13)
+        Me.lblHolidayPayField.TabIndex = 41
+        Me.lblHolidayPayField.Text = "Holiday Pay"
+        '
+        'lblCurrentHoursField
+        '
+        Me.lblCurrentHoursField.AutoSize = True
+        Me.lblCurrentHoursField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCurrentHoursField.Location = New System.Drawing.Point(115, 486)
+        Me.lblCurrentHoursField.Name = "lblCurrentHoursField"
+        Me.lblCurrentHoursField.Size = New System.Drawing.Size(85, 13)
+        Me.lblCurrentHoursField.TabIndex = 42
+        Me.lblCurrentHoursField.Text = "Current Hours"
+        '
+        'lblCurrentHoursRegular
+        '
+        Me.lblCurrentHoursRegular.AutoSize = True
+        Me.lblCurrentHoursRegular.Location = New System.Drawing.Point(115, 520)
+        Me.lblCurrentHoursRegular.Name = "lblCurrentHoursRegular"
+        Me.lblCurrentHoursRegular.Size = New System.Drawing.Size(72, 13)
+        Me.lblCurrentHoursRegular.TabIndex = 43
+        Me.lblCurrentHoursRegular.Text = "Current Hours"
+        '
+        'lblCurrentHoursPersonal
+        '
+        Me.lblCurrentHoursPersonal.AutoSize = True
+        Me.lblCurrentHoursPersonal.Location = New System.Drawing.Point(115, 554)
+        Me.lblCurrentHoursPersonal.Name = "lblCurrentHoursPersonal"
+        Me.lblCurrentHoursPersonal.Size = New System.Drawing.Size(72, 13)
+        Me.lblCurrentHoursPersonal.TabIndex = 44
+        Me.lblCurrentHoursPersonal.Text = "Current Hours"
+        '
+        'lblCurrentHoursVacation
+        '
+        Me.lblCurrentHoursVacation.AutoSize = True
+        Me.lblCurrentHoursVacation.Location = New System.Drawing.Point(115, 588)
+        Me.lblCurrentHoursVacation.Name = "lblCurrentHoursVacation"
+        Me.lblCurrentHoursVacation.Size = New System.Drawing.Size(72, 13)
+        Me.lblCurrentHoursVacation.TabIndex = 45
+        Me.lblCurrentHoursVacation.Text = "Current Hours"
+        '
+        'lblCurrentHoursHoliday
+        '
+        Me.lblCurrentHoursHoliday.AutoSize = True
+        Me.lblCurrentHoursHoliday.Location = New System.Drawing.Point(115, 623)
+        Me.lblCurrentHoursHoliday.Name = "lblCurrentHoursHoliday"
+        Me.lblCurrentHoursHoliday.Size = New System.Drawing.Size(72, 13)
+        Me.lblCurrentHoursHoliday.TabIndex = 46
+        Me.lblCurrentHoursHoliday.Text = "Current Hours"
+        '
+        'lblCurrentAmountField
+        '
+        Me.lblCurrentAmountField.AutoSize = True
+        Me.lblCurrentAmountField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCurrentAmountField.Location = New System.Drawing.Point(216, 486)
+        Me.lblCurrentAmountField.Name = "lblCurrentAmountField"
+        Me.lblCurrentAmountField.Size = New System.Drawing.Size(94, 13)
+        Me.lblCurrentAmountField.TabIndex = 47
+        Me.lblCurrentAmountField.Text = "Current Amount"
+        '
+        'lblCurrentAmountRegular
+        '
+        Me.lblCurrentAmountRegular.AutoSize = True
+        Me.lblCurrentAmountRegular.Location = New System.Drawing.Point(216, 520)
+        Me.lblCurrentAmountRegular.Name = "lblCurrentAmountRegular"
+        Me.lblCurrentAmountRegular.Size = New System.Drawing.Size(80, 13)
+        Me.lblCurrentAmountRegular.TabIndex = 48
+        Me.lblCurrentAmountRegular.Text = "Current Amount"
+        '
+        'lblCurrentAmountPersonal
+        '
+        Me.lblCurrentAmountPersonal.AutoSize = True
+        Me.lblCurrentAmountPersonal.Location = New System.Drawing.Point(216, 554)
+        Me.lblCurrentAmountPersonal.Name = "lblCurrentAmountPersonal"
+        Me.lblCurrentAmountPersonal.Size = New System.Drawing.Size(80, 13)
+        Me.lblCurrentAmountPersonal.TabIndex = 49
+        Me.lblCurrentAmountPersonal.Text = "Current Amount"
+        '
+        'lblCurrentAmountVacation
+        '
+        Me.lblCurrentAmountVacation.AutoSize = True
+        Me.lblCurrentAmountVacation.Location = New System.Drawing.Point(216, 588)
+        Me.lblCurrentAmountVacation.Name = "lblCurrentAmountVacation"
+        Me.lblCurrentAmountVacation.Size = New System.Drawing.Size(80, 13)
+        Me.lblCurrentAmountVacation.TabIndex = 50
+        Me.lblCurrentAmountVacation.Text = "Current Amount"
+        '
+        'lblCurrentAmountHoliday
+        '
+        Me.lblCurrentAmountHoliday.AutoSize = True
+        Me.lblCurrentAmountHoliday.Location = New System.Drawing.Point(216, 623)
+        Me.lblCurrentAmountHoliday.Name = "lblCurrentAmountHoliday"
+        Me.lblCurrentAmountHoliday.Size = New System.Drawing.Size(80, 13)
+        Me.lblCurrentAmountHoliday.TabIndex = 51
+        Me.lblCurrentAmountHoliday.Text = "Current Amount"
+        '
+        'lblYTDHoursField
+        '
+        Me.lblYTDHoursField.AutoSize = True
+        Me.lblYTDHoursField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblYTDHoursField.Location = New System.Drawing.Point(317, 486)
+        Me.lblYTDHoursField.Name = "lblYTDHoursField"
+        Me.lblYTDHoursField.Size = New System.Drawing.Size(69, 13)
+        Me.lblYTDHoursField.TabIndex = 52
+        Me.lblYTDHoursField.Text = "YTD Hours"
+        '
+        'lblYTDHoursRegular
+        '
+        Me.lblYTDHoursRegular.AutoSize = True
+        Me.lblYTDHoursRegular.Location = New System.Drawing.Point(317, 520)
+        Me.lblYTDHoursRegular.Name = "lblYTDHoursRegular"
+        Me.lblYTDHoursRegular.Size = New System.Drawing.Size(60, 13)
+        Me.lblYTDHoursRegular.TabIndex = 53
+        Me.lblYTDHoursRegular.Text = "YTD Hours"
+        '
+        'lblYTDHoursPersonal
+        '
+        Me.lblYTDHoursPersonal.AutoSize = True
+        Me.lblYTDHoursPersonal.Location = New System.Drawing.Point(317, 554)
+        Me.lblYTDHoursPersonal.Name = "lblYTDHoursPersonal"
+        Me.lblYTDHoursPersonal.Size = New System.Drawing.Size(60, 13)
+        Me.lblYTDHoursPersonal.TabIndex = 54
+        Me.lblYTDHoursPersonal.Text = "YTD Hours"
+        '
+        'lblYTDHoursVacation
+        '
+        Me.lblYTDHoursVacation.AutoSize = True
+        Me.lblYTDHoursVacation.Location = New System.Drawing.Point(317, 588)
+        Me.lblYTDHoursVacation.Name = "lblYTDHoursVacation"
+        Me.lblYTDHoursVacation.Size = New System.Drawing.Size(60, 13)
+        Me.lblYTDHoursVacation.TabIndex = 55
+        Me.lblYTDHoursVacation.Text = "YTD Hours"
+        '
+        'lblYTDHoursHoliday
+        '
+        Me.lblYTDHoursHoliday.AutoSize = True
+        Me.lblYTDHoursHoliday.Location = New System.Drawing.Point(317, 623)
+        Me.lblYTDHoursHoliday.Name = "lblYTDHoursHoliday"
+        Me.lblYTDHoursHoliday.Size = New System.Drawing.Size(60, 13)
+        Me.lblYTDHoursHoliday.TabIndex = 56
+        Me.lblYTDHoursHoliday.Text = "YTD Hours"
+        '
+        'lblYTDAmountField
+        '
+        Me.lblYTDAmountField.AutoSize = True
+        Me.lblYTDAmountField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblYTDAmountField.Location = New System.Drawing.Point(420, 486)
+        Me.lblYTDAmountField.Name = "lblYTDAmountField"
+        Me.lblYTDAmountField.Size = New System.Drawing.Size(78, 13)
+        Me.lblYTDAmountField.TabIndex = 57
+        Me.lblYTDAmountField.Text = "YTD Amount"
+        '
+        'lblYTDAmountRegular
+        '
+        Me.lblYTDAmountRegular.AutoSize = True
+        Me.lblYTDAmountRegular.Location = New System.Drawing.Point(420, 520)
+        Me.lblYTDAmountRegular.Name = "lblYTDAmountRegular"
+        Me.lblYTDAmountRegular.Size = New System.Drawing.Size(68, 13)
+        Me.lblYTDAmountRegular.TabIndex = 58
+        Me.lblYTDAmountRegular.Text = "YTD Amount"
+        '
+        'lblYTDAmountPersonal
+        '
+        Me.lblYTDAmountPersonal.AutoSize = True
+        Me.lblYTDAmountPersonal.Location = New System.Drawing.Point(420, 554)
+        Me.lblYTDAmountPersonal.Name = "lblYTDAmountPersonal"
+        Me.lblYTDAmountPersonal.Size = New System.Drawing.Size(68, 13)
+        Me.lblYTDAmountPersonal.TabIndex = 59
+        Me.lblYTDAmountPersonal.Text = "YTD Amount"
+        '
+        'lblYTDAmountVacation
+        '
+        Me.lblYTDAmountVacation.AutoSize = True
+        Me.lblYTDAmountVacation.Location = New System.Drawing.Point(420, 588)
+        Me.lblYTDAmountVacation.Name = "lblYTDAmountVacation"
+        Me.lblYTDAmountVacation.Size = New System.Drawing.Size(68, 13)
+        Me.lblYTDAmountVacation.TabIndex = 60
+        Me.lblYTDAmountVacation.Text = "YTD Amount"
+        '
+        'lblYTDAmountHoliday
+        '
+        Me.lblYTDAmountHoliday.AutoSize = True
+        Me.lblYTDAmountHoliday.Location = New System.Drawing.Point(420, 623)
+        Me.lblYTDAmountHoliday.Name = "lblYTDAmountHoliday"
+        Me.lblYTDAmountHoliday.Size = New System.Drawing.Size(68, 13)
+        Me.lblYTDAmountHoliday.TabIndex = 61
+        Me.lblYTDAmountHoliday.Text = "YTD Amount"
+        '
+        'cboWorkPeriod
+        '
+        Me.cboWorkPeriod.FormattingEnabled = True
+        Me.cboWorkPeriod.Location = New System.Drawing.Point(423, 17)
+        Me.cboWorkPeriod.Name = "cboWorkPeriod"
+        Me.cboWorkPeriod.Size = New System.Drawing.Size(203, 21)
+        Me.cboWorkPeriod.TabIndex = 1
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(826, 462)
+        Me.ClientSize = New System.Drawing.Size(826, 507)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.mnuNavigation)
@@ -220,9 +952,12 @@ Partial Class Form1
         Me.Text = "Employee Management System"
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.PerformLayout()
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         Me.pnlNavigation.ResumeLayout(False)
+        Me.pnlPaySlip.ResumeLayout(False)
+        Me.pnlPaySlip.PerformLayout()
         Me.mnuNavigation.ResumeLayout(False)
         Me.mnuNavigation.PerformLayout()
         Me.ResumeLayout(False)
@@ -248,5 +983,69 @@ Partial Class Form1
     Friend WithEvents tmiRequestVacation As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tmiViewMessages As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tmiChangePassword As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents pnlPaySlip As System.Windows.Forms.Panel
+    Friend WithEvents lblEmployeeAddress1 As System.Windows.Forms.Label
+    Friend WithEvents lblEmployeeAddressField As System.Windows.Forms.Label
+    Friend WithEvents lblHireDate As System.Windows.Forms.Label
+    Friend WithEvents lblHireDateField As System.Windows.Forms.Label
+    Friend WithEvents lblEmployeeName As System.Windows.Forms.Label
+    Friend WithEvents lblEmployeeNameField As System.Windows.Forms.Label
+    Friend WithEvents lblPaySlip As System.Windows.Forms.Label
+    Friend WithEvents lblEmployeeAddress2 As System.Windows.Forms.Label
+    Friend WithEvents lblAnnualSalary As System.Windows.Forms.Label
+    Friend WithEvents lblAnnualSalaryField As System.Windows.Forms.Label
+    Friend WithEvents lblPayRate As System.Windows.Forms.Label
+    Friend WithEvents lblPayRateField As System.Windows.Forms.Label
+    Friend WithEvents lblPayEndDate As System.Windows.Forms.Label
+    Friend WithEvents lblPayEndDateField As System.Windows.Forms.Label
+    Friend WithEvents lblPayStartDate As System.Windows.Forms.Label
+    Friend WithEvents lblPayStartDateField As System.Windows.Forms.Label
+    Friend WithEvents lblPaymentDate As System.Windows.Forms.Label
+    Friend WithEvents lblPaymentDateField As System.Windows.Forms.Label
+    Friend WithEvents lblPayPeriod As System.Windows.Forms.Label
+    Friend WithEvents lblPayPeriodField As System.Windows.Forms.Label
+    Friend WithEvents lblPayPeriodAndSalary As System.Windows.Forms.Label
+    Friend WithEvents lblNetPayYTD As System.Windows.Forms.Label
+    Friend WithEvents lblNetPayCurrent As System.Windows.Forms.Label
+    Friend WithEvents lblNetPayField As System.Windows.Forms.Label
+    Friend WithEvents lblTaxesYTD As System.Windows.Forms.Label
+    Friend WithEvents lblTaxesCurrent As System.Windows.Forms.Label
+    Friend WithEvents lblTaxesField As System.Windows.Forms.Label
+    Friend WithEvents lblPreTaxYTD As System.Windows.Forms.Label
+    Friend WithEvents lblPreTaxCurrent As System.Windows.Forms.Label
+    Friend WithEvents lblPreTaxField As System.Windows.Forms.Label
+    Friend WithEvents lblGrossYTD As System.Windows.Forms.Label
+    Friend WithEvents lblGrossCurrent As System.Windows.Forms.Label
+    Friend WithEvents lblGrossField As System.Windows.Forms.Label
+    Friend WithEvents lblYTDField As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentField As System.Windows.Forms.Label
+    Friend WithEvents lblSummary As System.Windows.Forms.Label
+    Friend WithEvents lblYTDAmountHoliday As System.Windows.Forms.Label
+    Friend WithEvents lblYTDAmountVacation As System.Windows.Forms.Label
+    Friend WithEvents lblYTDAmountPersonal As System.Windows.Forms.Label
+    Friend WithEvents lblYTDAmountRegular As System.Windows.Forms.Label
+    Friend WithEvents lblYTDAmountField As System.Windows.Forms.Label
+    Friend WithEvents lblYTDHoursHoliday As System.Windows.Forms.Label
+    Friend WithEvents lblYTDHoursVacation As System.Windows.Forms.Label
+    Friend WithEvents lblYTDHoursPersonal As System.Windows.Forms.Label
+    Friend WithEvents lblYTDHoursRegular As System.Windows.Forms.Label
+    Friend WithEvents lblYTDHoursField As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentAmountHoliday As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentAmountVacation As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentAmountPersonal As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentAmountRegular As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentAmountField As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentHoursHoliday As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentHoursVacation As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentHoursPersonal As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentHoursRegular As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentHoursField As System.Windows.Forms.Label
+    Friend WithEvents lblHolidayPayField As System.Windows.Forms.Label
+    Friend WithEvents lblVacationPayField As System.Windows.Forms.Label
+    Friend WithEvents lblPersonalPayField As System.Windows.Forms.Label
+    Friend WithEvents lblRegularPayField As System.Windows.Forms.Label
+    Friend WithEvents lblDescriptionField As System.Windows.Forms.Label
+    Friend WithEvents lblHoursAndEarnings As System.Windows.Forms.Label
+    Friend WithEvents cboWorkPeriod As System.Windows.Forms.ComboBox
 
 End Class
