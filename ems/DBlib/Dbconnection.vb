@@ -154,24 +154,68 @@ Namespace DBSQL
             Return ts
         End Function
 
-        '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
-        'returns the time worked for current user
-        Public Function getHoursWorked2(ByVal user_id As Integer) As TimeSpan
+        '===Messages=============================================================================
+
+        'gets all the messages in the inbox
+        Public Function getInboxMessages(ByVal user_id As Integer) As Collection
             initCommand()
-            _cmd.CommandText = "SELECT * FROM Times WHERE user_id=@user_id AND time_end IS NOT NULL"
+            _cmd.CommandText = "SELECT * FROM Messages WHERE user_id=@user_id AND deleted=0"
             _cmd.Parameters.AddWithValue("@user_id", user_id)
             _cmd.Connection.Open()
+            Dim messages As New Collection
             Dim r As IAsyncResult = _cmd.BeginExecuteReader
             Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
-            Dim startTime As New Date
-            Dim endTime As New Date
             While reader.Read
-                startTime = reader(2)
-                endTime = reader(3)
+                Dim m As New Message
+                m.senderId = reader("sender_id")
+                m.message = reader("message")
+                m.timeStamp = reader("time_stamp")
+                m.deleted = reader("deleted")
+                messages.Add(m)
             End While
             reader.Close()
             _cmd.Connection.Close()
-            Return endTime - startTime
+            Return messages
+        End Function
+
+        'gets all the messags sent by the user
+        Public Function getSentMessages(ByVal user_id As Integer) As Collection
+            initCommand()
+            _cmd.CommandText = "SELECT * FROM Messages WHERE sender_id=@user_id"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Connection.Open()
+            Dim messages As New Collection
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            While reader.Read
+                Dim m As New Message
+                m.userId = reader("user_id")
+                m.message = reader("message")
+                m.timeStamp = reader("time_stamp")
+                messages.Add(m)
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return messages
+        End Function
+
+        'gets the full name of user by id
+        Public Function getUserName(ByVal id As Integer) As String
+            initCommand()
+            _cmd.CommandText = "SELECT * FROM Users WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            Dim name As String = ""
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            While reader.Read
+                name += reader("first_name")
+                name += " "
+                name += reader("last_name")
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return name
         End Function
 
         '===General==============================================================================

@@ -5,13 +5,15 @@ Public Class Form1
     Public dbems As New DbConnection(My.Settings.DbEmsConnectionString)
     Public user As New User
     Public time As New Time
+    Public vacReq As New VacationRequest
+    Public messages As New Messages
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.CenterToScreen()
         Me.Show()
         tmiClockInOut.Enabled = False
         tmiEmployee.Enabled = False
-        pnlPaySlip.Visible = False
+        hidePanels()
         '**Disabled for development**
         'Login.ShowDialog()
         'If user.id > 0 Then
@@ -35,6 +37,12 @@ Public Class Form1
         lblName.Text = user.first_name + " " + user.last_name
         lblPosition.Text = user.position
         SplitContainer1.Visible = True
+    End Sub
+
+    Private Sub hidePanels()
+        pnlPaySlip.Visible = False
+        pnlRequestVacation.Visible = False
+        pnlMessages.Visible = False
     End Sub
 
     Private Sub tmiLogInOut_Click(sender As Object, e As EventArgs) Handles tmiLogInOut.Click
@@ -67,23 +75,28 @@ Public Class Form1
         Me.Close()
     End Sub
 
-    Private Sub tmiViewPaySlip_Click(sender As Object, e As EventArgs) Handles tmiViewPaySlip.Click
+    Private Sub tmiViewPaySlip_Click(sender As Object, e As EventArgs) Handles tmiViewPaySlip.Click, btnViewPaySlip.Click
+        hidePanels()
         Dim payslip As New PaySlip()
         payslip.initPaySlipPanel()
     End Sub
 
-    Private Sub tmiRequestVacation_Click(sender As Object, e As EventArgs) Handles tmiRequestVacation.Click
-
+    Private Sub tmiRequestVacation_Click(sender As Object, e As EventArgs) Handles tmiRequestVacation.Click, btnRequestVacation.Click
+        hidePanels()
+        vacReq.initVacationRequestPanel()
     End Sub
 
-    Private Sub tmiViewMessages_Click(sender As Object, e As EventArgs) Handles tmiViewMessages.Click
+    Private Sub tmiViewMessages_Click(sender As Object, e As EventArgs) Handles tmiViewMessages.Click, btnViewMessages.Click
+        hidePanels()
+        messages.initMessagesPanel()
+    End Sub
+
+    Private Sub tmiChangePassword_Click(sender As Object, e As EventArgs) Handles tmiChangePassword.Click, btnChangePassword.Click
         '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
         Dim arf As New TimeSpan
         arf = dbems.getHoursWorked(user.id, "Regular", time.workWeekStart, time.workWeekEnd)
         MessageBox.Show("Weekly Hours: " & arf.Hours + (arf.Days * 24) & ":" & arf.Minutes & ":" & arf.Seconds)
-    End Sub
 
-    Private Sub tmiChangePassword_Click(sender As Object, e As EventArgs) Handles tmiChangePassword.Click
         '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
         Dim h As Decimal = dbems.getHoursWorked(user.id, "Regular", time.workWeekStart, time.workWeekEnd).TotalHours
         Dim hourlyPay As Decimal = user.pay_rate / 52 / 40
@@ -91,7 +104,23 @@ Public Class Form1
         MessageBox.Show("Weekly Pay: " & pay.ToString("C2"))
     End Sub
 
+    Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateSelected
+        vacReq.dateRequested = e.Start
+        Dim dateEnd As Date = e.End
+        If vacReq.dateRequested.Date = dateEnd.Date Then
+            lblDateRequested.Text = "Vacation Date: " & vacReq.dateRequested.Date
+        Else
+            lblDateRequested.Text = "Vacation Date: " & vacReq.dateRequested.Date & " - " & dateEnd.Date
+        End If
+    End Sub
 
+    Private Sub btnInbox_Click(sender As Object, e As EventArgs) Handles btnInbox.Click
+        messages.view = "Inbox"
+        messages.initMessagesPanel()
+    End Sub
 
-
+    Private Sub btnSent_Click(sender As Object, e As EventArgs) Handles btnSent.Click
+        messages.view = "Sent"
+        messages.initMessagesPanel()
+    End Sub
 End Class
