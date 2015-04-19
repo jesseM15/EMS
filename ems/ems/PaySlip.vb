@@ -15,8 +15,24 @@
     Private _hourlyPay As Decimal
 
     Public Sub New()
-        _workPeriodStart = Form1.time.findMondayDate().AddDays(-7)
-        _workPeriodEnd = _workPeriodStart.AddDays(7).AddMinutes(-1)
+        _workPeriodStart = Form1.time.findMondayDate()
+        Dim length As Integer = Form1.time.workPeriodLength
+        _workPeriodEnd = _workPeriodStart.Date.AddDays(length).AddMinutes(-1)
+
+        Dim latestWorkPeriodStart As New Date
+        Dim latestWorkPeriodEnd As New Date
+        If _workPeriodEnd.AddDays(5).Date < DateAndTime.Now.Date Then
+            'if 5 days has passed since the _workPeriodEnd date
+            latestWorkPeriodStart = _workPeriodStart
+            latestWorkPeriodEnd = _workPeriodEnd
+        Else
+            latestWorkPeriodStart = _workPeriodStart.AddDays(-Form1.time.workPeriodLength)
+            latestWorkPeriodEnd = _workPeriodEnd.AddDays(-Form1.time.workPeriodLength)
+        End If
+        _workPeriodStart = latestWorkPeriodStart
+        _workPeriodEnd = latestWorkPeriodEnd
+        Form1.cboWorkPeriod.Items.Add("Pay Period: " & latestWorkPeriodStart.Date & " - " & latestWorkPeriodEnd.Date)
+        Form1.cboWorkPeriod.SelectedIndex = 0
 
         _hoursRegular = Form1.dbems.getHoursWorked(Form1.user.id, "Regular", _workPeriodStart, _workPeriodEnd).TotalHours
         _hoursPersonal = Form1.dbems.getHoursWorked(Form1.user.id, "Personal", _workPeriodStart, _workPeriodEnd).TotalHours
@@ -149,14 +165,19 @@
     End Property
 
     Public Sub initPaySlipPanel()
+
         Form1.lblEmployeeName.Text = Form1.user.first_name & " " & Form1.user.last_name
         Form1.lblHireDate.Text = Form1.user.hire_date
         Form1.lblEmployeeAddress1.Text = Form1.user.address
         Form1.lblEmployeeAddress2.Text = Form1.user.city & ", " & Form1.user.state & " " & Form1.user.zip
         Form1.lblPayPeriod.Text = "Weekly"
-        Form1.lblPaymentDate.Text = Form1.time.workWeekEnd.AddDays(5).Date
-        Form1.lblPayStartDate.Text = Form1.time.workWeekStart.Date
-        Form1.lblPayEndDate.Text = Form1.time.workWeekEnd.Date
+
+        'Form1.lblPaymentDate.Text = Form1.time.workPeriodEnd.AddDays(5).Date
+        'Form1.lblPayStartDate.Text = Form1.time.workPeriodStart.Date
+        'Form1.lblPayEndDate.Text = Form1.time.workPeriodEnd.Date
+        Form1.lblPaymentDate.Text = _workPeriodEnd.AddDays(5).Date
+        Form1.lblPayStartDate.Text = _workPeriodStart.Date
+        Form1.lblPayEndDate.Text = _workPeriodEnd.Date
 
         Form1.lblPayRate.Text = hourlyPay.ToString("C2") & "/hr"
         Form1.lblAnnualSalary.Text = Form1.user.pay_rate.ToString("C2")
@@ -184,5 +205,7 @@
 
         Form1.pnlPaySlip.Visible = True
     End Sub
+
+    
 
 End Class

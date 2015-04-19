@@ -96,6 +96,17 @@ Namespace DBSQL
             Return id
         End Function
 
+        'changes the user's password
+        Public Sub changePassword(id As Integer, newPassword As String)
+            initCommand()
+            _cmd.CommandText = "UPDATE Users SET password=@newPassword WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Parameters.AddWithValue("@newPassword", newPassword)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
         '===ClockIn/Out==============================================================================
 
         'returns true if current user has Times data that does not have a time_end value

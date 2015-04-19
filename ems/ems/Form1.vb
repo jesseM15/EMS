@@ -7,6 +7,7 @@ Public Class Form1
     Public time As New Time
     Public vacReq As New VacationRequest
     Public messages As New Messages
+    Public changePassword As New ChangePassword
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.CenterToScreen()
@@ -43,6 +44,7 @@ Public Class Form1
         pnlPaySlip.Visible = False
         pnlRequestVacation.Visible = False
         pnlMessages.Visible = False
+        pnlChangePassword.Visible = False
     End Sub
 
     Private Sub tmiLogInOut_Click(sender As Object, e As EventArgs) Handles tmiLogInOut.Click
@@ -93,15 +95,16 @@ Public Class Form1
 
     Private Sub tmiChangePassword_Click(sender As Object, e As EventArgs) Handles tmiChangePassword.Click, btnChangePassword.Click
         '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
-        Dim arf As New TimeSpan
-        arf = dbems.getHoursWorked(user.id, "Regular", time.workWeekStart, time.workWeekEnd)
-        MessageBox.Show("Weekly Hours: " & arf.Hours + (arf.Days * 24) & ":" & arf.Minutes & ":" & arf.Seconds)
-
+        'Dim arf As New TimeSpan
+        'arf = dbems.getHoursWorked(user.id, "Regular", time.workPeriodStart, time.workPeriodEnd)
+        'MessageBox.Show("Weekly Hours: " & arf.Hours + (arf.Days * 24) & ":" & arf.Minutes & ":" & arf.Seconds)
         '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
-        Dim h As Decimal = dbems.getHoursWorked(user.id, "Regular", time.workWeekStart, time.workWeekEnd).TotalHours
-        Dim hourlyPay As Decimal = user.pay_rate / 52 / 40
-        Dim pay As Decimal = hourlyPay * h
-        MessageBox.Show("Weekly Pay: " & pay.ToString("C2"))
+        'Dim h As Decimal = dbems.getHoursWorked(user.id, "Regular", time.workPeriodStart, time.workPeriodEnd).TotalHours
+        'Dim hourlyPay As Decimal = user.pay_rate / 52 / 40
+        'Dim pay As Decimal = hourlyPay * h
+        'MessageBox.Show("Weekly Pay: " & pay.ToString("C2"))
+        hidePanels()
+        changePassword.initChangePasswordPanel()
     End Sub
 
     Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateSelected
@@ -122,5 +125,18 @@ Public Class Form1
     Private Sub btnSent_Click(sender As Object, e As EventArgs) Handles btnSent.Click
         messages.view = "Sent"
         messages.initMessagesPanel()
+    End Sub
+
+    Private Sub btnChangePasswordOK_Click(sender As Object, e As EventArgs) Handles btnChangePasswordOK.Click
+        If dbems.checkLogIn(user.user_name, txtCurrentPassword.Text) = True Then
+            If txtNewPassword.Text = txtRetypePassword.Text Then
+                dbems.changePassword(user.id, txtNewPassword.Text)
+                lblChangePasswordMessage.Text = "Password Successfully Changed."
+            Else
+                lblChangePasswordMessage.Text = "Error retyping new password."
+            End If
+        Else
+            lblChangePasswordMessage.Text = "Current password incorrect."
+        End If
     End Sub
 End Class

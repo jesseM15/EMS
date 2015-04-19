@@ -6,16 +6,18 @@ Namespace EMS
         Private _time_start As Date
         Private _time_end As Date
         Private _hours_type As String
-        Private _workWeekStart As Date
-        Private _WorkWeekEnd As Date
+        Private _workPeriodLength As Integer
+        Private _workPeriodStart As Date
+        Private _WorkPeriodEnd As Date
         Private _workYearStart As Date
 
         Public Sub New()
             _time_start = New Date
             _time_end = New Date
             _hours_type = "Regular"
-            _workWeekStart = findMondayDate()
-            _WorkWeekEnd = findSundayDate()
+            _workPeriodLength = 14
+            _workPeriodStart = findMondayDate()
+            _WorkPeriodEnd = findSundayDate()
             _workYearStart = findFirstMonday()
 
         End Sub
@@ -47,15 +49,24 @@ Namespace EMS
             End Set
         End Property
 
-        Public ReadOnly Property workWeekStart() As Date
+        Public Property workPeriodLength() As Integer
             Get
-                Return _workWeekStart
+                Return _workPeriodLength
+            End Get
+            Set(ByVal value As Integer)
+                _workPeriodLength = value
+            End Set
+        End Property
+
+        Public ReadOnly Property workPeriodStart() As Date
+            Get
+                Return _workPeriodStart
             End Get
         End Property
 
-        Public ReadOnly Property workWeekEnd() As Date
+        Public ReadOnly Property workPeriodEnd() As Date
             Get
-                Return _WorkWeekEnd
+                Return _WorkPeriodEnd
             End Get
         End Property
 
@@ -74,7 +85,7 @@ Namespace EMS
         End Function
 
         Public Function findSundayDate() As Date
-            Return _workWeekStart.AddDays(7).AddMinutes(-1)
+            Return _workPeriodStart.AddDays(_workPeriodLength).AddMinutes(-1)
         End Function
 
         'finds the date for monday of the current year
