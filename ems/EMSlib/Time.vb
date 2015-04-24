@@ -8,16 +8,18 @@ Namespace EMS
         Private _hours_type As String
         Private _workPeriodLength As Integer
         Private _workPeriodStart As Date
-        Private _WorkPeriodEnd As Date
+        Private _workPeriodEnd As Date
         Private _workYearStart As Date
+
+        Private _companyPayPeriods As Collection
 
         Public Sub New()
             _time_start = New Date
             _time_end = New Date
             _hours_type = "Regular"
             _workPeriodLength = 14
-            _workPeriodStart = findMondayDate()
-            _WorkPeriodEnd = findSundayDate()
+            _workPeriodStart = findMondayDate(Date.Today)
+            _workPeriodEnd = findSundayDate()
             _workYearStart = findFirstMonday()
 
         End Sub
@@ -66,7 +68,7 @@ Namespace EMS
 
         Public ReadOnly Property workPeriodEnd() As Date
             Get
-                Return _WorkPeriodEnd
+                Return _workPeriodEnd
             End Get
         End Property
 
@@ -77,10 +79,9 @@ Namespace EMS
         End Property
 
         'finds the date for monday of the current week
-        Public Function findMondayDate() As Date
-            Dim today As Date = Date.Today
-            Dim dayDiff As Integer = today.DayOfWeek - DayOfWeek.Monday
-            Dim monday As Date = today.AddDays(-dayDiff)
+        Public Function findMondayDate(ByVal inputDate As Date) As Date
+            Dim dayDiff As Integer = inputDate.DayOfWeek - DayOfWeek.Monday
+            Dim monday As Date = inputDate.AddDays(-dayDiff)
             Return monday
         End Function
 
@@ -101,6 +102,24 @@ Namespace EMS
                 End While
                 Return firstDay
             End If
+        End Function
+
+        'returns a collection of the start dates for each work period in company history
+        Public Function getCompanyPayPeriods(ByVal workStartDate As Date) As Collection
+            Dim dates As New Collection
+            Dim startDate As Date = findMondayDate(workStartDate)
+            Dim today As Date = Date.Now
+            Do While (startDate.AddDays(_workPeriodLength) < today)
+                dates.Add(startDate)
+                startDate = startDate.AddDays(_workPeriodLength)
+            Loop
+            Dim reorder As New Collection
+            Dim count As Integer = dates.Count
+            Do While count > 0
+                reorder.Add(dates(count))
+                count -= 1
+            Loop
+            Return reorder
         End Function
 
     End Class

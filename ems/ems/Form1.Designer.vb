@@ -105,6 +105,16 @@ Partial Class Form1
         Me.lblDateRequested = New System.Windows.Forms.Label()
         Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
         Me.lblVacationRequest = New System.Windows.Forms.Label()
+        Me.pnlChangePassword = New System.Windows.Forms.Panel()
+        Me.lblChangePasswordMessage = New System.Windows.Forms.Label()
+        Me.btnChangePasswordOK = New System.Windows.Forms.Button()
+        Me.txtNewPassword = New System.Windows.Forms.TextBox()
+        Me.lblRetypePassword = New System.Windows.Forms.Label()
+        Me.txtRetypePassword = New System.Windows.Forms.TextBox()
+        Me.lblNewPassword = New System.Windows.Forms.Label()
+        Me.txtCurrentPassword = New System.Windows.Forms.TextBox()
+        Me.lblCurrentPassword = New System.Windows.Forms.Label()
+        Me.lblChangePassword = New System.Windows.Forms.Label()
         Me.mnuNavigation = New System.Windows.Forms.MenuStrip()
         Me.tmiFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiLogInOut = New System.Windows.Forms.ToolStripMenuItem()
@@ -116,16 +126,6 @@ Partial Class Form1
         Me.tmiViewMessages = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiChangePassword = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.pnlChangePassword = New System.Windows.Forms.Panel()
-        Me.lblChangePassword = New System.Windows.Forms.Label()
-        Me.lblCurrentPassword = New System.Windows.Forms.Label()
-        Me.txtCurrentPassword = New System.Windows.Forms.TextBox()
-        Me.lblNewPassword = New System.Windows.Forms.Label()
-        Me.txtRetypePassword = New System.Windows.Forms.TextBox()
-        Me.lblRetypePassword = New System.Windows.Forms.Label()
-        Me.txtNewPassword = New System.Windows.Forms.TextBox()
-        Me.btnChangePasswordOK = New System.Windows.Forms.Button()
-        Me.lblChangePasswordMessage = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -135,8 +135,8 @@ Partial Class Form1
         Me.pnlMessages.SuspendLayout()
         Me.pnlMessageNavigation.SuspendLayout()
         Me.pnlRequestVacation.SuspendLayout()
-        Me.mnuNavigation.SuspendLayout()
         Me.pnlChangePassword.SuspendLayout()
+        Me.mnuNavigation.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -154,10 +154,10 @@ Partial Class Form1
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlChangePassword)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlRequestVacation)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlChangePassword)
         Me.SplitContainer1.Size = New System.Drawing.Size(826, 483)
         Me.SplitContainer1.SplitterDistance = 156
         Me.SplitContainer1.TabIndex = 1
@@ -996,6 +996,97 @@ Partial Class Form1
         Me.lblVacationRequest.TabIndex = 0
         Me.lblVacationRequest.Text = "Vacation Request"
         '
+        'pnlChangePassword
+        '
+        Me.pnlChangePassword.Controls.Add(Me.lblChangePasswordMessage)
+        Me.pnlChangePassword.Controls.Add(Me.btnChangePasswordOK)
+        Me.pnlChangePassword.Controls.Add(Me.txtNewPassword)
+        Me.pnlChangePassword.Controls.Add(Me.lblRetypePassword)
+        Me.pnlChangePassword.Controls.Add(Me.txtRetypePassword)
+        Me.pnlChangePassword.Controls.Add(Me.lblNewPassword)
+        Me.pnlChangePassword.Controls.Add(Me.txtCurrentPassword)
+        Me.pnlChangePassword.Controls.Add(Me.lblCurrentPassword)
+        Me.pnlChangePassword.Controls.Add(Me.lblChangePassword)
+        Me.pnlChangePassword.Location = New System.Drawing.Point(3, 3)
+        Me.pnlChangePassword.Name = "pnlChangePassword"
+        Me.pnlChangePassword.Size = New System.Drawing.Size(658, 455)
+        Me.pnlChangePassword.TabIndex = 62
+        '
+        'lblChangePasswordMessage
+        '
+        Me.lblChangePasswordMessage.AutoSize = True
+        Me.lblChangePasswordMessage.Location = New System.Drawing.Point(25, 185)
+        Me.lblChangePasswordMessage.Name = "lblChangePasswordMessage"
+        Me.lblChangePasswordMessage.Size = New System.Drawing.Size(0, 13)
+        Me.lblChangePasswordMessage.TabIndex = 8
+        '
+        'btnChangePasswordOK
+        '
+        Me.btnChangePasswordOK.Location = New System.Drawing.Point(143, 147)
+        Me.btnChangePasswordOK.Name = "btnChangePasswordOK"
+        Me.btnChangePasswordOK.Size = New System.Drawing.Size(75, 23)
+        Me.btnChangePasswordOK.TabIndex = 7
+        Me.btnChangePasswordOK.Text = "OK"
+        Me.btnChangePasswordOK.UseVisualStyleBackColor = True
+        '
+        'txtNewPassword
+        '
+        Me.txtNewPassword.Location = New System.Drawing.Point(115, 111)
+        Me.txtNewPassword.Name = "txtNewPassword"
+        Me.txtNewPassword.Size = New System.Drawing.Size(103, 20)
+        Me.txtNewPassword.TabIndex = 6
+        '
+        'lblRetypePassword
+        '
+        Me.lblRetypePassword.AutoSize = True
+        Me.lblRetypePassword.Location = New System.Drawing.Point(22, 114)
+        Me.lblRetypePassword.Name = "lblRetypePassword"
+        Me.lblRetypePassword.Size = New System.Drawing.Size(93, 13)
+        Me.lblRetypePassword.TabIndex = 5
+        Me.lblRetypePassword.Text = "Retype Password:"
+        '
+        'txtRetypePassword
+        '
+        Me.txtRetypePassword.Location = New System.Drawing.Point(115, 81)
+        Me.txtRetypePassword.Name = "txtRetypePassword"
+        Me.txtRetypePassword.Size = New System.Drawing.Size(103, 20)
+        Me.txtRetypePassword.TabIndex = 4
+        '
+        'lblNewPassword
+        '
+        Me.lblNewPassword.AutoSize = True
+        Me.lblNewPassword.Location = New System.Drawing.Point(22, 84)
+        Me.lblNewPassword.Name = "lblNewPassword"
+        Me.lblNewPassword.Size = New System.Drawing.Size(81, 13)
+        Me.lblNewPassword.TabIndex = 3
+        Me.lblNewPassword.Text = "New Password:"
+        '
+        'txtCurrentPassword
+        '
+        Me.txtCurrentPassword.Location = New System.Drawing.Point(115, 50)
+        Me.txtCurrentPassword.Name = "txtCurrentPassword"
+        Me.txtCurrentPassword.Size = New System.Drawing.Size(103, 20)
+        Me.txtCurrentPassword.TabIndex = 2
+        '
+        'lblCurrentPassword
+        '
+        Me.lblCurrentPassword.AutoSize = True
+        Me.lblCurrentPassword.Location = New System.Drawing.Point(22, 53)
+        Me.lblCurrentPassword.Name = "lblCurrentPassword"
+        Me.lblCurrentPassword.Size = New System.Drawing.Size(93, 13)
+        Me.lblCurrentPassword.TabIndex = 1
+        Me.lblCurrentPassword.Text = "Current Password:"
+        '
+        'lblChangePassword
+        '
+        Me.lblChangePassword.AutoSize = True
+        Me.lblChangePassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblChangePassword.Location = New System.Drawing.Point(21, 12)
+        Me.lblChangePassword.Name = "lblChangePassword"
+        Me.lblChangePassword.Size = New System.Drawing.Size(164, 24)
+        Me.lblChangePassword.TabIndex = 0
+        Me.lblChangePassword.Text = "Change Password"
+        '
         'mnuNavigation
         '
         Me.mnuNavigation.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tmiFile, Me.tmiEmployee})
@@ -1069,97 +1160,6 @@ Partial Class Form1
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'pnlChangePassword
-        '
-        Me.pnlChangePassword.Controls.Add(Me.lblChangePasswordMessage)
-        Me.pnlChangePassword.Controls.Add(Me.btnChangePasswordOK)
-        Me.pnlChangePassword.Controls.Add(Me.txtNewPassword)
-        Me.pnlChangePassword.Controls.Add(Me.lblRetypePassword)
-        Me.pnlChangePassword.Controls.Add(Me.txtRetypePassword)
-        Me.pnlChangePassword.Controls.Add(Me.lblNewPassword)
-        Me.pnlChangePassword.Controls.Add(Me.txtCurrentPassword)
-        Me.pnlChangePassword.Controls.Add(Me.lblCurrentPassword)
-        Me.pnlChangePassword.Controls.Add(Me.lblChangePassword)
-        Me.pnlChangePassword.Location = New System.Drawing.Point(3, 3)
-        Me.pnlChangePassword.Name = "pnlChangePassword"
-        Me.pnlChangePassword.Size = New System.Drawing.Size(658, 455)
-        Me.pnlChangePassword.TabIndex = 62
-        '
-        'lblChangePassword
-        '
-        Me.lblChangePassword.AutoSize = True
-        Me.lblChangePassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblChangePassword.Location = New System.Drawing.Point(21, 12)
-        Me.lblChangePassword.Name = "lblChangePassword"
-        Me.lblChangePassword.Size = New System.Drawing.Size(164, 24)
-        Me.lblChangePassword.TabIndex = 0
-        Me.lblChangePassword.Text = "Change Password"
-        '
-        'lblCurrentPassword
-        '
-        Me.lblCurrentPassword.AutoSize = True
-        Me.lblCurrentPassword.Location = New System.Drawing.Point(22, 53)
-        Me.lblCurrentPassword.Name = "lblCurrentPassword"
-        Me.lblCurrentPassword.Size = New System.Drawing.Size(93, 13)
-        Me.lblCurrentPassword.TabIndex = 1
-        Me.lblCurrentPassword.Text = "Current Password:"
-        '
-        'txtCurrentPassword
-        '
-        Me.txtCurrentPassword.Location = New System.Drawing.Point(115, 50)
-        Me.txtCurrentPassword.Name = "txtCurrentPassword"
-        Me.txtCurrentPassword.Size = New System.Drawing.Size(103, 20)
-        Me.txtCurrentPassword.TabIndex = 2
-        '
-        'lblNewPassword
-        '
-        Me.lblNewPassword.AutoSize = True
-        Me.lblNewPassword.Location = New System.Drawing.Point(22, 84)
-        Me.lblNewPassword.Name = "lblNewPassword"
-        Me.lblNewPassword.Size = New System.Drawing.Size(81, 13)
-        Me.lblNewPassword.TabIndex = 3
-        Me.lblNewPassword.Text = "New Password:"
-        '
-        'txtRetypePassword
-        '
-        Me.txtRetypePassword.Location = New System.Drawing.Point(115, 81)
-        Me.txtRetypePassword.Name = "txtRetypePassword"
-        Me.txtRetypePassword.Size = New System.Drawing.Size(103, 20)
-        Me.txtRetypePassword.TabIndex = 4
-        '
-        'lblRetypePassword
-        '
-        Me.lblRetypePassword.AutoSize = True
-        Me.lblRetypePassword.Location = New System.Drawing.Point(22, 114)
-        Me.lblRetypePassword.Name = "lblRetypePassword"
-        Me.lblRetypePassword.Size = New System.Drawing.Size(93, 13)
-        Me.lblRetypePassword.TabIndex = 5
-        Me.lblRetypePassword.Text = "Retype Password:"
-        '
-        'txtNewPassword
-        '
-        Me.txtNewPassword.Location = New System.Drawing.Point(115, 111)
-        Me.txtNewPassword.Name = "txtNewPassword"
-        Me.txtNewPassword.Size = New System.Drawing.Size(103, 20)
-        Me.txtNewPassword.TabIndex = 6
-        '
-        'btnChangePasswordOK
-        '
-        Me.btnChangePasswordOK.Location = New System.Drawing.Point(143, 147)
-        Me.btnChangePasswordOK.Name = "btnChangePasswordOK"
-        Me.btnChangePasswordOK.Size = New System.Drawing.Size(75, 23)
-        Me.btnChangePasswordOK.TabIndex = 7
-        Me.btnChangePasswordOK.Text = "OK"
-        Me.btnChangePasswordOK.UseVisualStyleBackColor = True
-        '
-        'lblChangePasswordMessage
-        '
-        Me.lblChangePasswordMessage.AutoSize = True
-        Me.lblChangePasswordMessage.Location = New System.Drawing.Point(25, 185)
-        Me.lblChangePasswordMessage.Name = "lblChangePasswordMessage"
-        Me.lblChangePasswordMessage.Size = New System.Drawing.Size(0, 13)
-        Me.lblChangePasswordMessage.TabIndex = 8
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1184,10 +1184,10 @@ Partial Class Form1
         Me.pnlMessageNavigation.ResumeLayout(False)
         Me.pnlRequestVacation.ResumeLayout(False)
         Me.pnlRequestVacation.PerformLayout()
-        Me.mnuNavigation.ResumeLayout(False)
-        Me.mnuNavigation.PerformLayout()
         Me.pnlChangePassword.ResumeLayout(False)
         Me.pnlChangePassword.PerformLayout()
+        Me.mnuNavigation.ResumeLayout(False)
+        Me.mnuNavigation.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

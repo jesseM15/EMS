@@ -1,4 +1,5 @@
 ﻿Public Class PaySlip
+    Private _employedDates As Collection
     Private _workPeriodStart As Date
     Private _workPeriodEnd As Date
 
@@ -15,24 +16,21 @@
     Private _hourlyPay As Decimal
 
     Public Sub New()
-        _workPeriodStart = Form1.time.findMondayDate()
         Dim length As Integer = Form1.time.workPeriodLength
-        _workPeriodEnd = _workPeriodStart.Date.AddDays(length).AddMinutes(-1)
+        Dim dates As New Collection
+        _employedDates = New Collection
+        dates = Form1.time.getCompanyPayPeriods(Form1.admin.workStartDate)
+        For Each payPeriod In dates
+            If payPeriod.AddDays(length).AddMinutes(-1) > Form1.user.hire_date Then
+                _employedDates.Add(payPeriod)
+            End If
+        Next
+        For Each payPeriod In _employedDates
+            Form1.cboWorkPeriod.Items.Add("Pay Period: " & payPeriod.date & " - " & payPeriod.addDays(length).addMinutes(-1).date)
+        Next
 
-        Dim latestWorkPeriodStart As New Date
-        Dim latestWorkPeriodEnd As New Date
-        If _workPeriodEnd.AddDays(5).Date < DateAndTime.Now.Date Then
-            'if 5 days has passed since the _workPeriodEnd date
-            latestWorkPeriodStart = _workPeriodStart
-            latestWorkPeriodEnd = _workPeriodEnd
-        Else
-            latestWorkPeriodStart = _workPeriodStart.AddDays(-Form1.time.workPeriodLength)
-            latestWorkPeriodEnd = _workPeriodEnd.AddDays(-Form1.time.workPeriodLength)
-        End If
-        _workPeriodStart = latestWorkPeriodStart
-        _workPeriodEnd = latestWorkPeriodEnd
-        Form1.cboWorkPeriod.Items.Add("Pay Period: " & latestWorkPeriodStart.Date & " - " & latestWorkPeriodEnd.Date)
-        Form1.cboWorkPeriod.SelectedIndex = 0
+        _workPeriodStart = _employedDates.Item(1)
+        _workPeriodEnd = workPeriodStart.AddDays(length).AddMinutes(-1)
 
         _hoursRegular = Form1.dbems.getHoursWorked(Form1.user.id, "Regular", _workPeriodStart, _workPeriodEnd).TotalHours
         _hoursPersonal = Form1.dbems.getHoursWorked(Form1.user.id, "Personal", _workPeriodStart, _workPeriodEnd).TotalHours
@@ -46,6 +44,15 @@
         _YTDTotal = _YTDRegular + _YTDPersonal + _YTDVacation + _YTDHoliday
         _hourlyPay = Form1.user.pay_rate / 52 / 40
     End Sub
+
+    Public Property employedDates() As Collection
+        Get
+            Return _employedDates
+        End Get
+        Set(value As Collection)
+            _employedDates = value
+        End Set
+    End Property
 
     Public Property workPeriodStart() As Date
         Get
@@ -206,6 +213,6 @@
         Form1.pnlPaySlip.Visible = True
     End Sub
 
-    
+
 
 End Class

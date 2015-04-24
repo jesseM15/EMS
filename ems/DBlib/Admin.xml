@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Admin>
+  <Settings>
+    <User>
+      <AllowAutoLogin>True</AllowAutoLogin>
+    </User>
+    <Time>
+      <WorkPeriod>14</WorkPeriod>
+      <WorkStartDate>#06/28/2004#</WorkStartDate>
+    </Time>
+  </Settings>
+</Admin>

@@ -2,12 +2,12 @@
 Imports EMSlib.EMS
 
 Public Class Form1
+    Public admin As New Admin()
     Public dbems As New DbConnection(My.Settings.DbEmsConnectionString)
     Public user As New User
     Public time As New Time
     Public vacReq As New VacationRequest
     Public messages As New Messages
-    Public changePassword As New ChangePassword
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.CenterToScreen()
@@ -23,6 +23,9 @@ Public Class Form1
         '**Uncomment and remove following lines during testing**
         user = dbems.getSession(1)
         initNavigationPanel()
+
+        time.workPeriodLength = admin.workPeriod
+        'MessageBox.Show("Work Period Length: " & time.workPeriodLength & vbCrLf & "Start Date: " & admin.workStartDate & vbCrLf & "Allow Auto Login: " & admin.allowAutoLogin)
 
     End Sub
 
@@ -80,6 +83,7 @@ Public Class Form1
     Private Sub tmiViewPaySlip_Click(sender As Object, e As EventArgs) Handles tmiViewPaySlip.Click, btnViewPaySlip.Click
         hidePanels()
         Dim payslip As New PaySlip()
+        cboWorkPeriod.SelectedIndex = 0
         payslip.initPaySlipPanel()
     End Sub
 
@@ -94,17 +98,8 @@ Public Class Form1
     End Sub
 
     Private Sub tmiChangePassword_Click(sender As Object, e As EventArgs) Handles tmiChangePassword.Click, btnChangePassword.Click
-        '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
-        'Dim arf As New TimeSpan
-        'arf = dbems.getHoursWorked(user.id, "Regular", time.workPeriodStart, time.workPeriodEnd)
-        'MessageBox.Show("Weekly Hours: " & arf.Hours + (arf.Days * 24) & ":" & arf.Minutes & ":" & arf.Seconds)
-        '!!!TEMPORARY!!! CHANGE THIS CODE (WRITTEN FOR TESTING)
-        'Dim h As Decimal = dbems.getHoursWorked(user.id, "Regular", time.workPeriodStart, time.workPeriodEnd).TotalHours
-        'Dim hourlyPay As Decimal = user.pay_rate / 52 / 40
-        'Dim pay As Decimal = hourlyPay * h
-        'MessageBox.Show("Weekly Pay: " & pay.ToString("C2"))
         hidePanels()
-        changePassword.initChangePasswordPanel()
+        pnlChangePassword.Visible = True
     End Sub
 
     Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateSelected
@@ -138,5 +133,13 @@ Public Class Form1
         Else
             lblChangePasswordMessage.Text = "Current password incorrect."
         End If
+    End Sub
+
+    Private Sub cboWorkPeriod_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboWorkPeriod.SelectedIndexChanged
+        hidePanels()
+        Dim payslip As New PaySlip()
+        payslip.workPeriodStart = payslip.employedDates.Item(cboWorkPeriod.SelectedIndex + 1)
+        payslip.workPeriodEnd = payslip.workPeriodStart.AddDays(time.workPeriodLength).AddMinutes(-1)
+        payslip.initPaySlipPanel()
     End Sub
 End Class
