@@ -2,12 +2,6 @@
 Imports EMSlib.EMS
 
 Public Class Form1
-    Public admin As New Admin()
-    Public dbems As New DbConnection(My.Settings.DbEmsConnectionString)
-    Public user As New User
-    Public time As New Time
-    Public vacReq As New VacationRequest
-    Public messages As New Messages
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.CenterToScreen()
@@ -23,10 +17,6 @@ Public Class Form1
         '**Uncomment and remove following lines during testing**
         user = dbems.getSession(1)
         initNavigationPanel()
-
-        time.workPeriodLength = admin.workPeriod
-        'MessageBox.Show("Work Period Length: " & time.workPeriodLength & vbCrLf & "Start Date: " & admin.workStartDate & vbCrLf & "Allow Auto Login: " & admin.allowAutoLogin)
-
     End Sub
 
     Private Sub initNavigationPanel()
@@ -82,9 +72,8 @@ Public Class Form1
 
     Private Sub tmiViewPaySlip_Click(sender As Object, e As EventArgs) Handles tmiViewPaySlip.Click, btnViewPaySlip.Click
         hidePanels()
-        Dim payslip As New PaySlip()
+        pay.initPaySlipPanel()
         cboWorkPeriod.SelectedIndex = 0
-        payslip.initPaySlipPanel()
     End Sub
 
     Private Sub tmiRequestVacation_Click(sender As Object, e As EventArgs) Handles tmiRequestVacation.Click, btnRequestVacation.Click
@@ -94,7 +83,7 @@ Public Class Form1
 
     Private Sub tmiViewMessages_Click(sender As Object, e As EventArgs) Handles tmiViewMessages.Click, btnViewMessages.Click
         hidePanels()
-        messages.initMessagesPanel()
+        msgs.initMessagesPanel()
     End Sub
 
     Private Sub tmiChangePassword_Click(sender As Object, e As EventArgs) Handles tmiChangePassword.Click, btnChangePassword.Click
@@ -113,13 +102,13 @@ Public Class Form1
     End Sub
 
     Private Sub btnInbox_Click(sender As Object, e As EventArgs) Handles btnInbox.Click
-        messages.view = "Inbox"
-        messages.initMessagesPanel()
+        msgs.view = "Inbox"
+        msgs.initMessagesPanel()
     End Sub
 
     Private Sub btnSent_Click(sender As Object, e As EventArgs) Handles btnSent.Click
-        messages.view = "Sent"
-        messages.initMessagesPanel()
+        msgs.view = "Sent"
+        msgs.initMessagesPanel()
     End Sub
 
     Private Sub btnChangePasswordOK_Click(sender As Object, e As EventArgs) Handles btnChangePasswordOK.Click
@@ -137,9 +126,8 @@ Public Class Form1
 
     Private Sub cboWorkPeriod_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboWorkPeriod.SelectedIndexChanged
         hidePanels()
-        Dim payslip As New PaySlip()
-        payslip.workPeriodStart = payslip.employedDates.Item(cboWorkPeriod.SelectedIndex + 1)
-        payslip.workPeriodEnd = payslip.workPeriodStart.AddDays(time.workPeriodLength).AddMinutes(-1)
-        payslip.initPaySlipPanel()
+        pay.workPeriodStart = pay.employedDates.Item(cboWorkPeriod.SelectedIndex + 1)
+        pay.workPeriodEnd = pay.workPeriodStart.AddDays(time.workPeriodLength).AddMinutes(-1)
+        pay.initPaySlipPanel()
     End Sub
 End Class

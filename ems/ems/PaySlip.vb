@@ -16,33 +16,49 @@
     Private _hourlyPay As Decimal
 
     Public Sub New()
-        Dim length As Integer = Form1.time.workPeriodLength
-        Dim dates As New Collection
+        'Dim length As Integer = time.workPeriodLength
+        'Dim dates As New Collection
+        ''_employedDates = New Collection
+        'dates = time.getCompanyPayPeriods(admin.workStartDate)
+        'For Each payPeriod In dates
+        '    If payPeriod.AddDays(length).AddMinutes(-1) > user.hire_date Then
+        '        _employedDates.Add(payPeriod)
+        '    End If
+        'Next
+        'For Each payPeriod In _employedDates
+        '    Form1.cboWorkPeriod.Items.Add("Pay Period: " & payPeriod.date & " - " & payPeriod.addDays(length).addMinutes(-1).date)
+        'Next
+
+        '_workPeriodStart = _employedDates.Item(1)
+        '_workPeriodEnd = workPeriodStart.AddDays(length).AddMinutes(-1)
+
         _employedDates = New Collection
-        dates = Form1.time.getCompanyPayPeriods(Form1.admin.workStartDate)
-        For Each payPeriod In dates
-            If payPeriod.AddDays(length).AddMinutes(-1) > Form1.user.hire_date Then
-                _employedDates.Add(payPeriod)
-            End If
-        Next
-        For Each payPeriod In _employedDates
-            Form1.cboWorkPeriod.Items.Add("Pay Period: " & payPeriod.date & " - " & payPeriod.addDays(length).addMinutes(-1).date)
-        Next
+        _workPeriodStart = New Date
+        _workPeriodEnd = New Date
 
-        _workPeriodStart = _employedDates.Item(1)
-        _workPeriodEnd = workPeriodStart.AddDays(length).AddMinutes(-1)
+        _hoursRegular = 0
+        _hoursPersonal = 0
+        _hoursVacation = 0
+        _hoursHoliday = 0
+        _hoursTotal = 0
+        _YTDRegular = 0
+        _YTDPersonal = 0
+        _YTDVacation = 0
+        _YTDHoliday = 0
+        _YTDTotal = 0
+        _hourlyPay = 0
 
-        _hoursRegular = Form1.dbems.getHoursWorked(Form1.user.id, "Regular", _workPeriodStart, _workPeriodEnd).TotalHours
-        _hoursPersonal = Form1.dbems.getHoursWorked(Form1.user.id, "Personal", _workPeriodStart, _workPeriodEnd).TotalHours
-        _hoursVacation = Form1.dbems.getHoursWorked(Form1.user.id, "Vacation", _workPeriodStart, _workPeriodEnd).TotalHours
-        _hoursHoliday = Form1.dbems.getHoursWorked(Form1.user.id, "Holiday", _workPeriodStart, _workPeriodEnd).TotalHours
-        _hoursTotal = _hoursRegular + _hoursPersonal + _hoursVacation + _hoursHoliday
-        _YTDRegular = Form1.dbems.getHoursWorked(Form1.user.id, "Regular", Form1.time.workYearStart, _workPeriodEnd).TotalHours
-        _YTDPersonal = Form1.dbems.getHoursWorked(Form1.user.id, "Personal", Form1.time.workYearStart, _workPeriodEnd).TotalHours
-        _YTDVacation = Form1.dbems.getHoursWorked(Form1.user.id, "Vacation", Form1.time.workYearStart, _workPeriodEnd).TotalHours
-        _YTDHoliday = Form1.dbems.getHoursWorked(Form1.user.id, "Holiday", Form1.time.workYearStart, _workPeriodEnd).TotalHours
-        _YTDTotal = _YTDRegular + _YTDPersonal + _YTDVacation + _YTDHoliday
-        _hourlyPay = Form1.user.pay_rate / 52 / 40
+        '_hoursRegular = dbems.getHoursWorked(user.id, "Regular", _workPeriodStart, _workPeriodEnd).TotalHours
+        '_hoursPersonal = dbems.getHoursWorked(user.id, "Personal", _workPeriodStart, _workPeriodEnd).TotalHours
+        '_hoursVacation = dbems.getHoursWorked(user.id, "Vacation", _workPeriodStart, _workPeriodEnd).TotalHours
+        '_hoursHoliday = dbems.getHoursWorked(user.id, "Holiday", _workPeriodStart, _workPeriodEnd).TotalHours
+        '_hoursTotal = _hoursRegular + _hoursPersonal + _hoursVacation + _hoursHoliday
+        '_YTDRegular = dbems.getHoursWorked(user.id, "Regular", time.workYearStart, _workPeriodEnd).TotalHours
+        '_YTDPersonal = dbems.getHoursWorked(user.id, "Personal", time.workYearStart, _workPeriodEnd).TotalHours
+        '_YTDVacation = dbems.getHoursWorked(user.id, "Vacation", time.workYearStart, _workPeriodEnd).TotalHours
+        '_YTDHoliday = dbems.getHoursWorked(user.id, "Holiday", time.workYearStart, _workPeriodEnd).TotalHours
+        '_YTDTotal = _YTDRegular + _YTDPersonal + _YTDVacation + _YTDHoliday
+        '_hourlyPay = user.pay_rate / 52 / 40
     End Sub
 
     Public Property employedDates() As Collection
@@ -172,11 +188,14 @@
     End Property
 
     Public Sub initPaySlipPanel()
-
-        Form1.lblEmployeeName.Text = Form1.user.first_name & " " & Form1.user.last_name
-        Form1.lblHireDate.Text = Form1.user.hire_date
-        Form1.lblEmployeeAddress1.Text = Form1.user.address
-        Form1.lblEmployeeAddress2.Text = Form1.user.city & ", " & Form1.user.state & " " & Form1.user.zip
+        If employedDates.Count < 1 Then
+            getEmployedDates()
+        End If
+        getHours()
+        Form1.lblEmployeeName.Text = user.first_name & " " & user.last_name
+        Form1.lblHireDate.Text = user.hire_date
+        Form1.lblEmployeeAddress1.Text = user.address
+        Form1.lblEmployeeAddress2.Text = user.city & ", " & user.state & " " & user.zip
         Form1.lblPayPeriod.Text = "Weekly"
 
         'Form1.lblPaymentDate.Text = Form1.time.workPeriodEnd.AddDays(5).Date
@@ -187,20 +206,20 @@
         Form1.lblPayEndDate.Text = _workPeriodEnd.Date
 
         Form1.lblPayRate.Text = hourlyPay.ToString("C2") & "/hr"
-        Form1.lblAnnualSalary.Text = Form1.user.pay_rate.ToString("C2")
+        Form1.lblAnnualSalary.Text = user.pay_rate.ToString("C2")
         Form1.lblGrossCurrent.Text = (hoursTotal * hourlyPay).ToString("C2")
         Form1.lblPreTaxCurrent.Text = 0
         Form1.lblPreTaxYTD.Text = 0
         Form1.lblGrossYTD.Text = (YTDTotal * hourlyPay).ToString("C2")
 
-        Form1.lblCurrentHoursRegular.Text = hoursRegular
-        Form1.lblCurrentHoursPersonal.Text = hoursPersonal
-        Form1.lblCurrentHoursVacation.Text = hoursVacation
-        Form1.lblCurrentHoursHoliday.Text = hoursHoliday
-        Form1.lblYTDHoursRegular.Text = YTDRegular
-        Form1.lblYTDHoursPersonal.Text = YTDPersonal
-        Form1.lblYTDHoursVacation.Text = YTDVacation
-        Form1.lblYTDHoursHoliday.Text = YTDHoliday
+        Form1.lblCurrentHoursRegular.Text = FormatNumber(CDec(hoursRegular), 4)
+        Form1.lblCurrentHoursPersonal.Text = FormatNumber(CDec(hoursPersonal), 4)
+        Form1.lblCurrentHoursVacation.Text = FormatNumber(CDec(hoursVacation), 4)
+        Form1.lblCurrentHoursHoliday.Text = FormatNumber(CDec(hoursHoliday), 4)
+        Form1.lblYTDHoursRegular.Text = FormatNumber(CDec(YTDRegular), 4)
+        Form1.lblYTDHoursPersonal.Text = FormatNumber(CDec(YTDPersonal), 4)
+        Form1.lblYTDHoursVacation.Text = FormatNumber(CDec(YTDVacation), 4)
+        Form1.lblYTDHoursHoliday.Text = FormatNumber(CDec(YTDHoliday), 4)
         Form1.lblCurrentAmountRegular.Text = (hoursRegular * hourlyPay).ToString("C2")
         Form1.lblCurrentAmountPersonal.Text = (hoursPersonal * hourlyPay).ToString("C2")
         Form1.lblCurrentAmountVacation.Text = (hoursVacation * hourlyPay).ToString("C2")
@@ -213,6 +232,36 @@
         Form1.pnlPaySlip.Visible = True
     End Sub
 
+    Private Sub getEmployedDates()
+        Dim length As Integer = time.workPeriodLength
+        Dim dates As New Collection
+        _employedDates = New Collection
+        dates = time.getCompanyPayPeriods(admin.workStartDate)
+        For Each payPeriod In dates
+            If payPeriod.AddDays(length).AddMinutes(-1) > user.hire_date Then
+                _employedDates.Add(payPeriod)
+            End If
+        Next
+        For Each payPeriod In _employedDates
+            Form1.cboWorkPeriod.Items.Add("Pay Period: " & payPeriod.date & " - " & payPeriod.addDays(length).addMinutes(-1).date)
+        Next
 
+        _workPeriodStart = _employedDates.Item(1)
+        _workPeriodEnd = workPeriodStart.AddDays(length).AddMinutes(-1)
+    End Sub
+
+    Private Sub getHours()
+        _hoursRegular = dbems.getHoursWorked(user.id, "Regular", _workPeriodStart, _workPeriodEnd).TotalHours
+        _hoursPersonal = dbems.getHoursWorked(user.id, "Personal", _workPeriodStart, _workPeriodEnd).TotalHours
+        _hoursVacation = dbems.getHoursWorked(user.id, "Vacation", _workPeriodStart, _workPeriodEnd).TotalHours
+        _hoursHoliday = dbems.getHoursWorked(user.id, "Holiday", _workPeriodStart, _workPeriodEnd).TotalHours
+        _hoursTotal = _hoursRegular + _hoursPersonal + _hoursVacation + _hoursHoliday
+        _YTDRegular = dbems.getHoursWorked(user.id, "Regular", time.workYearStart, _workPeriodEnd).TotalHours
+        _YTDPersonal = dbems.getHoursWorked(user.id, "Personal", time.workYearStart, _workPeriodEnd).TotalHours
+        _YTDVacation = dbems.getHoursWorked(user.id, "Vacation", time.workYearStart, _workPeriodEnd).TotalHours
+        _YTDHoliday = dbems.getHoursWorked(user.id, "Holiday", time.workYearStart, _workPeriodEnd).TotalHours
+        _YTDTotal = _YTDRegular + _YTDPersonal + _YTDVacation + _YTDHoliday
+        _hourlyPay = user.pay_rate / 52 / 40
+    End Sub
 
 End Class

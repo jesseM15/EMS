@@ -34,11 +34,11 @@ Public Class Messages
     End Sub
 
     Private Sub initInbox()
-        Dim msgs As Collection = Form1.dbems.getInboxMessages(Form1.user.id)
+        Dim msgs As Collection = dbems.getInboxMessages(user.id)
         Dim msgstr(2) As String
         Dim lvi As New ListViewItem
         For Each msg In msgs
-            msgstr(0) = Form1.dbems.getUserName(msg.senderId)
+            msgstr(0) = dbems.getUserName(msg.senderId)
             msgstr(1) = msg.timeStamp.ToString()
             msgstr(2) = msg.message
             lvi = New ListViewItem(msgstr)
@@ -47,11 +47,11 @@ Public Class Messages
     End Sub
 
     Private Sub initSent()
-        Dim msgs As Collection = Form1.dbems.getSentMessages(Form1.user.id)
+        Dim msgs As Collection = dbems.getSentMessages(user.id)
         Dim msgstr(2) As String
         Dim lvi As New ListViewItem
         For Each msg In msgs
-            msgstr(0) = Form1.dbems.getUserName(msg.userId)
+            msgstr(0) = dbems.getUserName(msg.userId)
             msgstr(1) = msg.timeStamp.ToString()
             msgstr(2) = msg.message
             lvi = New ListViewItem(msgstr)
