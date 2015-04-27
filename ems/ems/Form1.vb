@@ -30,6 +30,16 @@ Public Class Form1
         End If
         lblName.Text = user.first_name + " " + user.last_name
         lblPosition.Text = user.position
+        pnlNavigationManager.Visible = False
+        tmiManage.Visible = False
+        If user.user_type = "Manager" Then
+            pnlNavigationManager.Visible = True
+            tmiManage.Visible = True
+        ElseIf user.user_type = "Administrator" Then
+            pnlNavigationManager.Visible = True
+            tmiManage.Visible = True
+
+        End If
         SplitContainer1.Visible = True
     End Sub
 
@@ -38,6 +48,9 @@ Public Class Form1
         pnlRequestVacation.Visible = False
         pnlMessages.Visible = False
         pnlChangePassword.Visible = False
+        pnlViewEmployees.Visible = False
+        pnlManageVacations.Visible = False
+        pnlReports.Visible = False
     End Sub
 
     Private Sub tmiLogInOut_Click(sender As Object, e As EventArgs) Handles tmiLogInOut.Click
@@ -91,6 +104,19 @@ Public Class Form1
         pnlChangePassword.Visible = True
     End Sub
 
+    Private Sub tmiViewEmployees_Click(sender As Object, e As EventArgs) Handles tmiViewEmployees.Click, btnViewEmployees.Click
+        hidePanels()
+        employees.initViewEmployeesPanel()
+    End Sub
+
+    Private Sub tmiManageVacations_Click(sender As Object, e As EventArgs) Handles tmiManageVacations.Click, btnManageVacations.Click
+
+    End Sub
+
+    Private Sub tmiReports_Click(sender As Object, e As EventArgs) Handles tmiReports.Click, btnReports.Click
+
+    End Sub
+
     Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateSelected
         vacReq.dateRequested = e.Start
         Dim dateEnd As Date = e.End
@@ -130,4 +156,5 @@ Public Class Form1
         pay.workPeriodEnd = pay.workPeriodStart.AddDays(time.workPeriodLength).AddMinutes(-1)
         pay.initPaySlipPanel()
     End Sub
+
 End Class

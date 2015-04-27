@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="PaySlip.vb" />
     <Compile Include="VacationRequest.vb" />
+    <Compile Include="ViewEmployees.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
@@ -137,6 +138,7 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\DBlib.DBSQL.DbConnection.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

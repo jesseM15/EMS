@@ -10,4 +10,7 @@ Module globals
     Public vacReq As New VacationRequest
     Public msgs As New Messages
 
+    Public employees As New ViewEmployees
+
+
 End Module
