@@ -118,13 +118,11 @@ Public Class Form1
     End Sub
 
     Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateSelected
-        vacReq.dateRequested = e.Start
-        Dim dateEnd As Date = e.End
-        If vacReq.dateRequested.Date = dateEnd.Date Then
-            lblDateRequested.Text = "Vacation Date: " & vacReq.dateRequested.Date
-        Else
-            lblDateRequested.Text = "Vacation Date: " & vacReq.dateRequested.Date & " - " & dateEnd.Date
-        End If
+        Dim dates As Collection = vacReq.getDatesRequested(e.Start, e.End)
+        lblDatesRequested.Text = "Date(s) Requested: " & vbCrLf & vbCrLf
+        For Each d In dates
+            lblDatesRequested.Text += d.date & vbCrLf
+        Next
     End Sub
 
     Private Sub btnInbox_Click(sender As Object, e As EventArgs) Handles btnInbox.Click

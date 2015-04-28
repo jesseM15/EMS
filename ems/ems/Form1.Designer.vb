@@ -45,7 +45,7 @@ Partial Class Form1
         Me.lsvMessages = New System.Windows.Forms.ListView()
         Me.lblMessages = New System.Windows.Forms.Label()
         Me.pnlRequestVacation = New System.Windows.Forms.Panel()
-        Me.lblDateRequested = New System.Windows.Forms.Label()
+        Me.lblDatesRequested = New System.Windows.Forms.Label()
         Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
         Me.lblVacationRequest = New System.Windows.Forms.Label()
         Me.pnlChangePassword = New System.Windows.Forms.Panel()
@@ -171,13 +171,13 @@ Partial Class Form1
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlRequestVacation)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlChangePassword)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlReports)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlManageVacations)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
         Me.SplitContainer1.Size = New System.Drawing.Size(826, 483)
         Me.SplitContainer1.SplitterDistance = 156
         Me.SplitContainer1.TabIndex = 1
@@ -386,7 +386,7 @@ Partial Class Form1
         '
         'pnlRequestVacation
         '
-        Me.pnlRequestVacation.Controls.Add(Me.lblDateRequested)
+        Me.pnlRequestVacation.Controls.Add(Me.lblDatesRequested)
         Me.pnlRequestVacation.Controls.Add(Me.MonthCalendar1)
         Me.pnlRequestVacation.Controls.Add(Me.lblVacationRequest)
         Me.pnlRequestVacation.Location = New System.Drawing.Point(0, 0)
@@ -394,14 +394,14 @@ Partial Class Form1
         Me.pnlRequestVacation.Size = New System.Drawing.Size(664, 481)
         Me.pnlRequestVacation.TabIndex = 62
         '
-        'lblDateRequested
+        'lblDatesRequested
         '
-        Me.lblDateRequested.AutoSize = True
-        Me.lblDateRequested.Location = New System.Drawing.Point(25, 240)
-        Me.lblDateRequested.Name = "lblDateRequested"
-        Me.lblDateRequested.Size = New System.Drawing.Size(85, 13)
-        Me.lblDateRequested.TabIndex = 2
-        Me.lblDateRequested.Text = "Date Requested"
+        Me.lblDatesRequested.AutoSize = True
+        Me.lblDatesRequested.Location = New System.Drawing.Point(25, 240)
+        Me.lblDatesRequested.Name = "lblDatesRequested"
+        Me.lblDatesRequested.Size = New System.Drawing.Size(99, 13)
+        Me.lblDatesRequested.TabIndex = 2
+        Me.lblDatesRequested.Text = "Date(s) Requested:"
         '
         'MonthCalendar1
         '
@@ -1406,7 +1406,7 @@ Partial Class Form1
     Friend WithEvents pnlRequestVacation As System.Windows.Forms.Panel
     Friend WithEvents MonthCalendar1 As System.Windows.Forms.MonthCalendar
     Friend WithEvents lblVacationRequest As System.Windows.Forms.Label
-    Friend WithEvents lblDateRequested As System.Windows.Forms.Label
+    Friend WithEvents lblDatesRequested As System.Windows.Forms.Label
     Friend WithEvents pnlMessages As System.Windows.Forms.Panel
     Friend WithEvents pnlMessageNavigation As System.Windows.Forms.Panel
     Friend WithEvents btnDeleted As System.Windows.Forms.Button

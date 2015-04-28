@@ -122,6 +122,14 @@ Namespace EMS
             Return reorder
         End Function
 
+        'checks to see if the day is on the weekend
+        Public Function isWeekDay(ByVal checkDate As Date) As Boolean
+            If checkDate.DayOfWeek <> DayOfWeek.Saturday And checkDate.DayOfWeek <> DayOfWeek.Sunday Then
+                Return True
+            End If
+            Return False
+        End Function
+
     End Class
 
 End Namespace
