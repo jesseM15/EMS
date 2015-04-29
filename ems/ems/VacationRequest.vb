@@ -15,7 +15,12 @@
     End Property
 
     Public Sub initVacationRequestPanel()
-
+        Dim req As Collection = dbems.getVacationRequests(user.id)
+        Form1.txtRequestList.Text = ""
+        For Each d In req
+            Form1.MonthCalendar1.AddBoldedDate(d)
+            Form1.txtRequestList.Text += d.date & vbCrLf
+        Next
         Form1.pnlRequestVacation.Visible = True
     End Sub
 

@@ -165,7 +165,50 @@ Namespace DBSQL
             Return ts
         End Function
 
+        '===Vacation Requests====================================================================
+
+        Public Function getVacationRequests(ByVal user_id As Integer) As Collection
+            initCommand()
+            _cmd.CommandText = "SELECT * FROM Times WHERE user_id=@user_id AND hours_type='Requested'"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Connection.Open()
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            Dim req As New Collection
+            While reader.Read
+                req.Add(reader(2))
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return req
+        End Function
+
+        'submits a vacation request
+        Public Sub submitVacationRequest(ByVal user_id As Integer, ByVal dateRequested As Date)
+            initCommand()
+            _cmd.CommandText = "INSERT INTO Times (user_id,time_start,time_end,hours_type) VALUES (@user_id,@time_start,@time_end,'Requested')"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Parameters.AddWithValue("@time_start", dateRequested)
+            _cmd.Parameters.AddWithValue("@time_end", dateRequested.AddHours(8))
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
         '===Messages=============================================================================
+
+        'sends vacation request message
+        Public Sub sendVacationRequestMessage(ByVal msg As Message)
+            initCommand()
+            _cmd.CommandText = "INSERT INTO Messages (user_id,sender_id,message,time_stamp,deleted) VALUES (@user_id,@sender_id,@message,@time_stamp,0)"
+            _cmd.Parameters.AddWithValue("@user_id", msg.userId)
+            _cmd.Parameters.AddWithValue("@sender_id", msg.senderId)
+            _cmd.Parameters.AddWithValue("@message", msg.message)
+            _cmd.Parameters.AddWithValue("@time_stamp", DateAndTime.Now)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
 
         'gets all the messages in the inbox
         Public Function getInboxMessages(ByVal user_id As Integer) As Collection

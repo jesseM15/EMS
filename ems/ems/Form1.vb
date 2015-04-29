@@ -118,11 +118,39 @@ Public Class Form1
     End Sub
 
     Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateSelected
-        Dim dates As Collection = vacReq.getDatesRequested(e.Start, e.End)
-        lblDatesRequested.Text = "Date(s) Requested: " & vbCrLf & vbCrLf
-        For Each d In dates
-            lblDatesRequested.Text += d.date & vbCrLf
+        'If e.Start.Date = e.End.Date Then
+        '    lblDateList.Text = e.Start.Date
+        'Else
+        '    lblDateList.Text = e.Start.Date & " - " & e.End.Date
+        'End If
+
+        vacReq.datesRequested = vacReq.getDatesRequested(e.Start, e.End)
+        txtDateList.Text = ""
+        For Each d In vacReq.datesRequested
+            txtDateList.Text += d.date & vbCrLf
         Next
+    End Sub
+
+    Private Sub btnSubmitRequest_Click(sender As Object, e As EventArgs) Handles btnSubmitRequest.Click
+        For Each d In vacReq.datesRequested
+            dbems.submitVacationRequest(user.id, d)
+        Next
+        Dim m As New Message
+        m.userId = user.manager_id
+        m.senderId = user.id
+        m.message = user.first_name & " " & user.last_name & " has requested the following vacation days: "
+        Dim c As Integer = 1
+        While c <= vacReq.datesRequested.Count
+            m.message += vacReq.datesRequested(c).date
+            If c < vacReq.datesRequested.Count Then
+                m.message += ", "
+            Else
+                m.message += "."
+            End If
+            c += 1
+        End While
+        dbems.sendVacationRequestMessage(m)
+        MessageBox.Show("Vacation request submitted.")
     End Sub
 
     Private Sub btnInbox_Click(sender As Object, e As EventArgs) Handles btnInbox.Click
@@ -155,4 +183,5 @@ Public Class Form1
         pay.initPaySlipPanel()
     End Sub
 
+    
 End Class
