@@ -49,6 +49,7 @@ Public Class Form1
         pnlMessages.Visible = False
         pnlChangePassword.Visible = False
         pnlViewEmployees.Visible = False
+        pnlEditEmployee.Visible = False
         pnlManageVacations.Visible = False
         pnlReports.Visible = False
     End Sub
@@ -117,7 +118,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub MonthCalendar1_DateSelected(sender As Object, e As DateRangeEventArgs) Handles MonthCalendar1.DateSelected
+    Private Sub calVacation_DateSelected(sender As Object, e As DateRangeEventArgs) Handles calVacation.DateSelected
         'If e.Start.Date = e.End.Date Then
         '    lblDateList.Text = e.Start.Date
         'Else
@@ -183,5 +184,15 @@ Public Class Form1
         pay.initPaySlipPanel()
     End Sub
 
-    
+    Private Sub dgvEmployees_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvEmployees.CellContentClick
+        employees.employeeID = dgvEmployees.Rows(e.RowIndex).Cells.Item(2).Value
+        If e.ColumnIndex = 0 Then
+            hidePanels()
+            employees.initEditEmployeePanel()
+            lblEditEmployee.Text = employees.employeeID
+        ElseIf e.ColumnIndex = 1 Then
+            MessageBox.Show("Remove employee #" & employees.employeeID)
+        End If
+    End Sub
+
 End Class

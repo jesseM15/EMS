@@ -12,5 +12,4 @@ Module globals
 
     Public employees As New ViewEmployees
 
-
 End Module

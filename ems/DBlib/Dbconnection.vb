@@ -277,7 +277,7 @@ Namespace DBSQL
         'returns a datatable from Users by manager id
         Public Function getEmployees(ByVal id As Integer) As DataTable
             initCommand()
-            _cmd.CommandText = "SELECT first_name, last_name, position, pay_rate FROM Users WHERE manager_id=@id"
+            _cmd.CommandText = "SELECT id, first_name, last_name, position, pay_rate FROM Users WHERE manager_id=@id"
             _cmd.Parameters.AddWithValue("@id", id)
             Dim da As SqlDataAdapter
             Dim dt As New DataTable()

@@ -35,8 +35,12 @@ Partial Class Form1
         Me.lblPosition = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
         Me.pnlRequestVacation = New System.Windows.Forms.Panel()
+        Me.txtRequestList = New System.Windows.Forms.TextBox()
+        Me.lblSubmittedRequests = New System.Windows.Forms.Label()
+        Me.txtDateList = New System.Windows.Forms.TextBox()
+        Me.btnSubmitRequest = New System.Windows.Forms.Button()
         Me.lblDatesRequested = New System.Windows.Forms.Label()
-        Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
+        Me.calVacation = New System.Windows.Forms.MonthCalendar()
         Me.lblVacationRequest = New System.Windows.Forms.Label()
         Me.pnlChangePassword = New System.Windows.Forms.Panel()
         Me.lblChangePasswordMessage = New System.Windows.Forms.Label()
@@ -139,10 +143,8 @@ Partial Class Form1
         Me.tmiManageVacations = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiReports = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.btnSubmitRequest = New System.Windows.Forms.Button()
-        Me.txtDateList = New System.Windows.Forms.TextBox()
-        Me.lblSubmittedRequests = New System.Windows.Forms.Label()
-        Me.txtRequestList = New System.Windows.Forms.TextBox()
+        Me.pnlEditEmployee = New System.Windows.Forms.Panel()
+        Me.lblEditEmployee = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -157,6 +159,7 @@ Partial Class Form1
         Me.pnlMessages.SuspendLayout()
         Me.pnlMessageNavigation.SuspendLayout()
         Me.mnuNavigation.SuspendLayout()
+        Me.pnlEditEmployee.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -175,13 +178,14 @@ Partial Class Form1
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlEditEmployee)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlRequestVacation)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlChangePassword)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlReports)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlManageVacations)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
         Me.SplitContainer1.Size = New System.Drawing.Size(826, 483)
         Me.SplitContainer1.SplitterDistance = 156
         Me.SplitContainer1.TabIndex = 1
@@ -301,12 +305,51 @@ Partial Class Form1
         Me.pnlRequestVacation.Controls.Add(Me.txtDateList)
         Me.pnlRequestVacation.Controls.Add(Me.btnSubmitRequest)
         Me.pnlRequestVacation.Controls.Add(Me.lblDatesRequested)
-        Me.pnlRequestVacation.Controls.Add(Me.MonthCalendar1)
+        Me.pnlRequestVacation.Controls.Add(Me.calVacation)
         Me.pnlRequestVacation.Controls.Add(Me.lblVacationRequest)
+        Me.pnlRequestVacation.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlRequestVacation.Location = New System.Drawing.Point(0, 0)
         Me.pnlRequestVacation.Name = "pnlRequestVacation"
         Me.pnlRequestVacation.Size = New System.Drawing.Size(664, 481)
         Me.pnlRequestVacation.TabIndex = 62
+        '
+        'txtRequestList
+        '
+        Me.txtRequestList.Location = New System.Drawing.Point(423, 67)
+        Me.txtRequestList.Multiline = True
+        Me.txtRequestList.Name = "txtRequestList"
+        Me.txtRequestList.ReadOnly = True
+        Me.txtRequestList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtRequestList.Size = New System.Drawing.Size(82, 86)
+        Me.txtRequestList.TabIndex = 7
+        '
+        'lblSubmittedRequests
+        '
+        Me.lblSubmittedRequests.AutoSize = True
+        Me.lblSubmittedRequests.Location = New System.Drawing.Point(281, 70)
+        Me.lblSubmittedRequests.Name = "lblSubmittedRequests"
+        Me.lblSubmittedRequests.Size = New System.Drawing.Size(105, 13)
+        Me.lblSubmittedRequests.TabIndex = 6
+        Me.lblSubmittedRequests.Text = "Submitted Requests:"
+        '
+        'txtDateList
+        '
+        Me.txtDateList.Location = New System.Drawing.Point(170, 237)
+        Me.txtDateList.Multiline = True
+        Me.txtDateList.Name = "txtDateList"
+        Me.txtDateList.ReadOnly = True
+        Me.txtDateList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtDateList.Size = New System.Drawing.Size(82, 86)
+        Me.txtDateList.TabIndex = 5
+        '
+        'btnSubmitRequest
+        '
+        Me.btnSubmitRequest.Location = New System.Drawing.Point(94, 347)
+        Me.btnSubmitRequest.Name = "btnSubmitRequest"
+        Me.btnSubmitRequest.Size = New System.Drawing.Size(91, 23)
+        Me.btnSubmitRequest.TabIndex = 4
+        Me.btnSubmitRequest.Text = "Submit Request"
+        Me.btnSubmitRequest.UseVisualStyleBackColor = True
         '
         'lblDatesRequested
         '
@@ -317,12 +360,12 @@ Partial Class Form1
         Me.lblDatesRequested.TabIndex = 2
         Me.lblDatesRequested.Text = "Date(s) Requested:"
         '
-        'MonthCalendar1
+        'calVacation
         '
-        Me.MonthCalendar1.Location = New System.Drawing.Point(25, 54)
-        Me.MonthCalendar1.MaxSelectionCount = 14
-        Me.MonthCalendar1.Name = "MonthCalendar1"
-        Me.MonthCalendar1.TabIndex = 1
+        Me.calVacation.Location = New System.Drawing.Point(25, 54)
+        Me.calVacation.MaxSelectionCount = 14
+        Me.calVacation.Name = "calVacation"
+        Me.calVacation.TabIndex = 1
         '
         'lblVacationRequest
         '
@@ -345,6 +388,7 @@ Partial Class Form1
         Me.pnlChangePassword.Controls.Add(Me.txtCurrentPassword)
         Me.pnlChangePassword.Controls.Add(Me.lblCurrentPassword)
         Me.pnlChangePassword.Controls.Add(Me.lblChangePassword)
+        Me.pnlChangePassword.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlChangePassword.Location = New System.Drawing.Point(0, 0)
         Me.pnlChangePassword.Name = "pnlChangePassword"
         Me.pnlChangePassword.Size = New System.Drawing.Size(664, 481)
@@ -491,6 +535,7 @@ Partial Class Form1
         Me.pnlPaySlip.Controls.Add(Me.lblEmployeeName)
         Me.pnlPaySlip.Controls.Add(Me.lblEmployeeNameField)
         Me.pnlPaySlip.Controls.Add(Me.lblPaySlip)
+        Me.pnlPaySlip.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlPaySlip.Location = New System.Drawing.Point(0, 0)
         Me.pnlPaySlip.Name = "pnlPaySlip"
         Me.pnlPaySlip.Size = New System.Drawing.Size(664, 481)
@@ -1089,6 +1134,7 @@ Partial Class Form1
         '
         'pnlReports
         '
+        Me.pnlReports.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlReports.Location = New System.Drawing.Point(0, 0)
         Me.pnlReports.Name = "pnlReports"
         Me.pnlReports.Size = New System.Drawing.Size(664, 481)
@@ -1096,6 +1142,7 @@ Partial Class Form1
         '
         'pnlManageVacations
         '
+        Me.pnlManageVacations.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlManageVacations.Location = New System.Drawing.Point(0, 0)
         Me.pnlManageVacations.Name = "pnlManageVacations"
         Me.pnlManageVacations.Size = New System.Drawing.Size(664, 481)
@@ -1105,6 +1152,7 @@ Partial Class Form1
         '
         Me.pnlViewEmployees.Controls.Add(Me.dgvEmployees)
         Me.pnlViewEmployees.Controls.Add(Me.lblViewEmployees)
+        Me.pnlViewEmployees.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlViewEmployees.Location = New System.Drawing.Point(0, 0)
         Me.pnlViewEmployees.Name = "pnlViewEmployees"
         Me.pnlViewEmployees.Size = New System.Drawing.Size(664, 481)
@@ -1112,9 +1160,13 @@ Partial Class Form1
         '
         'dgvEmployees
         '
+        Me.dgvEmployees.AllowUserToAddRows = False
+        Me.dgvEmployees.AllowUserToDeleteRows = False
         Me.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvEmployees.Location = New System.Drawing.Point(25, 54)
         Me.dgvEmployees.Name = "dgvEmployees"
+        Me.dgvEmployees.ReadOnly = True
+        Me.dgvEmployees.RowHeadersVisible = False
         Me.dgvEmployees.Size = New System.Drawing.Size(619, 370)
         Me.dgvEmployees.TabIndex = 1
         '
@@ -1133,6 +1185,7 @@ Partial Class Form1
         Me.pnlMessages.Controls.Add(Me.pnlMessageNavigation)
         Me.pnlMessages.Controls.Add(Me.lsvMessages)
         Me.pnlMessages.Controls.Add(Me.lblMessages)
+        Me.pnlMessages.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlMessages.Location = New System.Drawing.Point(0, 0)
         Me.pnlMessages.Name = "pnlMessages"
         Me.pnlMessages.Size = New System.Drawing.Size(664, 481)
@@ -1293,43 +1346,24 @@ Partial Class Form1
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'btnSubmitRequest
+        'pnlEditEmployee
         '
-        Me.btnSubmitRequest.Location = New System.Drawing.Point(94, 347)
-        Me.btnSubmitRequest.Name = "btnSubmitRequest"
-        Me.btnSubmitRequest.Size = New System.Drawing.Size(91, 23)
-        Me.btnSubmitRequest.TabIndex = 4
-        Me.btnSubmitRequest.Text = "Submit Request"
-        Me.btnSubmitRequest.UseVisualStyleBackColor = True
+        Me.pnlEditEmployee.Controls.Add(Me.lblEditEmployee)
+        Me.pnlEditEmployee.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlEditEmployee.Location = New System.Drawing.Point(0, 0)
+        Me.pnlEditEmployee.Name = "pnlEditEmployee"
+        Me.pnlEditEmployee.Size = New System.Drawing.Size(664, 481)
+        Me.pnlEditEmployee.TabIndex = 66
         '
-        'txtDateList
+        'lblEditEmployee
         '
-        Me.txtDateList.Location = New System.Drawing.Point(170, 237)
-        Me.txtDateList.Multiline = True
-        Me.txtDateList.Name = "txtDateList"
-        Me.txtDateList.ReadOnly = True
-        Me.txtDateList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtDateList.Size = New System.Drawing.Size(82, 86)
-        Me.txtDateList.TabIndex = 5
-        '
-        'lblSubmittedRequests
-        '
-        Me.lblSubmittedRequests.AutoSize = True
-        Me.lblSubmittedRequests.Location = New System.Drawing.Point(281, 70)
-        Me.lblSubmittedRequests.Name = "lblSubmittedRequests"
-        Me.lblSubmittedRequests.Size = New System.Drawing.Size(105, 13)
-        Me.lblSubmittedRequests.TabIndex = 6
-        Me.lblSubmittedRequests.Text = "Submitted Requests:"
-        '
-        'txtRequestList
-        '
-        Me.txtRequestList.Location = New System.Drawing.Point(423, 67)
-        Me.txtRequestList.Multiline = True
-        Me.txtRequestList.Name = "txtRequestList"
-        Me.txtRequestList.ReadOnly = True
-        Me.txtRequestList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtRequestList.Size = New System.Drawing.Size(82, 86)
-        Me.txtRequestList.TabIndex = 7
+        Me.lblEditEmployee.AutoSize = True
+        Me.lblEditEmployee.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEditEmployee.Location = New System.Drawing.Point(21, 12)
+        Me.lblEditEmployee.Name = "lblEditEmployee"
+        Me.lblEditEmployee.Size = New System.Drawing.Size(133, 24)
+        Me.lblEditEmployee.TabIndex = 0
+        Me.lblEditEmployee.Text = "Edit Employee"
         '
         'Form1
         '
@@ -1363,6 +1397,8 @@ Partial Class Form1
         Me.pnlMessageNavigation.ResumeLayout(False)
         Me.mnuNavigation.ResumeLayout(False)
         Me.mnuNavigation.PerformLayout()
+        Me.pnlEditEmployee.ResumeLayout(False)
+        Me.pnlEditEmployee.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1451,7 +1487,7 @@ Partial Class Form1
     Friend WithEvents lblHoursAndEarnings As System.Windows.Forms.Label
     Friend WithEvents cboWorkPeriod As System.Windows.Forms.ComboBox
     Friend WithEvents pnlRequestVacation As System.Windows.Forms.Panel
-    Friend WithEvents MonthCalendar1 As System.Windows.Forms.MonthCalendar
+    Friend WithEvents calVacation As System.Windows.Forms.MonthCalendar
     Friend WithEvents lblVacationRequest As System.Windows.Forms.Label
     Friend WithEvents lblDatesRequested As System.Windows.Forms.Label
     Friend WithEvents pnlMessages As System.Windows.Forms.Panel
@@ -1488,5 +1524,7 @@ Partial Class Form1
     Friend WithEvents txtDateList As System.Windows.Forms.TextBox
     Friend WithEvents txtRequestList As System.Windows.Forms.TextBox
     Friend WithEvents lblSubmittedRequests As System.Windows.Forms.Label
+    Friend WithEvents pnlEditEmployee As System.Windows.Forms.Panel
+    Friend WithEvents lblEditEmployee As System.Windows.Forms.Label
 
 End Class
