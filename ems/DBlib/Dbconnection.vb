@@ -213,7 +213,7 @@ Namespace DBSQL
         'gets all the messages in the inbox
         Public Function getInboxMessages(ByVal user_id As Integer) As Collection
             initCommand()
-            _cmd.CommandText = "SELECT * FROM Messages WHERE user_id=@user_id AND deleted=0"
+            _cmd.CommandText = "SELECT * FROM Messages WHERE user_id=@user_id AND viewed=0"
             _cmd.Parameters.AddWithValue("@user_id", user_id)
             _cmd.Connection.Open()
             Dim messages As New Collection
@@ -224,7 +224,7 @@ Namespace DBSQL
                 m.senderId = reader("sender_id")
                 m.message = reader("message")
                 m.timeStamp = reader("time_stamp")
-                m.deleted = reader("deleted")
+                m.viewed = reader("viewed")
                 messages.Add(m)
             End While
             reader.Close()
@@ -277,7 +277,7 @@ Namespace DBSQL
         'returns a datatable from Users by manager id
         Public Function getEmployees(ByVal id As Integer) As DataTable
             initCommand()
-            _cmd.CommandText = "SELECT id, first_name, last_name, position, pay_rate FROM Users WHERE manager_id=@id"
+            _cmd.CommandText = "SELECT id, first_name, last_name, position, current_pay_rate FROM Users WHERE manager_id=@id"
             _cmd.Parameters.AddWithValue("@id", id)
             Dim da As SqlDataAdapter
             Dim dt As New DataTable()

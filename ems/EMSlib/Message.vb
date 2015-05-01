@@ -5,14 +5,14 @@
         Private _senderId As Integer
         Private _message As String
         Private _timeStamp As Date
-        Private _deleted As Boolean
+        Private _viewed As Boolean
 
         Public Sub New()
             _userId = 0
             _senderId = 0
             _message = ""
             _timeStamp = New Date()
-            _deleted = False
+            _viewed = False
         End Sub
 
         Public Property userId() As Integer
@@ -51,12 +51,12 @@
             End Set
         End Property
 
-        Public Property deleted() As Boolean
+        Public Property viewed() As Boolean
             Get
-                Return _deleted
+                Return _viewed
             End Get
             Set(value As Boolean)
-                _deleted = value
+                _viewed = value
             End Set
         End Property
 

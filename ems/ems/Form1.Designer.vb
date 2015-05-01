@@ -34,6 +34,18 @@ Partial Class Form1
         Me.btnViewPaySlip = New System.Windows.Forms.Button()
         Me.lblPosition = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
+        Me.pnlEditEmployee = New System.Windows.Forms.Panel()
+        Me.lblEditEmployee = New System.Windows.Forms.Label()
+        Me.pnlViewEmployees = New System.Windows.Forms.Panel()
+        Me.dgvEmployees = New System.Windows.Forms.DataGridView()
+        Me.lblViewEmployees = New System.Windows.Forms.Label()
+        Me.pnlMessages = New System.Windows.Forms.Panel()
+        Me.pnlMessageNavigation = New System.Windows.Forms.Panel()
+        Me.btnViewed = New System.Windows.Forms.Button()
+        Me.btnSent = New System.Windows.Forms.Button()
+        Me.btnInbox = New System.Windows.Forms.Button()
+        Me.lsvMessages = New System.Windows.Forms.ListView()
+        Me.lblMessages = New System.Windows.Forms.Label()
         Me.pnlRequestVacation = New System.Windows.Forms.Panel()
         Me.txtRequestList = New System.Windows.Forms.TextBox()
         Me.lblSubmittedRequests = New System.Windows.Forms.Label()
@@ -118,16 +130,6 @@ Partial Class Form1
         Me.lblPaySlip = New System.Windows.Forms.Label()
         Me.pnlReports = New System.Windows.Forms.Panel()
         Me.pnlManageVacations = New System.Windows.Forms.Panel()
-        Me.pnlViewEmployees = New System.Windows.Forms.Panel()
-        Me.dgvEmployees = New System.Windows.Forms.DataGridView()
-        Me.lblViewEmployees = New System.Windows.Forms.Label()
-        Me.pnlMessages = New System.Windows.Forms.Panel()
-        Me.pnlMessageNavigation = New System.Windows.Forms.Panel()
-        Me.btnDeleted = New System.Windows.Forms.Button()
-        Me.btnSent = New System.Windows.Forms.Button()
-        Me.btnInbox = New System.Windows.Forms.Button()
-        Me.lsvMessages = New System.Windows.Forms.ListView()
-        Me.lblMessages = New System.Windows.Forms.Label()
         Me.mnuNavigation = New System.Windows.Forms.MenuStrip()
         Me.tmiFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiLogInOut = New System.Windows.Forms.ToolStripMenuItem()
@@ -143,23 +145,21 @@ Partial Class Form1
         Me.tmiManageVacations = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiReports = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.pnlEditEmployee = New System.Windows.Forms.Panel()
-        Me.lblEditEmployee = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.pnlNavigationManager.SuspendLayout()
         Me.pnlNavigationEmployee.SuspendLayout()
-        Me.pnlRequestVacation.SuspendLayout()
-        Me.pnlChangePassword.SuspendLayout()
-        Me.pnlPaySlip.SuspendLayout()
+        Me.pnlEditEmployee.SuspendLayout()
         Me.pnlViewEmployees.SuspendLayout()
         CType(Me.dgvEmployees, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlMessages.SuspendLayout()
         Me.pnlMessageNavigation.SuspendLayout()
+        Me.pnlRequestVacation.SuspendLayout()
+        Me.pnlChangePassword.SuspendLayout()
+        Me.pnlPaySlip.SuspendLayout()
         Me.mnuNavigation.SuspendLayout()
-        Me.pnlEditEmployee.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -178,14 +178,14 @@ Partial Class Form1
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlEditEmployee)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlRequestVacation)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlChangePassword)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlReports)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlManageVacations)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlEditEmployee)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
         Me.SplitContainer1.Size = New System.Drawing.Size(826, 483)
         Me.SplitContainer1.SplitterDistance = 156
         Me.SplitContainer1.TabIndex = 1
@@ -297,6 +297,125 @@ Partial Class Form1
         Me.lblName.Size = New System.Drawing.Size(61, 24)
         Me.lblName.TabIndex = 0
         Me.lblName.Text = "Name"
+        '
+        'pnlEditEmployee
+        '
+        Me.pnlEditEmployee.Controls.Add(Me.lblEditEmployee)
+        Me.pnlEditEmployee.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlEditEmployee.Location = New System.Drawing.Point(0, 0)
+        Me.pnlEditEmployee.Name = "pnlEditEmployee"
+        Me.pnlEditEmployee.Size = New System.Drawing.Size(664, 481)
+        Me.pnlEditEmployee.TabIndex = 66
+        '
+        'lblEditEmployee
+        '
+        Me.lblEditEmployee.AutoSize = True
+        Me.lblEditEmployee.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEditEmployee.Location = New System.Drawing.Point(21, 12)
+        Me.lblEditEmployee.Name = "lblEditEmployee"
+        Me.lblEditEmployee.Size = New System.Drawing.Size(133, 24)
+        Me.lblEditEmployee.TabIndex = 0
+        Me.lblEditEmployee.Text = "Edit Employee"
+        '
+        'pnlViewEmployees
+        '
+        Me.pnlViewEmployees.Controls.Add(Me.dgvEmployees)
+        Me.pnlViewEmployees.Controls.Add(Me.lblViewEmployees)
+        Me.pnlViewEmployees.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlViewEmployees.Location = New System.Drawing.Point(0, 0)
+        Me.pnlViewEmployees.Name = "pnlViewEmployees"
+        Me.pnlViewEmployees.Size = New System.Drawing.Size(664, 481)
+        Me.pnlViewEmployees.TabIndex = 63
+        '
+        'dgvEmployees
+        '
+        Me.dgvEmployees.AllowUserToAddRows = False
+        Me.dgvEmployees.AllowUserToDeleteRows = False
+        Me.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvEmployees.Location = New System.Drawing.Point(25, 54)
+        Me.dgvEmployees.Name = "dgvEmployees"
+        Me.dgvEmployees.ReadOnly = True
+        Me.dgvEmployees.RowHeadersVisible = False
+        Me.dgvEmployees.Size = New System.Drawing.Size(619, 370)
+        Me.dgvEmployees.TabIndex = 1
+        '
+        'lblViewEmployees
+        '
+        Me.lblViewEmployees.AutoSize = True
+        Me.lblViewEmployees.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblViewEmployees.Location = New System.Drawing.Point(21, 12)
+        Me.lblViewEmployees.Name = "lblViewEmployees"
+        Me.lblViewEmployees.Size = New System.Drawing.Size(152, 24)
+        Me.lblViewEmployees.TabIndex = 0
+        Me.lblViewEmployees.Text = "View Employees"
+        '
+        'pnlMessages
+        '
+        Me.pnlMessages.Controls.Add(Me.pnlMessageNavigation)
+        Me.pnlMessages.Controls.Add(Me.lsvMessages)
+        Me.pnlMessages.Controls.Add(Me.lblMessages)
+        Me.pnlMessages.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlMessages.Location = New System.Drawing.Point(0, 0)
+        Me.pnlMessages.Name = "pnlMessages"
+        Me.pnlMessages.Size = New System.Drawing.Size(664, 481)
+        Me.pnlMessages.TabIndex = 3
+        '
+        'pnlMessageNavigation
+        '
+        Me.pnlMessageNavigation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnlMessageNavigation.Controls.Add(Me.btnViewed)
+        Me.pnlMessageNavigation.Controls.Add(Me.btnSent)
+        Me.pnlMessageNavigation.Controls.Add(Me.btnInbox)
+        Me.pnlMessageNavigation.Location = New System.Drawing.Point(25, 70)
+        Me.pnlMessageNavigation.Name = "pnlMessageNavigation"
+        Me.pnlMessageNavigation.Size = New System.Drawing.Size(97, 100)
+        Me.pnlMessageNavigation.TabIndex = 2
+        '
+        'btnViewed
+        '
+        Me.btnViewed.Location = New System.Drawing.Point(9, 66)
+        Me.btnViewed.Name = "btnViewed"
+        Me.btnViewed.Size = New System.Drawing.Size(74, 23)
+        Me.btnViewed.TabIndex = 2
+        Me.btnViewed.Text = "Viewed"
+        Me.btnViewed.UseVisualStyleBackColor = True
+        '
+        'btnSent
+        '
+        Me.btnSent.Location = New System.Drawing.Point(9, 37)
+        Me.btnSent.Name = "btnSent"
+        Me.btnSent.Size = New System.Drawing.Size(74, 23)
+        Me.btnSent.TabIndex = 1
+        Me.btnSent.Text = "Sent"
+        Me.btnSent.UseVisualStyleBackColor = True
+        '
+        'btnInbox
+        '
+        Me.btnInbox.Location = New System.Drawing.Point(9, 8)
+        Me.btnInbox.Name = "btnInbox"
+        Me.btnInbox.Size = New System.Drawing.Size(74, 23)
+        Me.btnInbox.TabIndex = 0
+        Me.btnInbox.Text = "Inbox"
+        Me.btnInbox.UseVisualStyleBackColor = True
+        '
+        'lsvMessages
+        '
+        Me.lsvMessages.Location = New System.Drawing.Point(128, 70)
+        Me.lsvMessages.Name = "lsvMessages"
+        Me.lsvMessages.Size = New System.Drawing.Size(522, 378)
+        Me.lsvMessages.TabIndex = 1
+        Me.lsvMessages.UseCompatibleStateImageBehavior = False
+        Me.lsvMessages.View = System.Windows.Forms.View.Details
+        '
+        'lblMessages
+        '
+        Me.lblMessages.AutoSize = True
+        Me.lblMessages.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblMessages.Location = New System.Drawing.Point(21, 12)
+        Me.lblMessages.Name = "lblMessages"
+        Me.lblMessages.Size = New System.Drawing.Size(96, 24)
+        Me.lblMessages.TabIndex = 0
+        Me.lblMessages.Text = "Messages"
         '
         'pnlRequestVacation
         '
@@ -1148,106 +1267,6 @@ Partial Class Form1
         Me.pnlManageVacations.Size = New System.Drawing.Size(664, 481)
         Me.pnlManageVacations.TabIndex = 64
         '
-        'pnlViewEmployees
-        '
-        Me.pnlViewEmployees.Controls.Add(Me.dgvEmployees)
-        Me.pnlViewEmployees.Controls.Add(Me.lblViewEmployees)
-        Me.pnlViewEmployees.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlViewEmployees.Location = New System.Drawing.Point(0, 0)
-        Me.pnlViewEmployees.Name = "pnlViewEmployees"
-        Me.pnlViewEmployees.Size = New System.Drawing.Size(664, 481)
-        Me.pnlViewEmployees.TabIndex = 63
-        '
-        'dgvEmployees
-        '
-        Me.dgvEmployees.AllowUserToAddRows = False
-        Me.dgvEmployees.AllowUserToDeleteRows = False
-        Me.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvEmployees.Location = New System.Drawing.Point(25, 54)
-        Me.dgvEmployees.Name = "dgvEmployees"
-        Me.dgvEmployees.ReadOnly = True
-        Me.dgvEmployees.RowHeadersVisible = False
-        Me.dgvEmployees.Size = New System.Drawing.Size(619, 370)
-        Me.dgvEmployees.TabIndex = 1
-        '
-        'lblViewEmployees
-        '
-        Me.lblViewEmployees.AutoSize = True
-        Me.lblViewEmployees.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblViewEmployees.Location = New System.Drawing.Point(21, 12)
-        Me.lblViewEmployees.Name = "lblViewEmployees"
-        Me.lblViewEmployees.Size = New System.Drawing.Size(152, 24)
-        Me.lblViewEmployees.TabIndex = 0
-        Me.lblViewEmployees.Text = "View Employees"
-        '
-        'pnlMessages
-        '
-        Me.pnlMessages.Controls.Add(Me.pnlMessageNavigation)
-        Me.pnlMessages.Controls.Add(Me.lsvMessages)
-        Me.pnlMessages.Controls.Add(Me.lblMessages)
-        Me.pnlMessages.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlMessages.Location = New System.Drawing.Point(0, 0)
-        Me.pnlMessages.Name = "pnlMessages"
-        Me.pnlMessages.Size = New System.Drawing.Size(664, 481)
-        Me.pnlMessages.TabIndex = 3
-        '
-        'pnlMessageNavigation
-        '
-        Me.pnlMessageNavigation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnlMessageNavigation.Controls.Add(Me.btnDeleted)
-        Me.pnlMessageNavigation.Controls.Add(Me.btnSent)
-        Me.pnlMessageNavigation.Controls.Add(Me.btnInbox)
-        Me.pnlMessageNavigation.Location = New System.Drawing.Point(25, 70)
-        Me.pnlMessageNavigation.Name = "pnlMessageNavigation"
-        Me.pnlMessageNavigation.Size = New System.Drawing.Size(97, 100)
-        Me.pnlMessageNavigation.TabIndex = 2
-        '
-        'btnDeleted
-        '
-        Me.btnDeleted.Location = New System.Drawing.Point(9, 66)
-        Me.btnDeleted.Name = "btnDeleted"
-        Me.btnDeleted.Size = New System.Drawing.Size(74, 23)
-        Me.btnDeleted.TabIndex = 2
-        Me.btnDeleted.Text = "Deleted"
-        Me.btnDeleted.UseVisualStyleBackColor = True
-        '
-        'btnSent
-        '
-        Me.btnSent.Location = New System.Drawing.Point(9, 37)
-        Me.btnSent.Name = "btnSent"
-        Me.btnSent.Size = New System.Drawing.Size(74, 23)
-        Me.btnSent.TabIndex = 1
-        Me.btnSent.Text = "Sent"
-        Me.btnSent.UseVisualStyleBackColor = True
-        '
-        'btnInbox
-        '
-        Me.btnInbox.Location = New System.Drawing.Point(9, 8)
-        Me.btnInbox.Name = "btnInbox"
-        Me.btnInbox.Size = New System.Drawing.Size(74, 23)
-        Me.btnInbox.TabIndex = 0
-        Me.btnInbox.Text = "Inbox"
-        Me.btnInbox.UseVisualStyleBackColor = True
-        '
-        'lsvMessages
-        '
-        Me.lsvMessages.Location = New System.Drawing.Point(128, 70)
-        Me.lsvMessages.Name = "lsvMessages"
-        Me.lsvMessages.Size = New System.Drawing.Size(522, 378)
-        Me.lsvMessages.TabIndex = 1
-        Me.lsvMessages.UseCompatibleStateImageBehavior = False
-        Me.lsvMessages.View = System.Windows.Forms.View.Details
-        '
-        'lblMessages
-        '
-        Me.lblMessages.AutoSize = True
-        Me.lblMessages.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMessages.Location = New System.Drawing.Point(21, 12)
-        Me.lblMessages.Name = "lblMessages"
-        Me.lblMessages.Size = New System.Drawing.Size(96, 24)
-        Me.lblMessages.TabIndex = 0
-        Me.lblMessages.Text = "Messages"
-        '
         'mnuNavigation
         '
         Me.mnuNavigation.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tmiFile, Me.tmiEmployee, Me.tmiManage})
@@ -1346,25 +1365,6 @@ Partial Class Form1
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'pnlEditEmployee
-        '
-        Me.pnlEditEmployee.Controls.Add(Me.lblEditEmployee)
-        Me.pnlEditEmployee.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlEditEmployee.Location = New System.Drawing.Point(0, 0)
-        Me.pnlEditEmployee.Name = "pnlEditEmployee"
-        Me.pnlEditEmployee.Size = New System.Drawing.Size(664, 481)
-        Me.pnlEditEmployee.TabIndex = 66
-        '
-        'lblEditEmployee
-        '
-        Me.lblEditEmployee.AutoSize = True
-        Me.lblEditEmployee.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEditEmployee.Location = New System.Drawing.Point(21, 12)
-        Me.lblEditEmployee.Name = "lblEditEmployee"
-        Me.lblEditEmployee.Size = New System.Drawing.Size(133, 24)
-        Me.lblEditEmployee.TabIndex = 0
-        Me.lblEditEmployee.Text = "Edit Employee"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1383,22 +1383,22 @@ Partial Class Form1
         Me.SplitContainer1.ResumeLayout(False)
         Me.pnlNavigationManager.ResumeLayout(False)
         Me.pnlNavigationEmployee.ResumeLayout(False)
-        Me.pnlRequestVacation.ResumeLayout(False)
-        Me.pnlRequestVacation.PerformLayout()
-        Me.pnlChangePassword.ResumeLayout(False)
-        Me.pnlChangePassword.PerformLayout()
-        Me.pnlPaySlip.ResumeLayout(False)
-        Me.pnlPaySlip.PerformLayout()
+        Me.pnlEditEmployee.ResumeLayout(False)
+        Me.pnlEditEmployee.PerformLayout()
         Me.pnlViewEmployees.ResumeLayout(False)
         Me.pnlViewEmployees.PerformLayout()
         CType(Me.dgvEmployees, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlMessages.ResumeLayout(False)
         Me.pnlMessages.PerformLayout()
         Me.pnlMessageNavigation.ResumeLayout(False)
+        Me.pnlRequestVacation.ResumeLayout(False)
+        Me.pnlRequestVacation.PerformLayout()
+        Me.pnlChangePassword.ResumeLayout(False)
+        Me.pnlChangePassword.PerformLayout()
+        Me.pnlPaySlip.ResumeLayout(False)
+        Me.pnlPaySlip.PerformLayout()
         Me.mnuNavigation.ResumeLayout(False)
         Me.mnuNavigation.PerformLayout()
-        Me.pnlEditEmployee.ResumeLayout(False)
-        Me.pnlEditEmployee.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1492,7 +1492,7 @@ Partial Class Form1
     Friend WithEvents lblDatesRequested As System.Windows.Forms.Label
     Friend WithEvents pnlMessages As System.Windows.Forms.Panel
     Friend WithEvents pnlMessageNavigation As System.Windows.Forms.Panel
-    Friend WithEvents btnDeleted As System.Windows.Forms.Button
+    Friend WithEvents btnViewed As System.Windows.Forms.Button
     Friend WithEvents btnSent As System.Windows.Forms.Button
     Friend WithEvents btnInbox As System.Windows.Forms.Button
     Friend WithEvents lsvMessages As System.Windows.Forms.ListView

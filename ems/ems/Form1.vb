@@ -119,12 +119,6 @@ Public Class Form1
     End Sub
 
     Private Sub calVacation_DateSelected(sender As Object, e As DateRangeEventArgs) Handles calVacation.DateSelected
-        'If e.Start.Date = e.End.Date Then
-        '    lblDateList.Text = e.Start.Date
-        'Else
-        '    lblDateList.Text = e.Start.Date & " - " & e.End.Date
-        'End If
-
         vacReq.datesRequested = vacReq.getDatesRequested(e.Start, e.End)
         txtDateList.Text = ""
         For Each d In vacReq.datesRequested
