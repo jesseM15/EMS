@@ -35,6 +35,21 @@ Partial Class Form1
         Me.lblPosition = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
         Me.pnlEditEmployee = New System.Windows.Forms.Panel()
+        Me.grpPersonalInfo = New System.Windows.Forms.GroupBox()
+        Me.txtEditZip = New System.Windows.Forms.TextBox()
+        Me.lblEditZip = New System.Windows.Forms.Label()
+        Me.txtEditState = New System.Windows.Forms.TextBox()
+        Me.lblEditState = New System.Windows.Forms.Label()
+        Me.txtEditCity = New System.Windows.Forms.TextBox()
+        Me.lblEditCity = New System.Windows.Forms.Label()
+        Me.txtEditAddress = New System.Windows.Forms.TextBox()
+        Me.lblEditAddress = New System.Windows.Forms.Label()
+        Me.txtEditLastName = New System.Windows.Forms.TextBox()
+        Me.lblEditLastName = New System.Windows.Forms.Label()
+        Me.txtEditFirstName = New System.Windows.Forms.TextBox()
+        Me.lblEditFirstName = New System.Windows.Forms.Label()
+        Me.lblEditManager = New System.Windows.Forms.Label()
+        Me.btnEditEmployee = New System.Windows.Forms.Button()
         Me.lblEditEmployee = New System.Windows.Forms.Label()
         Me.pnlViewEmployees = New System.Windows.Forms.Panel()
         Me.dgvEmployees = New System.Windows.Forms.DataGridView()
@@ -145,6 +160,26 @@ Partial Class Form1
         Me.tmiManageVacations = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiReports = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.grpEmployeeInfo = New System.Windows.Forms.GroupBox()
+        Me.txtEditPersonalTime = New System.Windows.Forms.TextBox()
+        Me.lblEditPersonalTime = New System.Windows.Forms.Label()
+        Me.txtEditVacationTime = New System.Windows.Forms.TextBox()
+        Me.lblEditVacationTime = New System.Windows.Forms.Label()
+        Me.txtEditPayRate = New System.Windows.Forms.TextBox()
+        Me.lblEditPayRate = New System.Windows.Forms.Label()
+        Me.txtEditPosition = New System.Windows.Forms.TextBox()
+        Me.lblEditPosition = New System.Windows.Forms.Label()
+        Me.lblEditHireDate = New System.Windows.Forms.Label()
+        Me.grpUserInfo = New System.Windows.Forms.GroupBox()
+        Me.lblEditUserType = New System.Windows.Forms.Label()
+        Me.txtEditPassword = New System.Windows.Forms.TextBox()
+        Me.lblEditPassword = New System.Windows.Forms.Label()
+        Me.txtEditUserName = New System.Windows.Forms.TextBox()
+        Me.lblEditUserName = New System.Windows.Forms.Label()
+        Me.cboEditUserType = New System.Windows.Forms.ComboBox()
+        Me.cboEditManager = New System.Windows.Forms.ComboBox()
+        Me.datEditHireDate = New System.Windows.Forms.DateTimePicker()
+        Me.btnAddEmployee = New System.Windows.Forms.Button()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -152,6 +187,7 @@ Partial Class Form1
         Me.pnlNavigationManager.SuspendLayout()
         Me.pnlNavigationEmployee.SuspendLayout()
         Me.pnlEditEmployee.SuspendLayout()
+        Me.grpPersonalInfo.SuspendLayout()
         Me.pnlViewEmployees.SuspendLayout()
         CType(Me.dgvEmployees, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlMessages.SuspendLayout()
@@ -160,6 +196,8 @@ Partial Class Form1
         Me.pnlChangePassword.SuspendLayout()
         Me.pnlPaySlip.SuspendLayout()
         Me.mnuNavigation.SuspendLayout()
+        Me.grpEmployeeInfo.SuspendLayout()
+        Me.grpUserInfo.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -171,6 +209,7 @@ Partial Class Form1
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.AutoScroll = True
         Me.SplitContainer1.Panel1.Controls.Add(Me.pnlNavigationManager)
         Me.SplitContainer1.Panel1.Controls.Add(Me.pnlNavigationEmployee)
         Me.SplitContainer1.Panel1.Controls.Add(Me.lblPosition)
@@ -178,6 +217,7 @@ Partial Class Form1
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlRequestVacation)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlChangePassword)
@@ -185,7 +225,6 @@ Partial Class Form1
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlReports)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlManageVacations)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlEditEmployee)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
         Me.SplitContainer1.Size = New System.Drawing.Size(826, 483)
         Me.SplitContainer1.SplitterDistance = 156
         Me.SplitContainer1.TabIndex = 1
@@ -300,12 +339,151 @@ Partial Class Form1
         '
         'pnlEditEmployee
         '
+        Me.pnlEditEmployee.Controls.Add(Me.grpUserInfo)
+        Me.pnlEditEmployee.Controls.Add(Me.grpEmployeeInfo)
+        Me.pnlEditEmployee.Controls.Add(Me.grpPersonalInfo)
+        Me.pnlEditEmployee.Controls.Add(Me.btnEditEmployee)
         Me.pnlEditEmployee.Controls.Add(Me.lblEditEmployee)
         Me.pnlEditEmployee.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlEditEmployee.Location = New System.Drawing.Point(0, 0)
         Me.pnlEditEmployee.Name = "pnlEditEmployee"
         Me.pnlEditEmployee.Size = New System.Drawing.Size(664, 481)
         Me.pnlEditEmployee.TabIndex = 66
+        '
+        'grpPersonalInfo
+        '
+        Me.grpPersonalInfo.Controls.Add(Me.txtEditZip)
+        Me.grpPersonalInfo.Controls.Add(Me.lblEditZip)
+        Me.grpPersonalInfo.Controls.Add(Me.txtEditState)
+        Me.grpPersonalInfo.Controls.Add(Me.lblEditState)
+        Me.grpPersonalInfo.Controls.Add(Me.txtEditCity)
+        Me.grpPersonalInfo.Controls.Add(Me.lblEditCity)
+        Me.grpPersonalInfo.Controls.Add(Me.txtEditAddress)
+        Me.grpPersonalInfo.Controls.Add(Me.lblEditAddress)
+        Me.grpPersonalInfo.Controls.Add(Me.txtEditLastName)
+        Me.grpPersonalInfo.Controls.Add(Me.lblEditLastName)
+        Me.grpPersonalInfo.Controls.Add(Me.txtEditFirstName)
+        Me.grpPersonalInfo.Controls.Add(Me.lblEditFirstName)
+        Me.grpPersonalInfo.Location = New System.Drawing.Point(25, 50)
+        Me.grpPersonalInfo.Name = "grpPersonalInfo"
+        Me.grpPersonalInfo.Size = New System.Drawing.Size(227, 212)
+        Me.grpPersonalInfo.TabIndex = 1
+        Me.grpPersonalInfo.TabStop = False
+        Me.grpPersonalInfo.Text = "Personal Info"
+        '
+        'txtEditZip
+        '
+        Me.txtEditZip.Location = New System.Drawing.Point(79, 177)
+        Me.txtEditZip.Name = "txtEditZip"
+        Me.txtEditZip.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditZip.TabIndex = 21
+        '
+        'lblEditZip
+        '
+        Me.lblEditZip.AutoSize = True
+        Me.lblEditZip.Location = New System.Drawing.Point(13, 180)
+        Me.lblEditZip.Name = "lblEditZip"
+        Me.lblEditZip.Size = New System.Drawing.Size(25, 13)
+        Me.lblEditZip.TabIndex = 20
+        Me.lblEditZip.Text = "Zip:"
+        '
+        'txtEditState
+        '
+        Me.txtEditState.Location = New System.Drawing.Point(79, 147)
+        Me.txtEditState.Name = "txtEditState"
+        Me.txtEditState.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditState.TabIndex = 19
+        '
+        'lblEditState
+        '
+        Me.lblEditState.AutoSize = True
+        Me.lblEditState.Location = New System.Drawing.Point(13, 150)
+        Me.lblEditState.Name = "lblEditState"
+        Me.lblEditState.Size = New System.Drawing.Size(35, 13)
+        Me.lblEditState.TabIndex = 18
+        Me.lblEditState.Text = "State:"
+        '
+        'txtEditCity
+        '
+        Me.txtEditCity.Location = New System.Drawing.Point(79, 117)
+        Me.txtEditCity.Name = "txtEditCity"
+        Me.txtEditCity.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditCity.TabIndex = 17
+        '
+        'lblEditCity
+        '
+        Me.lblEditCity.AutoSize = True
+        Me.lblEditCity.Location = New System.Drawing.Point(13, 120)
+        Me.lblEditCity.Name = "lblEditCity"
+        Me.lblEditCity.Size = New System.Drawing.Size(27, 13)
+        Me.lblEditCity.TabIndex = 16
+        Me.lblEditCity.Text = "City:"
+        '
+        'txtEditAddress
+        '
+        Me.txtEditAddress.Location = New System.Drawing.Point(79, 87)
+        Me.txtEditAddress.Name = "txtEditAddress"
+        Me.txtEditAddress.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditAddress.TabIndex = 15
+        '
+        'lblEditAddress
+        '
+        Me.lblEditAddress.AutoSize = True
+        Me.lblEditAddress.Location = New System.Drawing.Point(13, 90)
+        Me.lblEditAddress.Name = "lblEditAddress"
+        Me.lblEditAddress.Size = New System.Drawing.Size(48, 13)
+        Me.lblEditAddress.TabIndex = 14
+        Me.lblEditAddress.Text = "Address:"
+        '
+        'txtEditLastName
+        '
+        Me.txtEditLastName.Location = New System.Drawing.Point(79, 57)
+        Me.txtEditLastName.Name = "txtEditLastName"
+        Me.txtEditLastName.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditLastName.TabIndex = 13
+        '
+        'lblEditLastName
+        '
+        Me.lblEditLastName.AutoSize = True
+        Me.lblEditLastName.Location = New System.Drawing.Point(13, 60)
+        Me.lblEditLastName.Name = "lblEditLastName"
+        Me.lblEditLastName.Size = New System.Drawing.Size(61, 13)
+        Me.lblEditLastName.TabIndex = 12
+        Me.lblEditLastName.Text = "Last Name:"
+        '
+        'txtEditFirstName
+        '
+        Me.txtEditFirstName.Location = New System.Drawing.Point(79, 27)
+        Me.txtEditFirstName.Name = "txtEditFirstName"
+        Me.txtEditFirstName.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditFirstName.TabIndex = 11
+        '
+        'lblEditFirstName
+        '
+        Me.lblEditFirstName.AutoSize = True
+        Me.lblEditFirstName.Location = New System.Drawing.Point(13, 30)
+        Me.lblEditFirstName.Name = "lblEditFirstName"
+        Me.lblEditFirstName.Size = New System.Drawing.Size(60, 13)
+        Me.lblEditFirstName.TabIndex = 10
+        Me.lblEditFirstName.Text = "First Name:"
+        '
+        'lblEditManager
+        '
+        Me.lblEditManager.AutoSize = True
+        Me.lblEditManager.Location = New System.Drawing.Point(17, 120)
+        Me.lblEditManager.Name = "lblEditManager"
+        Me.lblEditManager.Size = New System.Drawing.Size(52, 13)
+        Me.lblEditManager.TabIndex = 34
+        Me.lblEditManager.Text = "Manager:"
+        '
+        'btnEditEmployee
+        '
+        Me.btnEditEmployee.Location = New System.Drawing.Point(384, 425)
+        Me.btnEditEmployee.Name = "btnEditEmployee"
+        Me.btnEditEmployee.Size = New System.Drawing.Size(107, 23)
+        Me.btnEditEmployee.TabIndex = 40
+        Me.btnEditEmployee.Text = "Update Employee"
+        Me.btnEditEmployee.UseVisualStyleBackColor = True
         '
         'lblEditEmployee
         '
@@ -319,6 +497,7 @@ Partial Class Form1
         '
         'pnlViewEmployees
         '
+        Me.pnlViewEmployees.Controls.Add(Me.btnAddEmployee)
         Me.pnlViewEmployees.Controls.Add(Me.dgvEmployees)
         Me.pnlViewEmployees.Controls.Add(Me.lblViewEmployees)
         Me.pnlViewEmployees.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1365,6 +1544,192 @@ Partial Class Form1
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
+        'grpEmployeeInfo
+        '
+        Me.grpEmployeeInfo.Controls.Add(Me.datEditHireDate)
+        Me.grpEmployeeInfo.Controls.Add(Me.cboEditManager)
+        Me.grpEmployeeInfo.Controls.Add(Me.lblEditHireDate)
+        Me.grpEmployeeInfo.Controls.Add(Me.txtEditPersonalTime)
+        Me.grpEmployeeInfo.Controls.Add(Me.lblEditManager)
+        Me.grpEmployeeInfo.Controls.Add(Me.lblEditPersonalTime)
+        Me.grpEmployeeInfo.Controls.Add(Me.txtEditVacationTime)
+        Me.grpEmployeeInfo.Controls.Add(Me.lblEditVacationTime)
+        Me.grpEmployeeInfo.Controls.Add(Me.txtEditPayRate)
+        Me.grpEmployeeInfo.Controls.Add(Me.lblEditPayRate)
+        Me.grpEmployeeInfo.Controls.Add(Me.txtEditPosition)
+        Me.grpEmployeeInfo.Controls.Add(Me.lblEditPosition)
+        Me.grpEmployeeInfo.Location = New System.Drawing.Point(264, 50)
+        Me.grpEmployeeInfo.Name = "grpEmployeeInfo"
+        Me.grpEmployeeInfo.Size = New System.Drawing.Size(227, 212)
+        Me.grpEmployeeInfo.TabIndex = 3
+        Me.grpEmployeeInfo.TabStop = False
+        Me.grpEmployeeInfo.Text = "Employee Info"
+        '
+        'txtEditPersonalTime
+        '
+        Me.txtEditPersonalTime.Location = New System.Drawing.Point(77, 177)
+        Me.txtEditPersonalTime.Name = "txtEditPersonalTime"
+        Me.txtEditPersonalTime.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditPersonalTime.TabIndex = 39
+        '
+        'lblEditPersonalTime
+        '
+        Me.lblEditPersonalTime.AutoSize = True
+        Me.lblEditPersonalTime.Location = New System.Drawing.Point(17, 180)
+        Me.lblEditPersonalTime.Name = "lblEditPersonalTime"
+        Me.lblEditPersonalTime.Size = New System.Drawing.Size(51, 13)
+        Me.lblEditPersonalTime.TabIndex = 38
+        Me.lblEditPersonalTime.Text = "Personal:"
+        '
+        'txtEditVacationTime
+        '
+        Me.txtEditVacationTime.Location = New System.Drawing.Point(77, 147)
+        Me.txtEditVacationTime.Name = "txtEditVacationTime"
+        Me.txtEditVacationTime.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditVacationTime.TabIndex = 37
+        '
+        'lblEditVacationTime
+        '
+        Me.lblEditVacationTime.AutoSize = True
+        Me.lblEditVacationTime.Location = New System.Drawing.Point(17, 150)
+        Me.lblEditVacationTime.Name = "lblEditVacationTime"
+        Me.lblEditVacationTime.Size = New System.Drawing.Size(52, 13)
+        Me.lblEditVacationTime.TabIndex = 36
+        Me.lblEditVacationTime.Text = "Vacation:"
+        '
+        'txtEditPayRate
+        '
+        Me.txtEditPayRate.Location = New System.Drawing.Point(77, 87)
+        Me.txtEditPayRate.Name = "txtEditPayRate"
+        Me.txtEditPayRate.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditPayRate.TabIndex = 33
+        '
+        'lblEditPayRate
+        '
+        Me.lblEditPayRate.AutoSize = True
+        Me.lblEditPayRate.Location = New System.Drawing.Point(17, 90)
+        Me.lblEditPayRate.Name = "lblEditPayRate"
+        Me.lblEditPayRate.Size = New System.Drawing.Size(54, 13)
+        Me.lblEditPayRate.TabIndex = 32
+        Me.lblEditPayRate.Text = "Pay Rate:"
+        '
+        'txtEditPosition
+        '
+        Me.txtEditPosition.Location = New System.Drawing.Point(77, 57)
+        Me.txtEditPosition.Name = "txtEditPosition"
+        Me.txtEditPosition.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditPosition.TabIndex = 31
+        '
+        'lblEditPosition
+        '
+        Me.lblEditPosition.AutoSize = True
+        Me.lblEditPosition.Location = New System.Drawing.Point(17, 60)
+        Me.lblEditPosition.Name = "lblEditPosition"
+        Me.lblEditPosition.Size = New System.Drawing.Size(47, 13)
+        Me.lblEditPosition.TabIndex = 30
+        Me.lblEditPosition.Text = "Position:"
+        '
+        'lblEditHireDate
+        '
+        Me.lblEditHireDate.AutoSize = True
+        Me.lblEditHireDate.Location = New System.Drawing.Point(17, 30)
+        Me.lblEditHireDate.Name = "lblEditHireDate"
+        Me.lblEditHireDate.Size = New System.Drawing.Size(55, 13)
+        Me.lblEditHireDate.TabIndex = 28
+        Me.lblEditHireDate.Text = "Hire Date:"
+        '
+        'grpUserInfo
+        '
+        Me.grpUserInfo.Controls.Add(Me.cboEditUserType)
+        Me.grpUserInfo.Controls.Add(Me.lblEditUserType)
+        Me.grpUserInfo.Controls.Add(Me.txtEditPassword)
+        Me.grpUserInfo.Controls.Add(Me.lblEditPassword)
+        Me.grpUserInfo.Controls.Add(Me.txtEditUserName)
+        Me.grpUserInfo.Controls.Add(Me.lblEditUserName)
+        Me.grpUserInfo.Location = New System.Drawing.Point(25, 275)
+        Me.grpUserInfo.Name = "grpUserInfo"
+        Me.grpUserInfo.Size = New System.Drawing.Size(227, 119)
+        Me.grpUserInfo.TabIndex = 2
+        Me.grpUserInfo.TabStop = False
+        Me.grpUserInfo.Text = "User Info"
+        '
+        'lblEditUserType
+        '
+        Me.lblEditUserType.AutoSize = True
+        Me.lblEditUserType.Location = New System.Drawing.Point(13, 90)
+        Me.lblEditUserType.Name = "lblEditUserType"
+        Me.lblEditUserType.Size = New System.Drawing.Size(59, 13)
+        Me.lblEditUserType.TabIndex = 26
+        Me.lblEditUserType.Text = "User Type:"
+        '
+        'txtEditPassword
+        '
+        Me.txtEditPassword.Location = New System.Drawing.Point(79, 57)
+        Me.txtEditPassword.Name = "txtEditPassword"
+        Me.txtEditPassword.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditPassword.TabIndex = 25
+        '
+        'lblEditPassword
+        '
+        Me.lblEditPassword.AutoSize = True
+        Me.lblEditPassword.Location = New System.Drawing.Point(13, 60)
+        Me.lblEditPassword.Name = "lblEditPassword"
+        Me.lblEditPassword.Size = New System.Drawing.Size(56, 13)
+        Me.lblEditPassword.TabIndex = 24
+        Me.lblEditPassword.Text = "Password:"
+        '
+        'txtEditUserName
+        '
+        Me.txtEditUserName.Location = New System.Drawing.Point(79, 27)
+        Me.txtEditUserName.Name = "txtEditUserName"
+        Me.txtEditUserName.Size = New System.Drawing.Size(130, 20)
+        Me.txtEditUserName.TabIndex = 23
+        '
+        'lblEditUserName
+        '
+        Me.lblEditUserName.AutoSize = True
+        Me.lblEditUserName.Location = New System.Drawing.Point(13, 30)
+        Me.lblEditUserName.Name = "lblEditUserName"
+        Me.lblEditUserName.Size = New System.Drawing.Size(63, 13)
+        Me.lblEditUserName.TabIndex = 22
+        Me.lblEditUserName.Text = "User Name:"
+        '
+        'cboEditUserType
+        '
+        Me.cboEditUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboEditUserType.FormattingEnabled = True
+        Me.cboEditUserType.Location = New System.Drawing.Point(79, 87)
+        Me.cboEditUserType.Name = "cboEditUserType"
+        Me.cboEditUserType.Size = New System.Drawing.Size(130, 21)
+        Me.cboEditUserType.TabIndex = 27
+        '
+        'cboEditManager
+        '
+        Me.cboEditManager.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboEditManager.FormattingEnabled = True
+        Me.cboEditManager.Location = New System.Drawing.Point(77, 117)
+        Me.cboEditManager.Name = "cboEditManager"
+        Me.cboEditManager.Size = New System.Drawing.Size(130, 21)
+        Me.cboEditManager.TabIndex = 35
+        '
+        'datEditHireDate
+        '
+        Me.datEditHireDate.CustomFormat = ""
+        Me.datEditHireDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datEditHireDate.Location = New System.Drawing.Point(77, 27)
+        Me.datEditHireDate.Name = "datEditHireDate"
+        Me.datEditHireDate.Size = New System.Drawing.Size(130, 20)
+        Me.datEditHireDate.TabIndex = 29
+        '
+        'btnAddEmployee
+        '
+        Me.btnAddEmployee.Location = New System.Drawing.Point(551, 430)
+        Me.btnAddEmployee.Name = "btnAddEmployee"
+        Me.btnAddEmployee.Size = New System.Drawing.Size(93, 23)
+        Me.btnAddEmployee.TabIndex = 2
+        Me.btnAddEmployee.Text = "Add Employee"
+        Me.btnAddEmployee.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1385,6 +1750,8 @@ Partial Class Form1
         Me.pnlNavigationEmployee.ResumeLayout(False)
         Me.pnlEditEmployee.ResumeLayout(False)
         Me.pnlEditEmployee.PerformLayout()
+        Me.grpPersonalInfo.ResumeLayout(False)
+        Me.grpPersonalInfo.PerformLayout()
         Me.pnlViewEmployees.ResumeLayout(False)
         Me.pnlViewEmployees.PerformLayout()
         CType(Me.dgvEmployees, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1399,6 +1766,10 @@ Partial Class Form1
         Me.pnlPaySlip.PerformLayout()
         Me.mnuNavigation.ResumeLayout(False)
         Me.mnuNavigation.PerformLayout()
+        Me.grpEmployeeInfo.ResumeLayout(False)
+        Me.grpEmployeeInfo.PerformLayout()
+        Me.grpUserInfo.ResumeLayout(False)
+        Me.grpUserInfo.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1526,5 +1897,40 @@ Partial Class Form1
     Friend WithEvents lblSubmittedRequests As System.Windows.Forms.Label
     Friend WithEvents pnlEditEmployee As System.Windows.Forms.Panel
     Friend WithEvents lblEditEmployee As System.Windows.Forms.Label
+    Friend WithEvents btnEditEmployee As System.Windows.Forms.Button
+    Friend WithEvents grpPersonalInfo As System.Windows.Forms.GroupBox
+    Friend WithEvents txtEditZip As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditZip As System.Windows.Forms.Label
+    Friend WithEvents txtEditState As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditState As System.Windows.Forms.Label
+    Friend WithEvents txtEditCity As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditCity As System.Windows.Forms.Label
+    Friend WithEvents txtEditAddress As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditAddress As System.Windows.Forms.Label
+    Friend WithEvents txtEditLastName As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditLastName As System.Windows.Forms.Label
+    Friend WithEvents txtEditFirstName As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditFirstName As System.Windows.Forms.Label
+    Friend WithEvents lblEditManager As System.Windows.Forms.Label
+    Friend WithEvents grpEmployeeInfo As System.Windows.Forms.GroupBox
+    Friend WithEvents lblEditHireDate As System.Windows.Forms.Label
+    Friend WithEvents txtEditPersonalTime As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditPersonalTime As System.Windows.Forms.Label
+    Friend WithEvents txtEditVacationTime As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditVacationTime As System.Windows.Forms.Label
+    Friend WithEvents txtEditPayRate As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditPayRate As System.Windows.Forms.Label
+    Friend WithEvents txtEditPosition As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditPosition As System.Windows.Forms.Label
+    Friend WithEvents grpUserInfo As System.Windows.Forms.GroupBox
+    Friend WithEvents lblEditUserType As System.Windows.Forms.Label
+    Friend WithEvents txtEditPassword As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditPassword As System.Windows.Forms.Label
+    Friend WithEvents txtEditUserName As System.Windows.Forms.TextBox
+    Friend WithEvents lblEditUserName As System.Windows.Forms.Label
+    Friend WithEvents cboEditUserType As System.Windows.Forms.ComboBox
+    Friend WithEvents cboEditManager As System.Windows.Forms.ComboBox
+    Friend WithEvents datEditHireDate As System.Windows.Forms.DateTimePicker
+    Friend WithEvents btnAddEmployee As System.Windows.Forms.Button
 
 End Class

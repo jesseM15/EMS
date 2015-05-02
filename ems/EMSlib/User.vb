@@ -14,9 +14,11 @@ Namespace EMS
         Private _state As String
         Private _zip As String
         Private _hire_date As Date
-        Private _pay_rate As Decimal
+        Private _current_pay_rate As Decimal
         Private _position As String
         Private _manager_id As Integer
+        Private _vacation_time As Integer
+        Private _personal_time As Integer
 
         Public Sub New()
             _id = 0
@@ -30,9 +32,11 @@ Namespace EMS
             _state = ""
             _zip = ""
             _hire_date = New Date
-            _pay_rate = 0
+            _current_pay_rate = 0
             _position = ""
             _manager_id = 0
+            _vacation_time = 0
+            _personal_time = 0
         End Sub
 
         Public Property id() As Integer
@@ -134,12 +138,12 @@ Namespace EMS
             End Set
         End Property
 
-        Public Property pay_rate() As Decimal
+        Public Property current_pay_rate() As Decimal
             Get
-                Return _pay_rate
+                Return _current_pay_rate
             End Get
             Set(ByVal value As Decimal)
-                _pay_rate = value
+                _current_pay_rate = value
             End Set
         End Property
 
@@ -158,6 +162,24 @@ Namespace EMS
             End Get
             Set(ByVal value As Integer)
                 _manager_id = value
+            End Set
+        End Property
+
+        Public Property vacation_time() As Integer
+            Get
+                Return _vacation_time
+            End Get
+            Set(ByVal value As Integer)
+                _vacation_time = value
+            End Set
+        End Property
+
+        Public Property personal_time() As Integer
+            Get
+                Return _personal_time
+            End Get
+            Set(ByVal value As Integer)
+                _personal_time = value
             End Set
         End Property
 

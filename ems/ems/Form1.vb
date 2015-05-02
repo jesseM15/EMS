@@ -23,7 +23,7 @@ Public Class Form1
         tmiClockInOut.Enabled = True
         tmiEmployee.Enabled = True
         tmiLogInOut.Text = "Log Out"
-        If dbems.checkClockedIn(user.id) = True Then
+        If dbems.isClockedIn(user.id) = True Then
             tmiClockInOut.Text = "Clock Out"
         Else
             tmiClockInOut.Text = "Clock In"
@@ -70,7 +70,7 @@ Public Class Form1
     End Sub
 
     Private Sub tmiClockInOut_Click(sender As Object, e As EventArgs) Handles tmiClockInOut.Click
-        If dbems.checkClockedIn(user.id) = True Then
+        If dbems.isClockedIn(user.id) = True Then
             dbems.clockOut(user.id)
             tmiClockInOut.Text = "Clock In"
         Else
@@ -179,14 +179,36 @@ Public Class Form1
     End Sub
 
     Private Sub dgvEmployees_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvEmployees.CellContentClick
+        If e.RowIndex = -1 Then Exit Sub
         employees.employeeID = dgvEmployees.Rows(e.RowIndex).Cells.Item(2).Value
         If e.ColumnIndex = 0 Then
             hidePanels()
             employees.initEditEmployeePanel()
-            lblEditEmployee.Text = employees.employeeID
         ElseIf e.ColumnIndex = 1 Then
-            MessageBox.Show("Remove employee #" & employees.employeeID)
+            Dim msg As String = "Are you sure you want to remove employee " & dbems.getUserName(employees.employeeID) & "?"
+            Dim deleteEmployee As MsgBoxResult = MsgBox(msg, MsgBoxStyle.YesNo, "Terminate Employee?")
+            If deleteEmployee = MsgBoxResult.Yes Then
+                dbems.removeUser(employees.employeeID)
+                hidePanels()
+                employees.initViewEmployeesPanel()
+            End If
         End If
+    End Sub
+
+    Private Sub btnEditEmployee_Click(sender As Object, e As EventArgs) Handles btnEditEmployee.Click
+        If employees.employeeID = 0 Then
+            dbems.addUser(employees.getFormData())
+        Else
+            dbems.updateUser(employees.getFormData())
+        End If
+        hidePanels()
+        employees.initViewEmployeesPanel()
+    End Sub
+
+    Private Sub btnAddEmployee_Click(sender As Object, e As EventArgs) Handles btnAddEmployee.Click
+        hidePanels()
+        employees.employeeID = 0
+        employees.initEditEmployeePanel()
     End Sub
 
 End Class

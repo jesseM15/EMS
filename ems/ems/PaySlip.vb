@@ -206,7 +206,7 @@
         Form1.lblPayEndDate.Text = _workPeriodEnd.Date
 
         Form1.lblPayRate.Text = hourlyPay.ToString("C2") & "/hr"
-        Form1.lblAnnualSalary.Text = user.pay_rate.ToString("C2")
+        Form1.lblAnnualSalary.Text = user.current_pay_rate.ToString("C2")
         Form1.lblGrossCurrent.Text = (hoursTotal * hourlyPay).ToString("C2")
         Form1.lblPreTaxCurrent.Text = 0
         Form1.lblPreTaxYTD.Text = 0
@@ -261,7 +261,8 @@
         _YTDVacation = dbems.getHoursWorked(user.id, "Vacation", time.workYearStart, _workPeriodEnd).TotalHours
         _YTDHoliday = dbems.getHoursWorked(user.id, "Holiday", time.workYearStart, _workPeriodEnd).TotalHours
         _YTDTotal = _YTDRegular + _YTDPersonal + _YTDVacation + _YTDHoliday
-        _hourlyPay = user.pay_rate / 52 / 40
+        '!!! This should use time.pay_rate instead to accurately reflect pay rate at the time !!!
+        _hourlyPay = user.current_pay_rate / 52 / 40
     End Sub
 
 End Class

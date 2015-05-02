@@ -56,14 +56,103 @@ Namespace DBSQL
                 u.state = reader(8)
                 u.zip = reader(9)
                 u.hire_date = reader(10)
-                u.pay_rate = reader(11)
+                u.current_pay_rate = reader(11)
                 u.position = reader(12)
                 u.manager_id = reader(13)
+                u.vacation_time = reader(14)
+                u.personal_time = reader(15)
             End While
             reader.Close()
             _cmd.Connection.Close()
             Return u
         End Function
+
+        'checks that a user name is available
+        Public Function isAvailableUserName(ByVal user_name As String) As Boolean
+            initCommand()
+            _cmd.CommandText = "SELECT COUNT(*) FROM Users WHERE user_name=@uName"
+            _cmd.Parameters.AddWithValue("@uName", user_name)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            Dim matchName As Integer = CInt(_cmd.ExecuteScalar)
+            _cmd.Connection.Close()
+            If matchName > 0 Then
+                Return False
+            Else
+                Return True
+            End If
+        End Function
+
+        'adds a user
+        Public Sub addUser(ByVal user As User)
+            initCommand()
+            _cmd.CommandText = "INSERT INTO Users VALUES (@user_name, @password, @user_type, @first_name, @last_name, @address, @city, @state, @zip, @hire_date, @current_pay_rate, @position, @manager_id, @vacation_time, @personal_time)"
+            _cmd.Parameters.AddWithValue("@id", user.id)
+            _cmd.Parameters.AddWithValue("@user_name", user.user_name)
+            _cmd.Parameters.AddWithValue("@password", user.password)
+            _cmd.Parameters.AddWithValue("@user_type", user.user_type)
+            _cmd.Parameters.AddWithValue("@first_name", user.first_name)
+            _cmd.Parameters.AddWithValue("@last_name", user.last_name)
+            _cmd.Parameters.AddWithValue("@address", user.address)
+            _cmd.Parameters.AddWithValue("@city", user.city)
+            _cmd.Parameters.AddWithValue("@state", user.state)
+            _cmd.Parameters.AddWithValue("@zip", user.zip)
+            _cmd.Parameters.AddWithValue("@hire_date", user.hire_date)
+            _cmd.Parameters.AddWithValue("@current_pay_rate", user.current_pay_rate)
+            _cmd.Parameters.AddWithValue("@position", user.position)
+            _cmd.Parameters.AddWithValue("@manager_id", user.manager_id)
+            _cmd.Parameters.AddWithValue("@vacation_time", user.vacation_time)
+            _cmd.Parameters.AddWithValue("@personal_time", user.personal_time)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
+        'updates a user
+        Public Sub updateUser(ByVal user As User)
+            initCommand()
+            _cmd.CommandText = "UPDATE Users SET user_name=@user_name, password=@password, user_type=@user_type, first_name=@first_name, last_name=@last_name, address=@address, city=@city, state=@state, zip=@zip, hire_date=@hire_date, current_pay_rate=@current_pay_rate, position=@position, manager_id=@manager_id, vacation_time=@vacation_time, personal_time=@personal_time WHERE id=@id"
+            'Dim uName As String = Mid(user.last_name, 1, 16)
+            'uName += Mid(user.first_name, 1, 1)
+            'If isAvailableUserName(uName) = False Then
+            '    Dim c As Integer = 1
+            '    While isAvailableUserName(uName & c.ToString()) = False
+            '        c += 1
+            '    End While
+            '    uName = uName & c.ToString()
+            'End If
+
+            _cmd.Parameters.AddWithValue("@id", user.id)
+            _cmd.Parameters.AddWithValue("@user_name", user.user_name)
+            _cmd.Parameters.AddWithValue("@password", user.password)
+            _cmd.Parameters.AddWithValue("@user_type", user.user_type)
+            _cmd.Parameters.AddWithValue("@first_name", user.first_name)
+            _cmd.Parameters.AddWithValue("@last_name", user.last_name)
+            _cmd.Parameters.AddWithValue("@address", user.address)
+            _cmd.Parameters.AddWithValue("@city", user.city)
+            _cmd.Parameters.AddWithValue("@state", user.state)
+            _cmd.Parameters.AddWithValue("@zip", user.zip)
+            _cmd.Parameters.AddWithValue("@hire_date", user.hire_date)
+            _cmd.Parameters.AddWithValue("@current_pay_rate", user.current_pay_rate)
+            _cmd.Parameters.AddWithValue("@position", user.position)
+            _cmd.Parameters.AddWithValue("@manager_id", user.manager_id)
+            _cmd.Parameters.AddWithValue("@vacation_time", user.vacation_time)
+            _cmd.Parameters.AddWithValue("@personal_time", user.personal_time)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
+        'removes a user
+        Public Sub removeUser(ByVal id As Integer)
+            initCommand()
+            _cmd.CommandText = "DELETE FROM Users WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
 
         '===LogIn/Out==============================================================================
 
@@ -110,7 +199,7 @@ Namespace DBSQL
         '===ClockIn/Out==============================================================================
 
         'returns true if current user has Times data that does not have a time_end value
-        Public Function checkClockedIn(ByVal user_id As Integer) As Boolean
+        Public Function isClockedIn(ByVal user_id As Integer) As Boolean
             initCommand()
             _cmd.CommandText = "SELECT COUNT(*) FROM Times WHERE user_id=@user_id AND time_end IS NULL"
             _cmd.Parameters.AddWithValue("@user_id", user_id)
@@ -277,7 +366,7 @@ Namespace DBSQL
         'returns a datatable from Users by manager id
         Public Function getEmployees(ByVal id As Integer) As DataTable
             initCommand()
-            _cmd.CommandText = "SELECT id, first_name, last_name, position, current_pay_rate FROM Users WHERE manager_id=@id"
+            _cmd.CommandText = "SELECT id, first_name, last_name, position, current_pay_rate, vacation_time, personal_time FROM Users WHERE manager_id=@id"
             _cmd.Parameters.AddWithValue("@id", id)
             Dim da As SqlDataAdapter
             Dim dt As New DataTable()
@@ -287,6 +376,59 @@ Namespace DBSQL
             da.Fill(dt)
             _cmd.Connection.Close()
             Return dt
+        End Function
+
+        'returns a collection of ids of users with manager-level or greater permission
+        Public Function getManagers1() As Collection
+            initCommand()
+            _cmd.CommandText = "SELECT * FROM Users WHERE user_type='Manager' OR user_type='Administrator'"
+            _cmd.Connection.Open()
+            Dim managers As New Collection
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            While reader.Read
+                managers.Add(reader("id"))
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return managers
+        End Function
+
+        'returns a collection of ids of users with manager-level or greater permission
+        Public Function getManagers() As Collection
+            initCommand()
+            _cmd.CommandText = "SELECT * FROM Users WHERE user_type='Manager' OR user_type='Administrator'"
+            _cmd.Connection.Open()
+            Dim managers As New Collection
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            While reader.Read
+                Dim u As New User
+                u.id = reader("id")
+                u.first_name = reader("first_name")
+                u.last_name = reader("last_name")
+                managers.Add(u)
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return managers
+        End Function
+
+        'gets the id of the manager for a specified user id
+        Public Function getManagerId(ByVal id As Integer) As Integer
+            initCommand()
+            _cmd.CommandText = "SELECT manager_id FROM Users WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            Dim manager_id As Integer = 0
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            While reader.Read
+                manager_id = reader("manager_id")
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return manager_id
         End Function
 
         '===General==============================================================================
