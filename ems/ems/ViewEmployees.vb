@@ -19,6 +19,7 @@ Public Class ViewEmployees
     End Property
 
     Private Sub initDGV()
+
         Form1.dgvEmployees.Columns(0).Visible = False
         Form1.dgvEmployees.Columns(1).HeaderText = "First Name"
         Form1.dgvEmployees.Columns(2).HeaderText = "Last Name"
@@ -40,6 +41,10 @@ Public Class ViewEmployees
 
         Form1.dgvEmployees.Columns.Add(colDetails)
         Form1.dgvEmployees.Columns.Add(colRemove)
+
+        For Each col In Form1.dgvEmployees.Columns
+            col.width = 77
+        Next
         _dgvInitialized = True
     End Sub
 

@@ -64,6 +64,7 @@ Public Class Form1
         Else
             Login.ShowDialog()
             If user.id > 0 Then
+                hidePanels()
                 initNavigationPanel()
             End If
         End If
@@ -149,12 +150,20 @@ Public Class Form1
     End Sub
 
     Private Sub btnInbox_Click(sender As Object, e As EventArgs) Handles btnInbox.Click
+        If msgs.view = "Inbox" Then Exit Sub
         msgs.view = "Inbox"
         msgs.initMessagesPanel()
     End Sub
 
     Private Sub btnSent_Click(sender As Object, e As EventArgs) Handles btnSent.Click
+        If msgs.view = "Sent" Then Exit Sub
         msgs.view = "Sent"
+        msgs.initMessagesPanel()
+    End Sub
+
+    Private Sub btnViewed_Click(sender As Object, e As EventArgs) Handles btnViewed.Click
+        If msgs.view = "Viewed" Then Exit Sub
+        msgs.view = "Viewed"
         msgs.initMessagesPanel()
     End Sub
 
@@ -211,4 +220,13 @@ Public Class Form1
         employees.initEditEmployeePanel()
     End Sub
 
+    Private Sub lsvMessages_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lsvMessages.ItemSelectionChanged
+        If e.IsSelected Then
+            Dim caption As String = msgs.view & " Message"
+            Dim msg As String = lsvMessages.Columns(0).Text & ": " & e.Item.SubItems(0).Text & " on "
+            msg += e.Item.SubItems(1).Text & vbCrLf & vbCrLf
+            msg += e.Item.SubItems(2).Text
+            MessageBox.Show(msg, caption)
+        End If
+    End Sub
 End Class

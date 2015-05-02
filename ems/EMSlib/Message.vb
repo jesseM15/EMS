@@ -1,6 +1,7 @@
 ﻿Namespace EMS
 
     Public Class Message
+        Private _id As Integer
         Private _userId As Integer
         Private _senderId As Integer
         Private _message As String
@@ -8,12 +9,22 @@
         Private _viewed As Boolean
 
         Public Sub New()
+            _id = 0
             _userId = 0
             _senderId = 0
             _message = ""
             _timeStamp = New Date()
             _viewed = False
         End Sub
+
+        Public Property id() As Integer
+            Get
+                Return _id
+            End Get
+            Set(value As Integer)
+                _id = value
+            End Set
+        End Property
 
         Public Property userId() As Integer
             Get
@@ -60,7 +71,7 @@
             End Set
         End Property
 
-        
+
 
     End Class
 

@@ -302,7 +302,64 @@ Namespace DBSQL
         'gets all the messages in the inbox
         Public Function getInboxMessages(ByVal user_id As Integer) As Collection
             initCommand()
-            _cmd.CommandText = "SELECT * FROM Messages WHERE user_id=@user_id AND viewed=0"
+            _cmd.CommandText = "SELECT * FROM Messages WHERE user_id=@user_id AND viewed=0 ORDER BY time_stamp DESC"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Connection.Open()
+            Dim messages As New Collection
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            While reader.Read
+                Dim m As New Message
+                m.id = reader("id")
+                m.senderId = reader("sender_id")
+                m.message = reader("message")
+                m.timeStamp = reader("time_stamp")
+                'm.viewed = reader("viewed")
+                m.viewed = True
+                messages.Add(m)
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            For Each m In messages
+                setMessageViewed(m.id)
+            Next
+            Return messages
+        End Function
+
+        Private Sub setMessageViewed(ByVal id As Integer)
+            initCommand()
+            _cmd.CommandText = "UPDATE Messages SET viewed='True' WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
+        'gets all the messages sent by the user
+        Public Function getSentMessages(ByVal user_id As Integer) As Collection
+            initCommand()
+            _cmd.CommandText = "SELECT * FROM Messages WHERE sender_id=@user_id ORDER BY time_stamp DESC"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Connection.Open()
+            Dim messages As New Collection
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            While reader.Read
+                Dim m As New Message
+                m.userId = reader("user_id")
+                m.message = reader("message")
+                m.timeStamp = reader("time_stamp")
+                messages.Add(m)
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return messages
+        End Function
+
+        'gets all the viewed messages
+        Public Function getViewedMessages(ByVal user_id As Integer) As Collection
+            initCommand()
+            _cmd.CommandText = "SELECT * FROM Messages WHERE user_id=@user_id AND viewed=1 ORDER BY time_stamp DESC"
             _cmd.Parameters.AddWithValue("@user_id", user_id)
             _cmd.Connection.Open()
             Dim messages As New Collection
@@ -314,27 +371,6 @@ Namespace DBSQL
                 m.message = reader("message")
                 m.timeStamp = reader("time_stamp")
                 m.viewed = reader("viewed")
-                messages.Add(m)
-            End While
-            reader.Close()
-            _cmd.Connection.Close()
-            Return messages
-        End Function
-
-        'gets all the messags sent by the user
-        Public Function getSentMessages(ByVal user_id As Integer) As Collection
-            initCommand()
-            _cmd.CommandText = "SELECT * FROM Messages WHERE sender_id=@user_id"
-            _cmd.Parameters.AddWithValue("@user_id", user_id)
-            _cmd.Connection.Open()
-            Dim messages As New Collection
-            Dim r As IAsyncResult = _cmd.BeginExecuteReader
-            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
-            While reader.Read
-                Dim m As New Message
-                m.userId = reader("user_id")
-                m.message = reader("message")
-                m.timeStamp = reader("time_stamp")
                 messages.Add(m)
             End While
             reader.Close()
