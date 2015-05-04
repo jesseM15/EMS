@@ -100,6 +100,7 @@
     <Compile Include="Login.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ManageVacations.vb" />
     <Compile Include="Messages.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -117,6 +118,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="PaySlip.vb" />
+    <Compile Include="Reports.vb" />
     <Compile Include="VacationRequest.vb" />
     <Compile Include="ViewEmployees.vb" />
   </ItemGroup>

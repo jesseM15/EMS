@@ -256,9 +256,27 @@ Namespace DBSQL
 
         '===Vacation Requests====================================================================
 
+        'gets a collection of the user's times with an hours_type of Requested
         Public Function getVacationRequests(ByVal user_id As Integer) As Collection
             initCommand()
             _cmd.CommandText = "SELECT * FROM Times WHERE user_id=@user_id AND hours_type='Requested'"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Connection.Open()
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            Dim req As New Collection
+            While reader.Read
+                req.Add(reader(2))
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return req
+        End Function
+
+        'gets a collection of the user's times with an hours_type of Vacation
+        Public Function getScheduledVacation(ByVal user_id As Integer) As Collection
+            initCommand()
+            _cmd.CommandText = "SELECT * FROM Times WHERE user_id=@user_id AND hours_type='Vacation'"
             _cmd.Parameters.AddWithValue("@user_id", user_id)
             _cmd.Connection.Open()
             Dim r As IAsyncResult = _cmd.BeginExecuteReader
@@ -284,12 +302,32 @@ Namespace DBSQL
             _cmd.Connection.Close()
         End Sub
 
+        'schedules a requested vacation day
+        Public Sub approveVacationRequest(ByVal id As Integer)
+            initCommand()
+            _cmd.CommandText = "UPDATE Times SET hours_type='Vacation' WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
+        'removes a requested vacation day
+        Public Sub denyVacationRequest(ByVal id As Integer)
+            initCommand()
+            _cmd.CommandText = "DELETE FROM Times WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
         '===Messages=============================================================================
 
         'sends vacation request message
-        Public Sub sendVacationRequestMessage(ByVal msg As Message)
+        Public Sub sendMessage(ByVal msg As Message)
             initCommand()
-            _cmd.CommandText = "INSERT INTO Messages (user_id,sender_id,message,time_stamp,deleted) VALUES (@user_id,@sender_id,@message,@time_stamp,0)"
+            _cmd.CommandText = "INSERT INTO Messages (user_id,sender_id,message,time_stamp,viewed) VALUES (@user_id,@sender_id,@message,@time_stamp,0)"
             _cmd.Parameters.AddWithValue("@user_id", msg.userId)
             _cmd.Parameters.AddWithValue("@sender_id", msg.senderId)
             _cmd.Parameters.AddWithValue("@message", msg.message)
@@ -415,22 +453,6 @@ Namespace DBSQL
         End Function
 
         'returns a collection of ids of users with manager-level or greater permission
-        Public Function getManagers1() As Collection
-            initCommand()
-            _cmd.CommandText = "SELECT * FROM Users WHERE user_type='Manager' OR user_type='Administrator'"
-            _cmd.Connection.Open()
-            Dim managers As New Collection
-            Dim r As IAsyncResult = _cmd.BeginExecuteReader
-            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
-            While reader.Read
-                managers.Add(reader("id"))
-            End While
-            reader.Close()
-            _cmd.Connection.Close()
-            Return managers
-        End Function
-
-        'returns a collection of ids of users with manager-level or greater permission
         Public Function getManagers() As Collection
             initCommand()
             _cmd.CommandText = "SELECT * FROM Users WHERE user_type='Manager' OR user_type='Administrator'"
@@ -465,6 +487,21 @@ Namespace DBSQL
             reader.Close()
             _cmd.Connection.Close()
             Return manager_id
+        End Function
+
+        'returns a datatable from Times of requested hours_type by manager id
+        Public Function getEmployeeRequests(ByVal manager_id As Integer) As DataTable
+            initCommand()
+            _cmd.CommandText = "SELECT Users.id, Times.id, Users.first_name, Users.last_name, Times.time_start FROM Times INNER JOIN Users ON Times.user_id=Users.id WHERE Times.hours_type='Requested' AND manager_id=@manager_id"
+            _cmd.Parameters.AddWithValue("@manager_id", manager_id)
+            Dim da As SqlDataAdapter
+            Dim dt As New DataTable()
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            da = New SqlDataAdapter(_cmd)
+            da.Fill(dt)
+            _cmd.Connection.Close()
+            Return dt
         End Function
 
         '===General==============================================================================

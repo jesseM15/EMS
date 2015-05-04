@@ -15,7 +15,8 @@ Public Class Form1
         'initializeNavigationPanel()
         'End If
         '**Uncomment and remove following lines during testing**
-        user = dbems.getSession(1)
+        initSession()
+        user = dbems.getSession(5)
         initNavigationPanel()
     End Sub
 
@@ -112,11 +113,13 @@ Public Class Form1
     End Sub
 
     Private Sub tmiManageVacations_Click(sender As Object, e As EventArgs) Handles tmiManageVacations.Click, btnManageVacations.Click
-
+        hidePanels()
+        mngVac.initManageVacationsPanel()
     End Sub
 
     Private Sub tmiReports_Click(sender As Object, e As EventArgs) Handles tmiReports.Click, btnReports.Click
-
+        hidePanels()
+        report.initReportsPanel()
     End Sub
 
     Private Sub calVacation_DateSelected(sender As Object, e As DateRangeEventArgs) Handles calVacation.DateSelected
@@ -145,8 +148,9 @@ Public Class Form1
             End If
             c += 1
         End While
-        dbems.sendVacationRequestMessage(m)
+        dbems.sendMessage(m)
         MessageBox.Show("Vacation request submitted.")
+        vacReq.initVacationRequestPanel()
     End Sub
 
     Private Sub btnInbox_Click(sender As Object, e As EventArgs) Handles btnInbox.Click
@@ -171,11 +175,14 @@ Public Class Form1
         If dbems.checkLogIn(user.user_name, txtCurrentPassword.Text) = True Then
             If txtNewPassword.Text = txtRetypePassword.Text Then
                 dbems.changePassword(user.id, txtNewPassword.Text)
+                lblChangePasswordMessage.ForeColor = Color.Green
                 lblChangePasswordMessage.Text = "Password Successfully Changed."
             Else
+                lblChangePasswordMessage.ForeColor = Color.Red
                 lblChangePasswordMessage.Text = "Error retyping new password."
             End If
         Else
+            lblChangePasswordMessage.ForeColor = Color.Red
             lblChangePasswordMessage.Text = "Current password incorrect."
         End If
     End Sub
@@ -204,6 +211,33 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub dgvManageVacations_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvManageVacations.CellContentClick
+        If e.RowIndex = -1 Then Exit Sub
+        Dim uid As Integer = dgvManageVacations.Rows(e.RowIndex).Cells.Item(2).Value
+        Dim tid As Integer = dgvManageVacations.Rows(e.RowIndex).Cells.Item(3).Value
+        Dim name As String = dgvManageVacations.Rows(e.RowIndex).Cells.Item(4).Value & " " & dgvManageVacations.Rows(e.RowIndex).Cells.Item(5).Value
+        Dim rDate As Date = dgvManageVacations.Rows(e.RowIndex).Cells.Item(6).Value
+        If e.ColumnIndex = 0 Then
+            dbems.approveVacationRequest(tid)
+            Dim m As New Message
+            m.userId = uid
+            m.senderId = user.id
+            m.message = "Your vacation request for " & rDate & " has been approved."
+            dbems.sendMessage(m)
+            MessageBox.Show("Vacation request for " & name & " on " & rDate & " has been approved.")
+            mngVac.initManageVacationsPanel()
+        ElseIf e.ColumnIndex = 1 Then
+            dbems.denyVacationRequest(tid)
+            Dim m As New Message
+            m.userId = uid
+            m.senderId = user.id
+            m.message = "Your vacation request for " & rDate & " has been denied."
+            dbems.sendMessage(m)
+            MessageBox.Show("Vacation request for " & name & " on " & rDate & " has been denied.")
+            mngVac.initManageVacationsPanel()
+        End If
+    End Sub
+
     Private Sub btnEditEmployee_Click(sender As Object, e As EventArgs) Handles btnEditEmployee.Click
         If employees.employeeID = 0 Then
             dbems.addUser(employees.getFormData())
@@ -229,4 +263,6 @@ Public Class Form1
             MessageBox.Show(msg, caption)
         End If
     End Sub
+
+    
 End Class
