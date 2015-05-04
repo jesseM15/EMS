@@ -76,7 +76,7 @@ Public Class Form1
             dbems.clockOut(user.id)
             tmiClockInOut.Text = "Clock In"
         Else
-            dbems.clockIn(user.id)
+            dbems.clockIn(user.id, user.current_pay_rate)
             tmiClockInOut.Text = "Clock Out"
         End If
 

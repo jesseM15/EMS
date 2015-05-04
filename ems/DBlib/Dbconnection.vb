@@ -214,11 +214,12 @@ Namespace DBSQL
             End If
         End Function
 
-        Public Sub clockIn(ByVal user_id As Integer, Optional ByVal hours_type As String = "Regular")
+        Public Sub clockIn(ByVal user_id As Integer, ByVal pay_rate As Decimal, Optional ByVal hours_type As String = "Regular")
             initCommand()
-            _cmd.CommandText = "INSERT INTO Times (user_id,time_start,hours_type) VALUES (@user_id, @time_start, @hours_type)"
+            _cmd.CommandText = "INSERT INTO Times (user_id,time_start,pay_rate,hours_type) VALUES (@user_id, @time_start,@pay_rate, @hours_type)"
             _cmd.Parameters.AddWithValue("@user_id", user_id)
             _cmd.Parameters.AddWithValue("@time_start", DateAndTime.Now)
+            _cmd.Parameters.AddWithValue("@pay_rate", pay_rate)
             _cmd.Parameters.AddWithValue("@hours_type", hours_type)
             _cmd.Connection.Open()
             _cmd.ExecuteNonQuery()
@@ -252,6 +253,24 @@ Namespace DBSQL
             reader.Close()
             _cmd.Connection.Close()
             Return ts
+        End Function
+
+        Public Function getPeriodPayRate(ByVal user_id As Integer, ByVal workStart As Date) As Decimal
+            initCommand()
+            _cmd.CommandText = "SELECT * FROM Times WHERE user_id=@user_id AND time_start BETWEEN @workDayStart AND @workDayEnd"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Parameters.AddWithValue("@workDayStart", workStart)
+            _cmd.Parameters.AddWithValue("@workDayEnd", workStart.AddHours(24).AddMinutes(-1))
+            _cmd.Connection.Open()
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            Dim payRate As Decimal = 0
+            While reader.Read
+                payRate = reader(5)
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return payRate
         End Function
 
         '===Vacation Requests====================================================================

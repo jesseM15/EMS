@@ -34,49 +34,36 @@ Partial Class Form1
         Me.btnViewPaySlip = New System.Windows.Forms.Button()
         Me.lblPosition = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
-        Me.pnlRequestVacation = New System.Windows.Forms.Panel()
-        Me.txtRequestList = New System.Windows.Forms.TextBox()
-        Me.lblSubmittedRequests = New System.Windows.Forms.Label()
-        Me.txtDateList = New System.Windows.Forms.TextBox()
-        Me.btnSubmitRequest = New System.Windows.Forms.Button()
-        Me.lblDatesRequested = New System.Windows.Forms.Label()
-        Me.calVacation = New System.Windows.Forms.MonthCalendar()
-        Me.lblVacationRequest = New System.Windows.Forms.Label()
-        Me.pnlChangePassword = New System.Windows.Forms.Panel()
-        Me.lblChangePasswordMessage = New System.Windows.Forms.Label()
-        Me.btnChangePasswordOK = New System.Windows.Forms.Button()
-        Me.txtNewPassword = New System.Windows.Forms.TextBox()
-        Me.lblRetypePassword = New System.Windows.Forms.Label()
-        Me.txtRetypePassword = New System.Windows.Forms.TextBox()
-        Me.lblNewPassword = New System.Windows.Forms.Label()
-        Me.txtCurrentPassword = New System.Windows.Forms.TextBox()
-        Me.lblCurrentPassword = New System.Windows.Forms.Label()
-        Me.lblChangePassword = New System.Windows.Forms.Label()
         Me.pnlPaySlip = New System.Windows.Forms.Panel()
-        Me.cboWorkPeriod = New System.Windows.Forms.ComboBox()
         Me.lblYTDAmountHoliday = New System.Windows.Forms.Label()
+        Me.lblYTDHoursHoliday = New System.Windows.Forms.Label()
+        Me.lblCurrentAmountHoliday = New System.Windows.Forms.Label()
+        Me.lblCurrentHoursHoliday = New System.Windows.Forms.Label()
+        Me.lblHolidayPayField = New System.Windows.Forms.Label()
+        Me.cboWorkPeriod = New System.Windows.Forms.ComboBox()
         Me.lblYTDAmountVacation = New System.Windows.Forms.Label()
         Me.lblYTDAmountPersonal = New System.Windows.Forms.Label()
+        Me.lblYTDAmountOvertime = New System.Windows.Forms.Label()
         Me.lblYTDAmountRegular = New System.Windows.Forms.Label()
         Me.lblYTDAmountField = New System.Windows.Forms.Label()
-        Me.lblYTDHoursHoliday = New System.Windows.Forms.Label()
         Me.lblYTDHoursVacation = New System.Windows.Forms.Label()
         Me.lblYTDHoursPersonal = New System.Windows.Forms.Label()
+        Me.lblYTDHoursOvertime = New System.Windows.Forms.Label()
         Me.lblYTDHoursRegular = New System.Windows.Forms.Label()
         Me.lblYTDHoursField = New System.Windows.Forms.Label()
-        Me.lblCurrentAmountHoliday = New System.Windows.Forms.Label()
         Me.lblCurrentAmountVacation = New System.Windows.Forms.Label()
         Me.lblCurrentAmountPersonal = New System.Windows.Forms.Label()
+        Me.lblCurrentAmountOvertime = New System.Windows.Forms.Label()
         Me.lblCurrentAmountRegular = New System.Windows.Forms.Label()
         Me.lblCurrentAmountField = New System.Windows.Forms.Label()
-        Me.lblCurrentHoursHoliday = New System.Windows.Forms.Label()
         Me.lblCurrentHoursVacation = New System.Windows.Forms.Label()
         Me.lblCurrentHoursPersonal = New System.Windows.Forms.Label()
+        Me.lblCurrentHoursOvertime = New System.Windows.Forms.Label()
         Me.lblCurrentHoursRegular = New System.Windows.Forms.Label()
         Me.lblCurrentHoursField = New System.Windows.Forms.Label()
-        Me.lblHolidayPayField = New System.Windows.Forms.Label()
         Me.lblVacationPayField = New System.Windows.Forms.Label()
         Me.lblPersonalPayField = New System.Windows.Forms.Label()
+        Me.lblOvertimePayField = New System.Windows.Forms.Label()
         Me.lblRegularPayField = New System.Windows.Forms.Label()
         Me.lblDescriptionField = New System.Windows.Forms.Label()
         Me.lblHoursAndEarnings = New System.Windows.Forms.Label()
@@ -86,9 +73,6 @@ Partial Class Form1
         Me.lblTaxesYTD = New System.Windows.Forms.Label()
         Me.lblTaxesCurrent = New System.Windows.Forms.Label()
         Me.lblTaxesField = New System.Windows.Forms.Label()
-        Me.lblPreTaxYTD = New System.Windows.Forms.Label()
-        Me.lblPreTaxCurrent = New System.Windows.Forms.Label()
-        Me.lblPreTaxField = New System.Windows.Forms.Label()
         Me.lblGrossYTD = New System.Windows.Forms.Label()
         Me.lblGrossCurrent = New System.Windows.Forms.Label()
         Me.lblGrossField = New System.Windows.Forms.Label()
@@ -119,6 +103,9 @@ Partial Class Form1
         Me.pnlReports = New System.Windows.Forms.Panel()
         Me.lblReports = New System.Windows.Forms.Label()
         Me.pnlManageVacations = New System.Windows.Forms.Panel()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.dgvManageVacations = New System.Windows.Forms.DataGridView()
+        Me.calManageVacations = New System.Windows.Forms.MonthCalendar()
         Me.lblManageVacations = New System.Windows.Forms.Label()
         Me.pnlEditEmployee = New System.Windows.Forms.Panel()
         Me.grpUserInfo = New System.Windows.Forms.GroupBox()
@@ -168,6 +155,29 @@ Partial Class Form1
         Me.btnInbox = New System.Windows.Forms.Button()
         Me.lsvMessages = New System.Windows.Forms.ListView()
         Me.lblMessages = New System.Windows.Forms.Label()
+        Me.pnlRequestVacation = New System.Windows.Forms.Panel()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txtScheduledList = New System.Windows.Forms.TextBox()
+        Me.lblScheduledVacation = New System.Windows.Forms.Label()
+        Me.lblSubmittedRequests = New System.Windows.Forms.Label()
+        Me.txtRequestList = New System.Windows.Forms.TextBox()
+        Me.grpRequestVacationDays = New System.Windows.Forms.GroupBox()
+        Me.calVacation = New System.Windows.Forms.MonthCalendar()
+        Me.lblDatesRequested = New System.Windows.Forms.Label()
+        Me.txtDateList = New System.Windows.Forms.TextBox()
+        Me.btnSubmitRequest = New System.Windows.Forms.Button()
+        Me.lblVacationRequest = New System.Windows.Forms.Label()
+        Me.pnlChangePassword = New System.Windows.Forms.Panel()
+        Me.grpChangePassword = New System.Windows.Forms.GroupBox()
+        Me.lblRetypePassword = New System.Windows.Forms.Label()
+        Me.lblChangePasswordMessage = New System.Windows.Forms.Label()
+        Me.lblCurrentPassword = New System.Windows.Forms.Label()
+        Me.btnChangePasswordOK = New System.Windows.Forms.Button()
+        Me.txtCurrentPassword = New System.Windows.Forms.TextBox()
+        Me.txtNewPassword = New System.Windows.Forms.TextBox()
+        Me.lblNewPassword = New System.Windows.Forms.Label()
+        Me.txtRetypePassword = New System.Windows.Forms.TextBox()
+        Me.lblChangePassword = New System.Windows.Forms.Label()
         Me.mnuNavigation = New System.Windows.Forms.MenuStrip()
         Me.tmiFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiLogInOut = New System.Windows.Forms.ToolStripMenuItem()
@@ -183,25 +193,17 @@ Partial Class Form1
         Me.tmiManageVacations = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiReports = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.grpRequestVacationDays = New System.Windows.Forms.GroupBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.lblScheduledVacation = New System.Windows.Forms.Label()
-        Me.txtScheduledList = New System.Windows.Forms.TextBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.calManageVacations = New System.Windows.Forms.MonthCalendar()
-        Me.grpChangePassword = New System.Windows.Forms.GroupBox()
-        Me.dgvManageVacations = New System.Windows.Forms.DataGridView()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.pnlNavigationManager.SuspendLayout()
         Me.pnlNavigationEmployee.SuspendLayout()
-        Me.pnlRequestVacation.SuspendLayout()
-        Me.pnlChangePassword.SuspendLayout()
         Me.pnlPaySlip.SuspendLayout()
         Me.pnlReports.SuspendLayout()
         Me.pnlManageVacations.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        CType(Me.dgvManageVacations, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlEditEmployee.SuspendLayout()
         Me.grpUserInfo.SuspendLayout()
         Me.grpEmployeeInfo.SuspendLayout()
@@ -210,12 +212,12 @@ Partial Class Form1
         CType(Me.dgvEmployees, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlMessages.SuspendLayout()
         Me.pnlMessageNavigation.SuspendLayout()
-        Me.mnuNavigation.SuspendLayout()
-        Me.grpRequestVacationDays.SuspendLayout()
+        Me.pnlRequestVacation.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
+        Me.grpRequestVacationDays.SuspendLayout()
+        Me.pnlChangePassword.SuspendLayout()
         Me.grpChangePassword.SuspendLayout()
-        CType(Me.dgvManageVacations, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.mnuNavigation.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -235,14 +237,14 @@ Partial Class Form1
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlReports)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlManageVacations)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlEditEmployee)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlRequestVacation)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlChangePassword)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlReports)
         Me.SplitContainer1.Size = New System.Drawing.Size(826, 461)
         Me.SplitContainer1.SplitterDistance = 156
         Me.SplitContainer1.TabIndex = 1
@@ -355,195 +357,38 @@ Partial Class Form1
         Me.lblName.TabIndex = 0
         Me.lblName.Text = "Name"
         '
-        'pnlRequestVacation
-        '
-        Me.pnlRequestVacation.Controls.Add(Me.GroupBox1)
-        Me.pnlRequestVacation.Controls.Add(Me.grpRequestVacationDays)
-        Me.pnlRequestVacation.Controls.Add(Me.lblVacationRequest)
-        Me.pnlRequestVacation.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlRequestVacation.Location = New System.Drawing.Point(0, 0)
-        Me.pnlRequestVacation.Name = "pnlRequestVacation"
-        Me.pnlRequestVacation.Size = New System.Drawing.Size(664, 459)
-        Me.pnlRequestVacation.TabIndex = 62
-        '
-        'txtRequestList
-        '
-        Me.txtRequestList.Location = New System.Drawing.Point(154, 25)
-        Me.txtRequestList.Multiline = True
-        Me.txtRequestList.Name = "txtRequestList"
-        Me.txtRequestList.ReadOnly = True
-        Me.txtRequestList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtRequestList.Size = New System.Drawing.Size(82, 86)
-        Me.txtRequestList.TabIndex = 7
-        '
-        'lblSubmittedRequests
-        '
-        Me.lblSubmittedRequests.AutoSize = True
-        Me.lblSubmittedRequests.Location = New System.Drawing.Point(6, 25)
-        Me.lblSubmittedRequests.Name = "lblSubmittedRequests"
-        Me.lblSubmittedRequests.Size = New System.Drawing.Size(105, 13)
-        Me.lblSubmittedRequests.TabIndex = 6
-        Me.lblSubmittedRequests.Text = "Submitted Requests:"
-        '
-        'txtDateList
-        '
-        Me.txtDateList.Location = New System.Drawing.Point(157, 190)
-        Me.txtDateList.Multiline = True
-        Me.txtDateList.Name = "txtDateList"
-        Me.txtDateList.ReadOnly = True
-        Me.txtDateList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtDateList.Size = New System.Drawing.Size(82, 86)
-        Me.txtDateList.TabIndex = 5
-        '
-        'btnSubmitRequest
-        '
-        Me.btnSubmitRequest.Location = New System.Drawing.Point(148, 287)
-        Me.btnSubmitRequest.Name = "btnSubmitRequest"
-        Me.btnSubmitRequest.Size = New System.Drawing.Size(91, 23)
-        Me.btnSubmitRequest.TabIndex = 4
-        Me.btnSubmitRequest.Text = "Submit Request"
-        Me.btnSubmitRequest.UseVisualStyleBackColor = True
-        '
-        'lblDatesRequested
-        '
-        Me.lblDatesRequested.AutoSize = True
-        Me.lblDatesRequested.Location = New System.Drawing.Point(9, 190)
-        Me.lblDatesRequested.Name = "lblDatesRequested"
-        Me.lblDatesRequested.Size = New System.Drawing.Size(99, 13)
-        Me.lblDatesRequested.TabIndex = 2
-        Me.lblDatesRequested.Text = "Date(s) Requested:"
-        '
-        'calVacation
-        '
-        Me.calVacation.Location = New System.Drawing.Point(12, 19)
-        Me.calVacation.MaxSelectionCount = 14
-        Me.calVacation.Name = "calVacation"
-        Me.calVacation.TabIndex = 1
-        '
-        'lblVacationRequest
-        '
-        Me.lblVacationRequest.AutoSize = True
-        Me.lblVacationRequest.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblVacationRequest.Location = New System.Drawing.Point(21, 12)
-        Me.lblVacationRequest.Name = "lblVacationRequest"
-        Me.lblVacationRequest.Size = New System.Drawing.Size(158, 24)
-        Me.lblVacationRequest.TabIndex = 0
-        Me.lblVacationRequest.Text = "Vacation Request"
-        '
-        'pnlChangePassword
-        '
-        Me.pnlChangePassword.Controls.Add(Me.grpChangePassword)
-        Me.pnlChangePassword.Controls.Add(Me.lblChangePassword)
-        Me.pnlChangePassword.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlChangePassword.Location = New System.Drawing.Point(0, 0)
-        Me.pnlChangePassword.Name = "pnlChangePassword"
-        Me.pnlChangePassword.Size = New System.Drawing.Size(664, 459)
-        Me.pnlChangePassword.TabIndex = 62
-        '
-        'lblChangePasswordMessage
-        '
-        Me.lblChangePasswordMessage.AutoSize = True
-        Me.lblChangePasswordMessage.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblChangePasswordMessage.ForeColor = System.Drawing.Color.Red
-        Me.lblChangePasswordMessage.Location = New System.Drawing.Point(13, 120)
-        Me.lblChangePasswordMessage.Name = "lblChangePasswordMessage"
-        Me.lblChangePasswordMessage.Size = New System.Drawing.Size(0, 13)
-        Me.lblChangePasswordMessage.TabIndex = 8
-        '
-        'btnChangePasswordOK
-        '
-        Me.btnChangePasswordOK.Location = New System.Drawing.Point(134, 141)
-        Me.btnChangePasswordOK.Name = "btnChangePasswordOK"
-        Me.btnChangePasswordOK.Size = New System.Drawing.Size(75, 23)
-        Me.btnChangePasswordOK.TabIndex = 7
-        Me.btnChangePasswordOK.Text = "OK"
-        Me.btnChangePasswordOK.UseVisualStyleBackColor = True
-        '
-        'txtNewPassword
-        '
-        Me.txtNewPassword.Location = New System.Drawing.Point(106, 86)
-        Me.txtNewPassword.Name = "txtNewPassword"
-        Me.txtNewPassword.Size = New System.Drawing.Size(103, 20)
-        Me.txtNewPassword.TabIndex = 6
-        '
-        'lblRetypePassword
-        '
-        Me.lblRetypePassword.AutoSize = True
-        Me.lblRetypePassword.Location = New System.Drawing.Point(13, 89)
-        Me.lblRetypePassword.Name = "lblRetypePassword"
-        Me.lblRetypePassword.Size = New System.Drawing.Size(93, 13)
-        Me.lblRetypePassword.TabIndex = 5
-        Me.lblRetypePassword.Text = "Retype Password:"
-        '
-        'txtRetypePassword
-        '
-        Me.txtRetypePassword.Location = New System.Drawing.Point(106, 56)
-        Me.txtRetypePassword.Name = "txtRetypePassword"
-        Me.txtRetypePassword.Size = New System.Drawing.Size(103, 20)
-        Me.txtRetypePassword.TabIndex = 4
-        '
-        'lblNewPassword
-        '
-        Me.lblNewPassword.AutoSize = True
-        Me.lblNewPassword.Location = New System.Drawing.Point(13, 59)
-        Me.lblNewPassword.Name = "lblNewPassword"
-        Me.lblNewPassword.Size = New System.Drawing.Size(81, 13)
-        Me.lblNewPassword.TabIndex = 3
-        Me.lblNewPassword.Text = "New Password:"
-        '
-        'txtCurrentPassword
-        '
-        Me.txtCurrentPassword.Location = New System.Drawing.Point(106, 25)
-        Me.txtCurrentPassword.Name = "txtCurrentPassword"
-        Me.txtCurrentPassword.Size = New System.Drawing.Size(103, 20)
-        Me.txtCurrentPassword.TabIndex = 2
-        '
-        'lblCurrentPassword
-        '
-        Me.lblCurrentPassword.AutoSize = True
-        Me.lblCurrentPassword.Location = New System.Drawing.Point(13, 28)
-        Me.lblCurrentPassword.Name = "lblCurrentPassword"
-        Me.lblCurrentPassword.Size = New System.Drawing.Size(93, 13)
-        Me.lblCurrentPassword.TabIndex = 1
-        Me.lblCurrentPassword.Text = "Current Password:"
-        '
-        'lblChangePassword
-        '
-        Me.lblChangePassword.AutoSize = True
-        Me.lblChangePassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblChangePassword.Location = New System.Drawing.Point(21, 12)
-        Me.lblChangePassword.Name = "lblChangePassword"
-        Me.lblChangePassword.Size = New System.Drawing.Size(164, 24)
-        Me.lblChangePassword.TabIndex = 0
-        Me.lblChangePassword.Text = "Change Password"
-        '
         'pnlPaySlip
         '
         Me.pnlPaySlip.AutoScroll = True
-        Me.pnlPaySlip.Controls.Add(Me.cboWorkPeriod)
         Me.pnlPaySlip.Controls.Add(Me.lblYTDAmountHoliday)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursHoliday)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountHoliday)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursHoliday)
+        Me.pnlPaySlip.Controls.Add(Me.lblHolidayPayField)
+        Me.pnlPaySlip.Controls.Add(Me.cboWorkPeriod)
         Me.pnlPaySlip.Controls.Add(Me.lblYTDAmountVacation)
         Me.pnlPaySlip.Controls.Add(Me.lblYTDAmountPersonal)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDAmountOvertime)
         Me.pnlPaySlip.Controls.Add(Me.lblYTDAmountRegular)
         Me.pnlPaySlip.Controls.Add(Me.lblYTDAmountField)
-        Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursHoliday)
         Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursVacation)
         Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursPersonal)
+        Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursOvertime)
         Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursRegular)
         Me.pnlPaySlip.Controls.Add(Me.lblYTDHoursField)
-        Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountHoliday)
         Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountVacation)
         Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountPersonal)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountOvertime)
         Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountRegular)
         Me.pnlPaySlip.Controls.Add(Me.lblCurrentAmountField)
-        Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursHoliday)
         Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursVacation)
         Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursPersonal)
+        Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursOvertime)
         Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursRegular)
         Me.pnlPaySlip.Controls.Add(Me.lblCurrentHoursField)
-        Me.pnlPaySlip.Controls.Add(Me.lblHolidayPayField)
         Me.pnlPaySlip.Controls.Add(Me.lblVacationPayField)
         Me.pnlPaySlip.Controls.Add(Me.lblPersonalPayField)
+        Me.pnlPaySlip.Controls.Add(Me.lblOvertimePayField)
         Me.pnlPaySlip.Controls.Add(Me.lblRegularPayField)
         Me.pnlPaySlip.Controls.Add(Me.lblDescriptionField)
         Me.pnlPaySlip.Controls.Add(Me.lblHoursAndEarnings)
@@ -553,9 +398,6 @@ Partial Class Form1
         Me.pnlPaySlip.Controls.Add(Me.lblTaxesYTD)
         Me.pnlPaySlip.Controls.Add(Me.lblTaxesCurrent)
         Me.pnlPaySlip.Controls.Add(Me.lblTaxesField)
-        Me.pnlPaySlip.Controls.Add(Me.lblPreTaxYTD)
-        Me.pnlPaySlip.Controls.Add(Me.lblPreTaxCurrent)
-        Me.pnlPaySlip.Controls.Add(Me.lblPreTaxField)
         Me.pnlPaySlip.Controls.Add(Me.lblGrossYTD)
         Me.pnlPaySlip.Controls.Add(Me.lblGrossCurrent)
         Me.pnlPaySlip.Controls.Add(Me.lblGrossField)
@@ -589,6 +431,51 @@ Partial Class Form1
         Me.pnlPaySlip.Size = New System.Drawing.Size(664, 459)
         Me.pnlPaySlip.TabIndex = 0
         '
+        'lblYTDAmountHoliday
+        '
+        Me.lblYTDAmountHoliday.AutoSize = True
+        Me.lblYTDAmountHoliday.Location = New System.Drawing.Point(420, 683)
+        Me.lblYTDAmountHoliday.Name = "lblYTDAmountHoliday"
+        Me.lblYTDAmountHoliday.Size = New System.Drawing.Size(68, 13)
+        Me.lblYTDAmountHoliday.TabIndex = 66
+        Me.lblYTDAmountHoliday.Text = "YTD Amount"
+        '
+        'lblYTDHoursHoliday
+        '
+        Me.lblYTDHoursHoliday.AutoSize = True
+        Me.lblYTDHoursHoliday.Location = New System.Drawing.Point(317, 683)
+        Me.lblYTDHoursHoliday.Name = "lblYTDHoursHoliday"
+        Me.lblYTDHoursHoliday.Size = New System.Drawing.Size(60, 13)
+        Me.lblYTDHoursHoliday.TabIndex = 65
+        Me.lblYTDHoursHoliday.Text = "YTD Hours"
+        '
+        'lblCurrentAmountHoliday
+        '
+        Me.lblCurrentAmountHoliday.AutoSize = True
+        Me.lblCurrentAmountHoliday.Location = New System.Drawing.Point(216, 683)
+        Me.lblCurrentAmountHoliday.Name = "lblCurrentAmountHoliday"
+        Me.lblCurrentAmountHoliday.Size = New System.Drawing.Size(80, 13)
+        Me.lblCurrentAmountHoliday.TabIndex = 64
+        Me.lblCurrentAmountHoliday.Text = "Current Amount"
+        '
+        'lblCurrentHoursHoliday
+        '
+        Me.lblCurrentHoursHoliday.AutoSize = True
+        Me.lblCurrentHoursHoliday.Location = New System.Drawing.Point(115, 683)
+        Me.lblCurrentHoursHoliday.Name = "lblCurrentHoursHoliday"
+        Me.lblCurrentHoursHoliday.Size = New System.Drawing.Size(72, 13)
+        Me.lblCurrentHoursHoliday.TabIndex = 63
+        Me.lblCurrentHoursHoliday.Text = "Current Hours"
+        '
+        'lblHolidayPayField
+        '
+        Me.lblHolidayPayField.AutoSize = True
+        Me.lblHolidayPayField.Location = New System.Drawing.Point(22, 683)
+        Me.lblHolidayPayField.Name = "lblHolidayPayField"
+        Me.lblHolidayPayField.Size = New System.Drawing.Size(63, 13)
+        Me.lblHolidayPayField.TabIndex = 62
+        Me.lblHolidayPayField.Text = "Holiday Pay"
+        '
         'cboWorkPeriod
         '
         Me.cboWorkPeriod.FormattingEnabled = True
@@ -597,37 +484,37 @@ Partial Class Form1
         Me.cboWorkPeriod.Size = New System.Drawing.Size(203, 21)
         Me.cboWorkPeriod.TabIndex = 1
         '
-        'lblYTDAmountHoliday
-        '
-        Me.lblYTDAmountHoliday.AutoSize = True
-        Me.lblYTDAmountHoliday.Location = New System.Drawing.Point(420, 623)
-        Me.lblYTDAmountHoliday.Name = "lblYTDAmountHoliday"
-        Me.lblYTDAmountHoliday.Size = New System.Drawing.Size(68, 13)
-        Me.lblYTDAmountHoliday.TabIndex = 61
-        Me.lblYTDAmountHoliday.Text = "YTD Amount"
-        '
         'lblYTDAmountVacation
         '
         Me.lblYTDAmountVacation.AutoSize = True
-        Me.lblYTDAmountVacation.Location = New System.Drawing.Point(420, 588)
+        Me.lblYTDAmountVacation.Location = New System.Drawing.Point(420, 649)
         Me.lblYTDAmountVacation.Name = "lblYTDAmountVacation"
         Me.lblYTDAmountVacation.Size = New System.Drawing.Size(68, 13)
-        Me.lblYTDAmountVacation.TabIndex = 60
+        Me.lblYTDAmountVacation.TabIndex = 61
         Me.lblYTDAmountVacation.Text = "YTD Amount"
         '
         'lblYTDAmountPersonal
         '
         Me.lblYTDAmountPersonal.AutoSize = True
-        Me.lblYTDAmountPersonal.Location = New System.Drawing.Point(420, 554)
+        Me.lblYTDAmountPersonal.Location = New System.Drawing.Point(420, 614)
         Me.lblYTDAmountPersonal.Name = "lblYTDAmountPersonal"
         Me.lblYTDAmountPersonal.Size = New System.Drawing.Size(68, 13)
-        Me.lblYTDAmountPersonal.TabIndex = 59
+        Me.lblYTDAmountPersonal.TabIndex = 60
         Me.lblYTDAmountPersonal.Text = "YTD Amount"
+        '
+        'lblYTDAmountOvertime
+        '
+        Me.lblYTDAmountOvertime.AutoSize = True
+        Me.lblYTDAmountOvertime.Location = New System.Drawing.Point(420, 580)
+        Me.lblYTDAmountOvertime.Name = "lblYTDAmountOvertime"
+        Me.lblYTDAmountOvertime.Size = New System.Drawing.Size(68, 13)
+        Me.lblYTDAmountOvertime.TabIndex = 59
+        Me.lblYTDAmountOvertime.Text = "YTD Amount"
         '
         'lblYTDAmountRegular
         '
         Me.lblYTDAmountRegular.AutoSize = True
-        Me.lblYTDAmountRegular.Location = New System.Drawing.Point(420, 520)
+        Me.lblYTDAmountRegular.Location = New System.Drawing.Point(420, 546)
         Me.lblYTDAmountRegular.Name = "lblYTDAmountRegular"
         Me.lblYTDAmountRegular.Size = New System.Drawing.Size(68, 13)
         Me.lblYTDAmountRegular.TabIndex = 58
@@ -637,43 +524,43 @@ Partial Class Form1
         '
         Me.lblYTDAmountField.AutoSize = True
         Me.lblYTDAmountField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblYTDAmountField.Location = New System.Drawing.Point(420, 486)
+        Me.lblYTDAmountField.Location = New System.Drawing.Point(420, 512)
         Me.lblYTDAmountField.Name = "lblYTDAmountField"
         Me.lblYTDAmountField.Size = New System.Drawing.Size(78, 13)
         Me.lblYTDAmountField.TabIndex = 57
         Me.lblYTDAmountField.Text = "YTD Amount"
         '
-        'lblYTDHoursHoliday
-        '
-        Me.lblYTDHoursHoliday.AutoSize = True
-        Me.lblYTDHoursHoliday.Location = New System.Drawing.Point(317, 623)
-        Me.lblYTDHoursHoliday.Name = "lblYTDHoursHoliday"
-        Me.lblYTDHoursHoliday.Size = New System.Drawing.Size(60, 13)
-        Me.lblYTDHoursHoliday.TabIndex = 56
-        Me.lblYTDHoursHoliday.Text = "YTD Hours"
-        '
         'lblYTDHoursVacation
         '
         Me.lblYTDHoursVacation.AutoSize = True
-        Me.lblYTDHoursVacation.Location = New System.Drawing.Point(317, 588)
+        Me.lblYTDHoursVacation.Location = New System.Drawing.Point(317, 649)
         Me.lblYTDHoursVacation.Name = "lblYTDHoursVacation"
         Me.lblYTDHoursVacation.Size = New System.Drawing.Size(60, 13)
-        Me.lblYTDHoursVacation.TabIndex = 55
+        Me.lblYTDHoursVacation.TabIndex = 56
         Me.lblYTDHoursVacation.Text = "YTD Hours"
         '
         'lblYTDHoursPersonal
         '
         Me.lblYTDHoursPersonal.AutoSize = True
-        Me.lblYTDHoursPersonal.Location = New System.Drawing.Point(317, 554)
+        Me.lblYTDHoursPersonal.Location = New System.Drawing.Point(317, 614)
         Me.lblYTDHoursPersonal.Name = "lblYTDHoursPersonal"
         Me.lblYTDHoursPersonal.Size = New System.Drawing.Size(60, 13)
-        Me.lblYTDHoursPersonal.TabIndex = 54
+        Me.lblYTDHoursPersonal.TabIndex = 55
         Me.lblYTDHoursPersonal.Text = "YTD Hours"
+        '
+        'lblYTDHoursOvertime
+        '
+        Me.lblYTDHoursOvertime.AutoSize = True
+        Me.lblYTDHoursOvertime.Location = New System.Drawing.Point(317, 580)
+        Me.lblYTDHoursOvertime.Name = "lblYTDHoursOvertime"
+        Me.lblYTDHoursOvertime.Size = New System.Drawing.Size(60, 13)
+        Me.lblYTDHoursOvertime.TabIndex = 54
+        Me.lblYTDHoursOvertime.Text = "YTD Hours"
         '
         'lblYTDHoursRegular
         '
         Me.lblYTDHoursRegular.AutoSize = True
-        Me.lblYTDHoursRegular.Location = New System.Drawing.Point(317, 520)
+        Me.lblYTDHoursRegular.Location = New System.Drawing.Point(317, 546)
         Me.lblYTDHoursRegular.Name = "lblYTDHoursRegular"
         Me.lblYTDHoursRegular.Size = New System.Drawing.Size(60, 13)
         Me.lblYTDHoursRegular.TabIndex = 53
@@ -683,43 +570,43 @@ Partial Class Form1
         '
         Me.lblYTDHoursField.AutoSize = True
         Me.lblYTDHoursField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblYTDHoursField.Location = New System.Drawing.Point(317, 486)
+        Me.lblYTDHoursField.Location = New System.Drawing.Point(317, 512)
         Me.lblYTDHoursField.Name = "lblYTDHoursField"
         Me.lblYTDHoursField.Size = New System.Drawing.Size(69, 13)
         Me.lblYTDHoursField.TabIndex = 52
         Me.lblYTDHoursField.Text = "YTD Hours"
         '
-        'lblCurrentAmountHoliday
-        '
-        Me.lblCurrentAmountHoliday.AutoSize = True
-        Me.lblCurrentAmountHoliday.Location = New System.Drawing.Point(216, 623)
-        Me.lblCurrentAmountHoliday.Name = "lblCurrentAmountHoliday"
-        Me.lblCurrentAmountHoliday.Size = New System.Drawing.Size(80, 13)
-        Me.lblCurrentAmountHoliday.TabIndex = 51
-        Me.lblCurrentAmountHoliday.Text = "Current Amount"
-        '
         'lblCurrentAmountVacation
         '
         Me.lblCurrentAmountVacation.AutoSize = True
-        Me.lblCurrentAmountVacation.Location = New System.Drawing.Point(216, 588)
+        Me.lblCurrentAmountVacation.Location = New System.Drawing.Point(216, 649)
         Me.lblCurrentAmountVacation.Name = "lblCurrentAmountVacation"
         Me.lblCurrentAmountVacation.Size = New System.Drawing.Size(80, 13)
-        Me.lblCurrentAmountVacation.TabIndex = 50
+        Me.lblCurrentAmountVacation.TabIndex = 51
         Me.lblCurrentAmountVacation.Text = "Current Amount"
         '
         'lblCurrentAmountPersonal
         '
         Me.lblCurrentAmountPersonal.AutoSize = True
-        Me.lblCurrentAmountPersonal.Location = New System.Drawing.Point(216, 554)
+        Me.lblCurrentAmountPersonal.Location = New System.Drawing.Point(216, 614)
         Me.lblCurrentAmountPersonal.Name = "lblCurrentAmountPersonal"
         Me.lblCurrentAmountPersonal.Size = New System.Drawing.Size(80, 13)
-        Me.lblCurrentAmountPersonal.TabIndex = 49
+        Me.lblCurrentAmountPersonal.TabIndex = 50
         Me.lblCurrentAmountPersonal.Text = "Current Amount"
+        '
+        'lblCurrentAmountOvertime
+        '
+        Me.lblCurrentAmountOvertime.AutoSize = True
+        Me.lblCurrentAmountOvertime.Location = New System.Drawing.Point(216, 580)
+        Me.lblCurrentAmountOvertime.Name = "lblCurrentAmountOvertime"
+        Me.lblCurrentAmountOvertime.Size = New System.Drawing.Size(80, 13)
+        Me.lblCurrentAmountOvertime.TabIndex = 49
+        Me.lblCurrentAmountOvertime.Text = "Current Amount"
         '
         'lblCurrentAmountRegular
         '
         Me.lblCurrentAmountRegular.AutoSize = True
-        Me.lblCurrentAmountRegular.Location = New System.Drawing.Point(216, 520)
+        Me.lblCurrentAmountRegular.Location = New System.Drawing.Point(216, 546)
         Me.lblCurrentAmountRegular.Name = "lblCurrentAmountRegular"
         Me.lblCurrentAmountRegular.Size = New System.Drawing.Size(80, 13)
         Me.lblCurrentAmountRegular.TabIndex = 48
@@ -729,43 +616,43 @@ Partial Class Form1
         '
         Me.lblCurrentAmountField.AutoSize = True
         Me.lblCurrentAmountField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentAmountField.Location = New System.Drawing.Point(216, 486)
+        Me.lblCurrentAmountField.Location = New System.Drawing.Point(216, 512)
         Me.lblCurrentAmountField.Name = "lblCurrentAmountField"
         Me.lblCurrentAmountField.Size = New System.Drawing.Size(94, 13)
         Me.lblCurrentAmountField.TabIndex = 47
         Me.lblCurrentAmountField.Text = "Current Amount"
         '
-        'lblCurrentHoursHoliday
-        '
-        Me.lblCurrentHoursHoliday.AutoSize = True
-        Me.lblCurrentHoursHoliday.Location = New System.Drawing.Point(115, 623)
-        Me.lblCurrentHoursHoliday.Name = "lblCurrentHoursHoliday"
-        Me.lblCurrentHoursHoliday.Size = New System.Drawing.Size(72, 13)
-        Me.lblCurrentHoursHoliday.TabIndex = 46
-        Me.lblCurrentHoursHoliday.Text = "Current Hours"
-        '
         'lblCurrentHoursVacation
         '
         Me.lblCurrentHoursVacation.AutoSize = True
-        Me.lblCurrentHoursVacation.Location = New System.Drawing.Point(115, 588)
+        Me.lblCurrentHoursVacation.Location = New System.Drawing.Point(115, 649)
         Me.lblCurrentHoursVacation.Name = "lblCurrentHoursVacation"
         Me.lblCurrentHoursVacation.Size = New System.Drawing.Size(72, 13)
-        Me.lblCurrentHoursVacation.TabIndex = 45
+        Me.lblCurrentHoursVacation.TabIndex = 46
         Me.lblCurrentHoursVacation.Text = "Current Hours"
         '
         'lblCurrentHoursPersonal
         '
         Me.lblCurrentHoursPersonal.AutoSize = True
-        Me.lblCurrentHoursPersonal.Location = New System.Drawing.Point(115, 554)
+        Me.lblCurrentHoursPersonal.Location = New System.Drawing.Point(115, 614)
         Me.lblCurrentHoursPersonal.Name = "lblCurrentHoursPersonal"
         Me.lblCurrentHoursPersonal.Size = New System.Drawing.Size(72, 13)
-        Me.lblCurrentHoursPersonal.TabIndex = 44
+        Me.lblCurrentHoursPersonal.TabIndex = 45
         Me.lblCurrentHoursPersonal.Text = "Current Hours"
+        '
+        'lblCurrentHoursOvertime
+        '
+        Me.lblCurrentHoursOvertime.AutoSize = True
+        Me.lblCurrentHoursOvertime.Location = New System.Drawing.Point(115, 580)
+        Me.lblCurrentHoursOvertime.Name = "lblCurrentHoursOvertime"
+        Me.lblCurrentHoursOvertime.Size = New System.Drawing.Size(72, 13)
+        Me.lblCurrentHoursOvertime.TabIndex = 44
+        Me.lblCurrentHoursOvertime.Text = "Current Hours"
         '
         'lblCurrentHoursRegular
         '
         Me.lblCurrentHoursRegular.AutoSize = True
-        Me.lblCurrentHoursRegular.Location = New System.Drawing.Point(115, 520)
+        Me.lblCurrentHoursRegular.Location = New System.Drawing.Point(115, 546)
         Me.lblCurrentHoursRegular.Name = "lblCurrentHoursRegular"
         Me.lblCurrentHoursRegular.Size = New System.Drawing.Size(72, 13)
         Me.lblCurrentHoursRegular.TabIndex = 43
@@ -775,43 +662,43 @@ Partial Class Form1
         '
         Me.lblCurrentHoursField.AutoSize = True
         Me.lblCurrentHoursField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentHoursField.Location = New System.Drawing.Point(115, 486)
+        Me.lblCurrentHoursField.Location = New System.Drawing.Point(115, 512)
         Me.lblCurrentHoursField.Name = "lblCurrentHoursField"
         Me.lblCurrentHoursField.Size = New System.Drawing.Size(85, 13)
         Me.lblCurrentHoursField.TabIndex = 42
         Me.lblCurrentHoursField.Text = "Current Hours"
         '
-        'lblHolidayPayField
-        '
-        Me.lblHolidayPayField.AutoSize = True
-        Me.lblHolidayPayField.Location = New System.Drawing.Point(22, 623)
-        Me.lblHolidayPayField.Name = "lblHolidayPayField"
-        Me.lblHolidayPayField.Size = New System.Drawing.Size(63, 13)
-        Me.lblHolidayPayField.TabIndex = 41
-        Me.lblHolidayPayField.Text = "Holiday Pay"
-        '
         'lblVacationPayField
         '
         Me.lblVacationPayField.AutoSize = True
-        Me.lblVacationPayField.Location = New System.Drawing.Point(22, 588)
+        Me.lblVacationPayField.Location = New System.Drawing.Point(22, 649)
         Me.lblVacationPayField.Name = "lblVacationPayField"
         Me.lblVacationPayField.Size = New System.Drawing.Size(70, 13)
-        Me.lblVacationPayField.TabIndex = 40
+        Me.lblVacationPayField.TabIndex = 41
         Me.lblVacationPayField.Text = "Vacation Pay"
         '
         'lblPersonalPayField
         '
         Me.lblPersonalPayField.AutoSize = True
-        Me.lblPersonalPayField.Location = New System.Drawing.Point(22, 554)
+        Me.lblPersonalPayField.Location = New System.Drawing.Point(22, 614)
         Me.lblPersonalPayField.Name = "lblPersonalPayField"
         Me.lblPersonalPayField.Size = New System.Drawing.Size(69, 13)
-        Me.lblPersonalPayField.TabIndex = 39
+        Me.lblPersonalPayField.TabIndex = 40
         Me.lblPersonalPayField.Text = "Personal Pay"
+        '
+        'lblOvertimePayField
+        '
+        Me.lblOvertimePayField.AutoSize = True
+        Me.lblOvertimePayField.Location = New System.Drawing.Point(22, 580)
+        Me.lblOvertimePayField.Name = "lblOvertimePayField"
+        Me.lblOvertimePayField.Size = New System.Drawing.Size(70, 13)
+        Me.lblOvertimePayField.TabIndex = 39
+        Me.lblOvertimePayField.Text = "Overtime Pay"
         '
         'lblRegularPayField
         '
         Me.lblRegularPayField.AutoSize = True
-        Me.lblRegularPayField.Location = New System.Drawing.Point(22, 520)
+        Me.lblRegularPayField.Location = New System.Drawing.Point(22, 546)
         Me.lblRegularPayField.Name = "lblRegularPayField"
         Me.lblRegularPayField.Size = New System.Drawing.Size(65, 13)
         Me.lblRegularPayField.TabIndex = 38
@@ -821,7 +708,7 @@ Partial Class Form1
         '
         Me.lblDescriptionField.AutoSize = True
         Me.lblDescriptionField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDescriptionField.Location = New System.Drawing.Point(22, 486)
+        Me.lblDescriptionField.Location = New System.Drawing.Point(22, 512)
         Me.lblDescriptionField.Name = "lblDescriptionField"
         Me.lblDescriptionField.Size = New System.Drawing.Size(71, 13)
         Me.lblDescriptionField.TabIndex = 37
@@ -831,7 +718,7 @@ Partial Class Form1
         '
         Me.lblHoursAndEarnings.AutoSize = True
         Me.lblHoursAndEarnings.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHoursAndEarnings.Location = New System.Drawing.Point(22, 450)
+        Me.lblHoursAndEarnings.Location = New System.Drawing.Point(22, 476)
         Me.lblHoursAndEarnings.Name = "lblHoursAndEarnings"
         Me.lblHoursAndEarnings.Size = New System.Drawing.Size(118, 13)
         Me.lblHoursAndEarnings.TabIndex = 36
@@ -840,7 +727,7 @@ Partial Class Form1
         'lblNetPayYTD
         '
         Me.lblNetPayYTD.AutoSize = True
-        Me.lblNetPayYTD.Location = New System.Drawing.Point(420, 394)
+        Me.lblNetPayYTD.Location = New System.Drawing.Point(319, 430)
         Me.lblNetPayYTD.Name = "lblNetPayYTD"
         Me.lblNetPayYTD.Size = New System.Drawing.Size(45, 13)
         Me.lblNetPayYTD.TabIndex = 35
@@ -849,7 +736,7 @@ Partial Class Form1
         'lblNetPayCurrent
         '
         Me.lblNetPayCurrent.AutoSize = True
-        Me.lblNetPayCurrent.Location = New System.Drawing.Point(420, 362)
+        Me.lblNetPayCurrent.Location = New System.Drawing.Point(319, 398)
         Me.lblNetPayCurrent.Name = "lblNetPayCurrent"
         Me.lblNetPayCurrent.Size = New System.Drawing.Size(45, 13)
         Me.lblNetPayCurrent.TabIndex = 34
@@ -859,7 +746,7 @@ Partial Class Form1
         '
         Me.lblNetPayField.AutoSize = True
         Me.lblNetPayField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNetPayField.Location = New System.Drawing.Point(420, 331)
+        Me.lblNetPayField.Location = New System.Drawing.Point(319, 367)
         Me.lblNetPayField.Name = "lblNetPayField"
         Me.lblNetPayField.Size = New System.Drawing.Size(52, 13)
         Me.lblNetPayField.TabIndex = 33
@@ -868,7 +755,7 @@ Partial Class Form1
         'lblTaxesYTD
         '
         Me.lblTaxesYTD.AutoSize = True
-        Me.lblTaxesYTD.Location = New System.Drawing.Point(317, 394)
+        Me.lblTaxesYTD.Location = New System.Drawing.Point(216, 430)
         Me.lblTaxesYTD.Name = "lblTaxesYTD"
         Me.lblTaxesYTD.Size = New System.Drawing.Size(36, 13)
         Me.lblTaxesYTD.TabIndex = 32
@@ -877,7 +764,7 @@ Partial Class Form1
         'lblTaxesCurrent
         '
         Me.lblTaxesCurrent.AutoSize = True
-        Me.lblTaxesCurrent.Location = New System.Drawing.Point(317, 362)
+        Me.lblTaxesCurrent.Location = New System.Drawing.Point(216, 398)
         Me.lblTaxesCurrent.Name = "lblTaxesCurrent"
         Me.lblTaxesCurrent.Size = New System.Drawing.Size(36, 13)
         Me.lblTaxesCurrent.TabIndex = 31
@@ -887,44 +774,16 @@ Partial Class Form1
         '
         Me.lblTaxesField.AutoSize = True
         Me.lblTaxesField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTaxesField.Location = New System.Drawing.Point(317, 331)
+        Me.lblTaxesField.Location = New System.Drawing.Point(216, 367)
         Me.lblTaxesField.Name = "lblTaxesField"
         Me.lblTaxesField.Size = New System.Drawing.Size(41, 13)
         Me.lblTaxesField.TabIndex = 30
         Me.lblTaxesField.Text = "Taxes"
         '
-        'lblPreTaxYTD
-        '
-        Me.lblPreTaxYTD.AutoSize = True
-        Me.lblPreTaxYTD.Location = New System.Drawing.Point(216, 394)
-        Me.lblPreTaxYTD.Name = "lblPreTaxYTD"
-        Me.lblPreTaxYTD.Size = New System.Drawing.Size(44, 13)
-        Me.lblPreTaxYTD.TabIndex = 29
-        Me.lblPreTaxYTD.Text = "Pre-Tax"
-        '
-        'lblPreTaxCurrent
-        '
-        Me.lblPreTaxCurrent.AutoSize = True
-        Me.lblPreTaxCurrent.Location = New System.Drawing.Point(216, 362)
-        Me.lblPreTaxCurrent.Name = "lblPreTaxCurrent"
-        Me.lblPreTaxCurrent.Size = New System.Drawing.Size(44, 13)
-        Me.lblPreTaxCurrent.TabIndex = 28
-        Me.lblPreTaxCurrent.Text = "Pre-Tax"
-        '
-        'lblPreTaxField
-        '
-        Me.lblPreTaxField.AutoSize = True
-        Me.lblPreTaxField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPreTaxField.Location = New System.Drawing.Point(216, 331)
-        Me.lblPreTaxField.Name = "lblPreTaxField"
-        Me.lblPreTaxField.Size = New System.Drawing.Size(51, 13)
-        Me.lblPreTaxField.TabIndex = 27
-        Me.lblPreTaxField.Text = "Pre-Tax"
-        '
         'lblGrossYTD
         '
         Me.lblGrossYTD.AutoSize = True
-        Me.lblGrossYTD.Location = New System.Drawing.Point(115, 394)
+        Me.lblGrossYTD.Location = New System.Drawing.Point(115, 430)
         Me.lblGrossYTD.Name = "lblGrossYTD"
         Me.lblGrossYTD.Size = New System.Drawing.Size(34, 13)
         Me.lblGrossYTD.TabIndex = 26
@@ -933,7 +792,7 @@ Partial Class Form1
         'lblGrossCurrent
         '
         Me.lblGrossCurrent.AutoSize = True
-        Me.lblGrossCurrent.Location = New System.Drawing.Point(115, 362)
+        Me.lblGrossCurrent.Location = New System.Drawing.Point(115, 398)
         Me.lblGrossCurrent.Name = "lblGrossCurrent"
         Me.lblGrossCurrent.Size = New System.Drawing.Size(34, 13)
         Me.lblGrossCurrent.TabIndex = 25
@@ -943,7 +802,7 @@ Partial Class Form1
         '
         Me.lblGrossField.AutoSize = True
         Me.lblGrossField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblGrossField.Location = New System.Drawing.Point(115, 331)
+        Me.lblGrossField.Location = New System.Drawing.Point(115, 367)
         Me.lblGrossField.Name = "lblGrossField"
         Me.lblGrossField.Size = New System.Drawing.Size(39, 13)
         Me.lblGrossField.TabIndex = 24
@@ -953,7 +812,7 @@ Partial Class Form1
         '
         Me.lblYTDField.AutoSize = True
         Me.lblYTDField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblYTDField.Location = New System.Drawing.Point(22, 394)
+        Me.lblYTDField.Location = New System.Drawing.Point(22, 430)
         Me.lblYTDField.Name = "lblYTDField"
         Me.lblYTDField.Size = New System.Drawing.Size(32, 13)
         Me.lblYTDField.TabIndex = 23
@@ -963,7 +822,7 @@ Partial Class Form1
         '
         Me.lblCurrentField.AutoSize = True
         Me.lblCurrentField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCurrentField.Location = New System.Drawing.Point(22, 362)
+        Me.lblCurrentField.Location = New System.Drawing.Point(22, 398)
         Me.lblCurrentField.Name = "lblCurrentField"
         Me.lblCurrentField.Size = New System.Drawing.Size(48, 13)
         Me.lblCurrentField.TabIndex = 22
@@ -973,7 +832,7 @@ Partial Class Form1
         '
         Me.lblSummary.AutoSize = True
         Me.lblSummary.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSummary.Location = New System.Drawing.Point(22, 301)
+        Me.lblSummary.Location = New System.Drawing.Point(22, 337)
         Me.lblSummary.Name = "lblSummary"
         Me.lblSummary.Size = New System.Drawing.Size(57, 13)
         Me.lblSummary.TabIndex = 21
@@ -982,7 +841,7 @@ Partial Class Form1
         'lblAnnualSalary
         '
         Me.lblAnnualSalary.AutoSize = True
-        Me.lblAnnualSalary.Location = New System.Drawing.Point(497, 249)
+        Me.lblAnnualSalary.Location = New System.Drawing.Point(497, 285)
         Me.lblAnnualSalary.Name = "lblAnnualSalary"
         Me.lblAnnualSalary.Size = New System.Drawing.Size(72, 13)
         Me.lblAnnualSalary.TabIndex = 20
@@ -992,7 +851,7 @@ Partial Class Form1
         '
         Me.lblAnnualSalaryField.AutoSize = True
         Me.lblAnnualSalaryField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAnnualSalaryField.Location = New System.Drawing.Point(497, 222)
+        Me.lblAnnualSalaryField.Location = New System.Drawing.Point(497, 258)
         Me.lblAnnualSalaryField.Name = "lblAnnualSalaryField"
         Me.lblAnnualSalaryField.Size = New System.Drawing.Size(85, 13)
         Me.lblAnnualSalaryField.TabIndex = 19
@@ -1001,7 +860,7 @@ Partial Class Form1
         'lblPayRate
         '
         Me.lblPayRate.AutoSize = True
-        Me.lblPayRate.Location = New System.Drawing.Point(420, 249)
+        Me.lblPayRate.Location = New System.Drawing.Point(420, 285)
         Me.lblPayRate.Name = "lblPayRate"
         Me.lblPayRate.Size = New System.Drawing.Size(51, 13)
         Me.lblPayRate.TabIndex = 18
@@ -1011,7 +870,7 @@ Partial Class Form1
         '
         Me.lblPayRateField.AutoSize = True
         Me.lblPayRateField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPayRateField.Location = New System.Drawing.Point(420, 222)
+        Me.lblPayRateField.Location = New System.Drawing.Point(420, 258)
         Me.lblPayRateField.Name = "lblPayRateField"
         Me.lblPayRateField.Size = New System.Drawing.Size(59, 13)
         Me.lblPayRateField.TabIndex = 17
@@ -1020,7 +879,7 @@ Partial Class Form1
         'lblPayEndDate
         '
         Me.lblPayEndDate.AutoSize = True
-        Me.lblPayEndDate.Location = New System.Drawing.Point(317, 249)
+        Me.lblPayEndDate.Location = New System.Drawing.Point(317, 285)
         Me.lblPayEndDate.Name = "lblPayEndDate"
         Me.lblPayEndDate.Size = New System.Drawing.Size(73, 13)
         Me.lblPayEndDate.TabIndex = 16
@@ -1030,7 +889,7 @@ Partial Class Form1
         '
         Me.lblPayEndDateField.AutoSize = True
         Me.lblPayEndDateField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPayEndDateField.Location = New System.Drawing.Point(317, 222)
+        Me.lblPayEndDateField.Location = New System.Drawing.Point(317, 258)
         Me.lblPayEndDateField.Name = "lblPayEndDateField"
         Me.lblPayEndDateField.Size = New System.Drawing.Size(85, 13)
         Me.lblPayEndDateField.TabIndex = 15
@@ -1039,7 +898,7 @@ Partial Class Form1
         'lblPayStartDate
         '
         Me.lblPayStartDate.AutoSize = True
-        Me.lblPayStartDate.Location = New System.Drawing.Point(216, 249)
+        Me.lblPayStartDate.Location = New System.Drawing.Point(216, 285)
         Me.lblPayStartDate.Name = "lblPayStartDate"
         Me.lblPayStartDate.Size = New System.Drawing.Size(76, 13)
         Me.lblPayStartDate.TabIndex = 14
@@ -1049,7 +908,7 @@ Partial Class Form1
         '
         Me.lblPayStartDateField.AutoSize = True
         Me.lblPayStartDateField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPayStartDateField.Location = New System.Drawing.Point(216, 222)
+        Me.lblPayStartDateField.Location = New System.Drawing.Point(216, 258)
         Me.lblPayStartDateField.Name = "lblPayStartDateField"
         Me.lblPayStartDateField.Size = New System.Drawing.Size(90, 13)
         Me.lblPayStartDateField.TabIndex = 13
@@ -1058,7 +917,7 @@ Partial Class Form1
         'lblPaymentDate
         '
         Me.lblPaymentDate.AutoSize = True
-        Me.lblPaymentDate.Location = New System.Drawing.Point(115, 249)
+        Me.lblPaymentDate.Location = New System.Drawing.Point(115, 285)
         Me.lblPaymentDate.Name = "lblPaymentDate"
         Me.lblPaymentDate.Size = New System.Drawing.Size(74, 13)
         Me.lblPaymentDate.TabIndex = 12
@@ -1068,7 +927,7 @@ Partial Class Form1
         '
         Me.lblPaymentDateField.AutoSize = True
         Me.lblPaymentDateField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPaymentDateField.Location = New System.Drawing.Point(115, 222)
+        Me.lblPaymentDateField.Location = New System.Drawing.Point(115, 258)
         Me.lblPaymentDateField.Name = "lblPaymentDateField"
         Me.lblPaymentDateField.Size = New System.Drawing.Size(86, 13)
         Me.lblPaymentDateField.TabIndex = 11
@@ -1077,7 +936,7 @@ Partial Class Form1
         'lblPayPeriod
         '
         Me.lblPayPeriod.AutoSize = True
-        Me.lblPayPeriod.Location = New System.Drawing.Point(22, 249)
+        Me.lblPayPeriod.Location = New System.Drawing.Point(22, 285)
         Me.lblPayPeriod.Name = "lblPayPeriod"
         Me.lblPayPeriod.Size = New System.Drawing.Size(58, 13)
         Me.lblPayPeriod.TabIndex = 10
@@ -1087,7 +946,7 @@ Partial Class Form1
         '
         Me.lblPayPeriodField.AutoSize = True
         Me.lblPayPeriodField.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPayPeriodField.Location = New System.Drawing.Point(22, 222)
+        Me.lblPayPeriodField.Location = New System.Drawing.Point(22, 258)
         Me.lblPayPeriodField.Name = "lblPayPeriodField"
         Me.lblPayPeriodField.Size = New System.Drawing.Size(68, 13)
         Me.lblPayPeriodField.TabIndex = 9
@@ -1097,7 +956,7 @@ Partial Class Form1
         '
         Me.lblPayPeriodAndSalary.AutoSize = True
         Me.lblPayPeriodAndSalary.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPayPeriodAndSalary.Location = New System.Drawing.Point(22, 191)
+        Me.lblPayPeriodAndSalary.Location = New System.Drawing.Point(22, 227)
         Me.lblPayPeriodAndSalary.Name = "lblPayPeriodAndSalary"
         Me.lblPayPeriodAndSalary.Size = New System.Drawing.Size(132, 13)
         Me.lblPayPeriodAndSalary.TabIndex = 8
@@ -1107,7 +966,7 @@ Partial Class Form1
         '
         Me.lblEmployeeAddress2.AutoSize = True
         Me.lblEmployeeAddress2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEmployeeAddress2.Location = New System.Drawing.Point(128, 140)
+        Me.lblEmployeeAddress2.Location = New System.Drawing.Point(128, 159)
         Me.lblEmployeeAddress2.Name = "lblEmployeeAddress2"
         Me.lblEmployeeAddress2.Size = New System.Drawing.Size(88, 13)
         Me.lblEmployeeAddress2.TabIndex = 7
@@ -1117,7 +976,7 @@ Partial Class Form1
         '
         Me.lblEmployeeAddress1.AutoSize = True
         Me.lblEmployeeAddress1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEmployeeAddress1.Location = New System.Drawing.Point(128, 111)
+        Me.lblEmployeeAddress1.Location = New System.Drawing.Point(128, 130)
         Me.lblEmployeeAddress1.Name = "lblEmployeeAddress1"
         Me.lblEmployeeAddress1.Size = New System.Drawing.Size(90, 13)
         Me.lblEmployeeAddress1.TabIndex = 6
@@ -1126,7 +985,7 @@ Partial Class Form1
         'lblEmployeeAddressField
         '
         Me.lblEmployeeAddressField.AutoSize = True
-        Me.lblEmployeeAddressField.Location = New System.Drawing.Point(22, 111)
+        Me.lblEmployeeAddressField.Location = New System.Drawing.Point(22, 130)
         Me.lblEmployeeAddressField.Name = "lblEmployeeAddressField"
         Me.lblEmployeeAddressField.Size = New System.Drawing.Size(97, 13)
         Me.lblEmployeeAddressField.TabIndex = 5
@@ -1136,7 +995,7 @@ Partial Class Form1
         '
         Me.lblHireDate.AutoSize = True
         Me.lblHireDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHireDate.Location = New System.Drawing.Point(128, 82)
+        Me.lblHireDate.Location = New System.Drawing.Point(128, 101)
         Me.lblHireDate.Name = "lblHireDate"
         Me.lblHireDate.Size = New System.Drawing.Size(61, 13)
         Me.lblHireDate.TabIndex = 4
@@ -1145,7 +1004,7 @@ Partial Class Form1
         'lblHireDateField
         '
         Me.lblHireDateField.AutoSize = True
-        Me.lblHireDateField.Location = New System.Drawing.Point(22, 82)
+        Me.lblHireDateField.Location = New System.Drawing.Point(22, 101)
         Me.lblHireDateField.Name = "lblHireDateField"
         Me.lblHireDateField.Size = New System.Drawing.Size(55, 13)
         Me.lblHireDateField.TabIndex = 3
@@ -1155,7 +1014,7 @@ Partial Class Form1
         '
         Me.lblEmployeeName.AutoSize = True
         Me.lblEmployeeName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEmployeeName.Location = New System.Drawing.Point(128, 53)
+        Me.lblEmployeeName.Location = New System.Drawing.Point(128, 72)
         Me.lblEmployeeName.Name = "lblEmployeeName"
         Me.lblEmployeeName.Size = New System.Drawing.Size(97, 13)
         Me.lblEmployeeName.TabIndex = 2
@@ -1164,7 +1023,7 @@ Partial Class Form1
         'lblEmployeeNameField
         '
         Me.lblEmployeeNameField.AutoSize = True
-        Me.lblEmployeeNameField.Location = New System.Drawing.Point(22, 53)
+        Me.lblEmployeeNameField.Location = New System.Drawing.Point(22, 72)
         Me.lblEmployeeNameField.Name = "lblEmployeeNameField"
         Me.lblEmployeeNameField.Size = New System.Drawing.Size(87, 13)
         Me.lblEmployeeNameField.TabIndex = 1
@@ -1208,6 +1067,37 @@ Partial Class Form1
         Me.pnlManageVacations.Name = "pnlManageVacations"
         Me.pnlManageVacations.Size = New System.Drawing.Size(664, 459)
         Me.pnlManageVacations.TabIndex = 64
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.dgvManageVacations)
+        Me.GroupBox2.Controls.Add(Me.calManageVacations)
+        Me.GroupBox2.Location = New System.Drawing.Point(25, 72)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(612, 199)
+        Me.GroupBox2.TabIndex = 1
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "Manage Vacation Requests"
+        '
+        'dgvManageVacations
+        '
+        Me.dgvManageVacations.AllowUserToAddRows = False
+        Me.dgvManageVacations.AllowUserToDeleteRows = False
+        Me.dgvManageVacations.AllowUserToResizeColumns = False
+        Me.dgvManageVacations.AllowUserToResizeRows = False
+        Me.dgvManageVacations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvManageVacations.Location = New System.Drawing.Point(250, 25)
+        Me.dgvManageVacations.Name = "dgvManageVacations"
+        Me.dgvManageVacations.ReadOnly = True
+        Me.dgvManageVacations.RowHeadersVisible = False
+        Me.dgvManageVacations.Size = New System.Drawing.Size(351, 161)
+        Me.dgvManageVacations.TabIndex = 1
+        '
+        'calManageVacations
+        '
+        Me.calManageVacations.Location = New System.Drawing.Point(11, 24)
+        Me.calManageVacations.Name = "calManageVacations"
+        Me.calManageVacations.TabIndex = 0
         '
         'lblManageVacations
         '
@@ -1676,6 +1566,230 @@ Partial Class Form1
         Me.lblMessages.TabIndex = 0
         Me.lblMessages.Text = "Messages"
         '
+        'pnlRequestVacation
+        '
+        Me.pnlRequestVacation.Controls.Add(Me.GroupBox1)
+        Me.pnlRequestVacation.Controls.Add(Me.grpRequestVacationDays)
+        Me.pnlRequestVacation.Controls.Add(Me.lblVacationRequest)
+        Me.pnlRequestVacation.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlRequestVacation.Location = New System.Drawing.Point(0, 0)
+        Me.pnlRequestVacation.Name = "pnlRequestVacation"
+        Me.pnlRequestVacation.Size = New System.Drawing.Size(664, 459)
+        Me.pnlRequestVacation.TabIndex = 62
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.txtScheduledList)
+        Me.GroupBox1.Controls.Add(Me.lblScheduledVacation)
+        Me.GroupBox1.Controls.Add(Me.lblSubmittedRequests)
+        Me.GroupBox1.Controls.Add(Me.txtRequestList)
+        Me.GroupBox1.Location = New System.Drawing.Point(298, 72)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(248, 238)
+        Me.GroupBox1.TabIndex = 9
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Previous Requests"
+        '
+        'txtScheduledList
+        '
+        Me.txtScheduledList.Location = New System.Drawing.Point(154, 134)
+        Me.txtScheduledList.Multiline = True
+        Me.txtScheduledList.Name = "txtScheduledList"
+        Me.txtScheduledList.ReadOnly = True
+        Me.txtScheduledList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtScheduledList.Size = New System.Drawing.Size(82, 86)
+        Me.txtScheduledList.TabIndex = 9
+        '
+        'lblScheduledVacation
+        '
+        Me.lblScheduledVacation.AutoSize = True
+        Me.lblScheduledVacation.Location = New System.Drawing.Point(6, 134)
+        Me.lblScheduledVacation.Name = "lblScheduledVacation"
+        Me.lblScheduledVacation.Size = New System.Drawing.Size(106, 13)
+        Me.lblScheduledVacation.TabIndex = 8
+        Me.lblScheduledVacation.Text = "Scheduled Vacation:"
+        '
+        'lblSubmittedRequests
+        '
+        Me.lblSubmittedRequests.AutoSize = True
+        Me.lblSubmittedRequests.Location = New System.Drawing.Point(6, 25)
+        Me.lblSubmittedRequests.Name = "lblSubmittedRequests"
+        Me.lblSubmittedRequests.Size = New System.Drawing.Size(105, 13)
+        Me.lblSubmittedRequests.TabIndex = 6
+        Me.lblSubmittedRequests.Text = "Submitted Requests:"
+        '
+        'txtRequestList
+        '
+        Me.txtRequestList.Location = New System.Drawing.Point(154, 25)
+        Me.txtRequestList.Multiline = True
+        Me.txtRequestList.Name = "txtRequestList"
+        Me.txtRequestList.ReadOnly = True
+        Me.txtRequestList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtRequestList.Size = New System.Drawing.Size(82, 86)
+        Me.txtRequestList.TabIndex = 7
+        '
+        'grpRequestVacationDays
+        '
+        Me.grpRequestVacationDays.Controls.Add(Me.calVacation)
+        Me.grpRequestVacationDays.Controls.Add(Me.lblDatesRequested)
+        Me.grpRequestVacationDays.Controls.Add(Me.txtDateList)
+        Me.grpRequestVacationDays.Controls.Add(Me.btnSubmitRequest)
+        Me.grpRequestVacationDays.Location = New System.Drawing.Point(25, 72)
+        Me.grpRequestVacationDays.Name = "grpRequestVacationDays"
+        Me.grpRequestVacationDays.Size = New System.Drawing.Size(251, 321)
+        Me.grpRequestVacationDays.TabIndex = 8
+        Me.grpRequestVacationDays.TabStop = False
+        Me.grpRequestVacationDays.Text = "Request Vacation Days"
+        '
+        'calVacation
+        '
+        Me.calVacation.Location = New System.Drawing.Point(12, 19)
+        Me.calVacation.MaxSelectionCount = 14
+        Me.calVacation.Name = "calVacation"
+        Me.calVacation.TabIndex = 1
+        '
+        'lblDatesRequested
+        '
+        Me.lblDatesRequested.AutoSize = True
+        Me.lblDatesRequested.Location = New System.Drawing.Point(9, 190)
+        Me.lblDatesRequested.Name = "lblDatesRequested"
+        Me.lblDatesRequested.Size = New System.Drawing.Size(99, 13)
+        Me.lblDatesRequested.TabIndex = 2
+        Me.lblDatesRequested.Text = "Date(s) Requested:"
+        '
+        'txtDateList
+        '
+        Me.txtDateList.Location = New System.Drawing.Point(157, 190)
+        Me.txtDateList.Multiline = True
+        Me.txtDateList.Name = "txtDateList"
+        Me.txtDateList.ReadOnly = True
+        Me.txtDateList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtDateList.Size = New System.Drawing.Size(82, 86)
+        Me.txtDateList.TabIndex = 5
+        '
+        'btnSubmitRequest
+        '
+        Me.btnSubmitRequest.Location = New System.Drawing.Point(148, 287)
+        Me.btnSubmitRequest.Name = "btnSubmitRequest"
+        Me.btnSubmitRequest.Size = New System.Drawing.Size(91, 23)
+        Me.btnSubmitRequest.TabIndex = 4
+        Me.btnSubmitRequest.Text = "Submit Request"
+        Me.btnSubmitRequest.UseVisualStyleBackColor = True
+        '
+        'lblVacationRequest
+        '
+        Me.lblVacationRequest.AutoSize = True
+        Me.lblVacationRequest.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVacationRequest.Location = New System.Drawing.Point(21, 12)
+        Me.lblVacationRequest.Name = "lblVacationRequest"
+        Me.lblVacationRequest.Size = New System.Drawing.Size(158, 24)
+        Me.lblVacationRequest.TabIndex = 0
+        Me.lblVacationRequest.Text = "Vacation Request"
+        '
+        'pnlChangePassword
+        '
+        Me.pnlChangePassword.Controls.Add(Me.grpChangePassword)
+        Me.pnlChangePassword.Controls.Add(Me.lblChangePassword)
+        Me.pnlChangePassword.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlChangePassword.Location = New System.Drawing.Point(0, 0)
+        Me.pnlChangePassword.Name = "pnlChangePassword"
+        Me.pnlChangePassword.Size = New System.Drawing.Size(664, 459)
+        Me.pnlChangePassword.TabIndex = 62
+        '
+        'grpChangePassword
+        '
+        Me.grpChangePassword.Controls.Add(Me.lblRetypePassword)
+        Me.grpChangePassword.Controls.Add(Me.lblChangePasswordMessage)
+        Me.grpChangePassword.Controls.Add(Me.lblCurrentPassword)
+        Me.grpChangePassword.Controls.Add(Me.btnChangePasswordOK)
+        Me.grpChangePassword.Controls.Add(Me.txtCurrentPassword)
+        Me.grpChangePassword.Controls.Add(Me.txtNewPassword)
+        Me.grpChangePassword.Controls.Add(Me.lblNewPassword)
+        Me.grpChangePassword.Controls.Add(Me.txtRetypePassword)
+        Me.grpChangePassword.Location = New System.Drawing.Point(25, 72)
+        Me.grpChangePassword.Name = "grpChangePassword"
+        Me.grpChangePassword.Size = New System.Drawing.Size(228, 176)
+        Me.grpChangePassword.TabIndex = 9
+        Me.grpChangePassword.TabStop = False
+        Me.grpChangePassword.Text = "Change Password"
+        '
+        'lblRetypePassword
+        '
+        Me.lblRetypePassword.AutoSize = True
+        Me.lblRetypePassword.Location = New System.Drawing.Point(13, 89)
+        Me.lblRetypePassword.Name = "lblRetypePassword"
+        Me.lblRetypePassword.Size = New System.Drawing.Size(93, 13)
+        Me.lblRetypePassword.TabIndex = 5
+        Me.lblRetypePassword.Text = "Retype Password:"
+        '
+        'lblChangePasswordMessage
+        '
+        Me.lblChangePasswordMessage.AutoSize = True
+        Me.lblChangePasswordMessage.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblChangePasswordMessage.ForeColor = System.Drawing.Color.Red
+        Me.lblChangePasswordMessage.Location = New System.Drawing.Point(13, 120)
+        Me.lblChangePasswordMessage.Name = "lblChangePasswordMessage"
+        Me.lblChangePasswordMessage.Size = New System.Drawing.Size(0, 13)
+        Me.lblChangePasswordMessage.TabIndex = 8
+        '
+        'lblCurrentPassword
+        '
+        Me.lblCurrentPassword.AutoSize = True
+        Me.lblCurrentPassword.Location = New System.Drawing.Point(13, 28)
+        Me.lblCurrentPassword.Name = "lblCurrentPassword"
+        Me.lblCurrentPassword.Size = New System.Drawing.Size(93, 13)
+        Me.lblCurrentPassword.TabIndex = 1
+        Me.lblCurrentPassword.Text = "Current Password:"
+        '
+        'btnChangePasswordOK
+        '
+        Me.btnChangePasswordOK.Location = New System.Drawing.Point(134, 141)
+        Me.btnChangePasswordOK.Name = "btnChangePasswordOK"
+        Me.btnChangePasswordOK.Size = New System.Drawing.Size(75, 23)
+        Me.btnChangePasswordOK.TabIndex = 7
+        Me.btnChangePasswordOK.Text = "OK"
+        Me.btnChangePasswordOK.UseVisualStyleBackColor = True
+        '
+        'txtCurrentPassword
+        '
+        Me.txtCurrentPassword.Location = New System.Drawing.Point(106, 25)
+        Me.txtCurrentPassword.Name = "txtCurrentPassword"
+        Me.txtCurrentPassword.Size = New System.Drawing.Size(103, 20)
+        Me.txtCurrentPassword.TabIndex = 2
+        '
+        'txtNewPassword
+        '
+        Me.txtNewPassword.Location = New System.Drawing.Point(106, 86)
+        Me.txtNewPassword.Name = "txtNewPassword"
+        Me.txtNewPassword.Size = New System.Drawing.Size(103, 20)
+        Me.txtNewPassword.TabIndex = 6
+        '
+        'lblNewPassword
+        '
+        Me.lblNewPassword.AutoSize = True
+        Me.lblNewPassword.Location = New System.Drawing.Point(13, 59)
+        Me.lblNewPassword.Name = "lblNewPassword"
+        Me.lblNewPassword.Size = New System.Drawing.Size(81, 13)
+        Me.lblNewPassword.TabIndex = 3
+        Me.lblNewPassword.Text = "New Password:"
+        '
+        'txtRetypePassword
+        '
+        Me.txtRetypePassword.Location = New System.Drawing.Point(106, 56)
+        Me.txtRetypePassword.Name = "txtRetypePassword"
+        Me.txtRetypePassword.Size = New System.Drawing.Size(103, 20)
+        Me.txtRetypePassword.TabIndex = 4
+        '
+        'lblChangePassword
+        '
+        Me.lblChangePassword.AutoSize = True
+        Me.lblChangePassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblChangePassword.Location = New System.Drawing.Point(21, 12)
+        Me.lblChangePassword.Name = "lblChangePassword"
+        Me.lblChangePassword.Size = New System.Drawing.Size(164, 24)
+        Me.lblChangePassword.TabIndex = 0
+        Me.lblChangePassword.Text = "Change Password"
+        '
         'mnuNavigation
         '
         Me.mnuNavigation.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tmiFile, Me.tmiEmployee, Me.tmiManage})
@@ -1774,99 +1888,6 @@ Partial Class Form1
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'grpRequestVacationDays
-        '
-        Me.grpRequestVacationDays.Controls.Add(Me.calVacation)
-        Me.grpRequestVacationDays.Controls.Add(Me.lblDatesRequested)
-        Me.grpRequestVacationDays.Controls.Add(Me.txtDateList)
-        Me.grpRequestVacationDays.Controls.Add(Me.btnSubmitRequest)
-        Me.grpRequestVacationDays.Location = New System.Drawing.Point(25, 72)
-        Me.grpRequestVacationDays.Name = "grpRequestVacationDays"
-        Me.grpRequestVacationDays.Size = New System.Drawing.Size(251, 321)
-        Me.grpRequestVacationDays.TabIndex = 8
-        Me.grpRequestVacationDays.TabStop = False
-        Me.grpRequestVacationDays.Text = "Request Vacation Days"
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.txtScheduledList)
-        Me.GroupBox1.Controls.Add(Me.lblScheduledVacation)
-        Me.GroupBox1.Controls.Add(Me.lblSubmittedRequests)
-        Me.GroupBox1.Controls.Add(Me.txtRequestList)
-        Me.GroupBox1.Location = New System.Drawing.Point(298, 72)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(248, 238)
-        Me.GroupBox1.TabIndex = 9
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Previous Requests"
-        '
-        'lblScheduledVacation
-        '
-        Me.lblScheduledVacation.AutoSize = True
-        Me.lblScheduledVacation.Location = New System.Drawing.Point(6, 134)
-        Me.lblScheduledVacation.Name = "lblScheduledVacation"
-        Me.lblScheduledVacation.Size = New System.Drawing.Size(106, 13)
-        Me.lblScheduledVacation.TabIndex = 8
-        Me.lblScheduledVacation.Text = "Scheduled Vacation:"
-        '
-        'txtScheduledList
-        '
-        Me.txtScheduledList.Location = New System.Drawing.Point(154, 134)
-        Me.txtScheduledList.Multiline = True
-        Me.txtScheduledList.Name = "txtScheduledList"
-        Me.txtScheduledList.ReadOnly = True
-        Me.txtScheduledList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtScheduledList.Size = New System.Drawing.Size(82, 86)
-        Me.txtScheduledList.TabIndex = 9
-        '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.dgvManageVacations)
-        Me.GroupBox2.Controls.Add(Me.calManageVacations)
-        Me.GroupBox2.Location = New System.Drawing.Point(25, 72)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(612, 199)
-        Me.GroupBox2.TabIndex = 1
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Manage Vacation Requests"
-        '
-        'calManageVacations
-        '
-        Me.calManageVacations.Location = New System.Drawing.Point(11, 24)
-        Me.calManageVacations.Name = "calManageVacations"
-        Me.calManageVacations.TabIndex = 0
-        '
-        'grpChangePassword
-        '
-        Me.grpChangePassword.Controls.Add(Me.lblRetypePassword)
-        Me.grpChangePassword.Controls.Add(Me.lblChangePasswordMessage)
-        Me.grpChangePassword.Controls.Add(Me.lblCurrentPassword)
-        Me.grpChangePassword.Controls.Add(Me.btnChangePasswordOK)
-        Me.grpChangePassword.Controls.Add(Me.txtCurrentPassword)
-        Me.grpChangePassword.Controls.Add(Me.txtNewPassword)
-        Me.grpChangePassword.Controls.Add(Me.lblNewPassword)
-        Me.grpChangePassword.Controls.Add(Me.txtRetypePassword)
-        Me.grpChangePassword.Location = New System.Drawing.Point(25, 72)
-        Me.grpChangePassword.Name = "grpChangePassword"
-        Me.grpChangePassword.Size = New System.Drawing.Size(228, 176)
-        Me.grpChangePassword.TabIndex = 9
-        Me.grpChangePassword.TabStop = False
-        Me.grpChangePassword.Text = "Change Password"
-        '
-        'dgvManageVacations
-        '
-        Me.dgvManageVacations.AllowUserToAddRows = False
-        Me.dgvManageVacations.AllowUserToDeleteRows = False
-        Me.dgvManageVacations.AllowUserToResizeColumns = False
-        Me.dgvManageVacations.AllowUserToResizeRows = False
-        Me.dgvManageVacations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvManageVacations.Location = New System.Drawing.Point(250, 25)
-        Me.dgvManageVacations.Name = "dgvManageVacations"
-        Me.dgvManageVacations.ReadOnly = True
-        Me.dgvManageVacations.RowHeadersVisible = False
-        Me.dgvManageVacations.Size = New System.Drawing.Size(351, 161)
-        Me.dgvManageVacations.TabIndex = 1
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1885,16 +1906,14 @@ Partial Class Form1
         Me.SplitContainer1.ResumeLayout(False)
         Me.pnlNavigationManager.ResumeLayout(False)
         Me.pnlNavigationEmployee.ResumeLayout(False)
-        Me.pnlRequestVacation.ResumeLayout(False)
-        Me.pnlRequestVacation.PerformLayout()
-        Me.pnlChangePassword.ResumeLayout(False)
-        Me.pnlChangePassword.PerformLayout()
         Me.pnlPaySlip.ResumeLayout(False)
         Me.pnlPaySlip.PerformLayout()
         Me.pnlReports.ResumeLayout(False)
         Me.pnlReports.PerformLayout()
         Me.pnlManageVacations.ResumeLayout(False)
         Me.pnlManageVacations.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        CType(Me.dgvManageVacations, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlEditEmployee.ResumeLayout(False)
         Me.pnlEditEmployee.PerformLayout()
         Me.grpUserInfo.ResumeLayout(False)
@@ -1909,16 +1928,18 @@ Partial Class Form1
         Me.pnlMessages.ResumeLayout(False)
         Me.pnlMessages.PerformLayout()
         Me.pnlMessageNavigation.ResumeLayout(False)
-        Me.mnuNavigation.ResumeLayout(False)
-        Me.mnuNavigation.PerformLayout()
-        Me.grpRequestVacationDays.ResumeLayout(False)
-        Me.grpRequestVacationDays.PerformLayout()
+        Me.pnlRequestVacation.ResumeLayout(False)
+        Me.pnlRequestVacation.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
+        Me.grpRequestVacationDays.ResumeLayout(False)
+        Me.grpRequestVacationDays.PerformLayout()
+        Me.pnlChangePassword.ResumeLayout(False)
+        Me.pnlChangePassword.PerformLayout()
         Me.grpChangePassword.ResumeLayout(False)
         Me.grpChangePassword.PerformLayout()
-        CType(Me.dgvManageVacations, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.mnuNavigation.ResumeLayout(False)
+        Me.mnuNavigation.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1970,38 +1991,35 @@ Partial Class Form1
     Friend WithEvents lblTaxesYTD As System.Windows.Forms.Label
     Friend WithEvents lblTaxesCurrent As System.Windows.Forms.Label
     Friend WithEvents lblTaxesField As System.Windows.Forms.Label
-    Friend WithEvents lblPreTaxYTD As System.Windows.Forms.Label
-    Friend WithEvents lblPreTaxCurrent As System.Windows.Forms.Label
-    Friend WithEvents lblPreTaxField As System.Windows.Forms.Label
     Friend WithEvents lblGrossYTD As System.Windows.Forms.Label
     Friend WithEvents lblGrossCurrent As System.Windows.Forms.Label
     Friend WithEvents lblGrossField As System.Windows.Forms.Label
     Friend WithEvents lblYTDField As System.Windows.Forms.Label
     Friend WithEvents lblCurrentField As System.Windows.Forms.Label
     Friend WithEvents lblSummary As System.Windows.Forms.Label
-    Friend WithEvents lblYTDAmountHoliday As System.Windows.Forms.Label
     Friend WithEvents lblYTDAmountVacation As System.Windows.Forms.Label
     Friend WithEvents lblYTDAmountPersonal As System.Windows.Forms.Label
+    Friend WithEvents lblYTDAmountOvertime As System.Windows.Forms.Label
     Friend WithEvents lblYTDAmountRegular As System.Windows.Forms.Label
     Friend WithEvents lblYTDAmountField As System.Windows.Forms.Label
-    Friend WithEvents lblYTDHoursHoliday As System.Windows.Forms.Label
     Friend WithEvents lblYTDHoursVacation As System.Windows.Forms.Label
     Friend WithEvents lblYTDHoursPersonal As System.Windows.Forms.Label
+    Friend WithEvents lblYTDHoursOvertime As System.Windows.Forms.Label
     Friend WithEvents lblYTDHoursRegular As System.Windows.Forms.Label
     Friend WithEvents lblYTDHoursField As System.Windows.Forms.Label
-    Friend WithEvents lblCurrentAmountHoliday As System.Windows.Forms.Label
     Friend WithEvents lblCurrentAmountVacation As System.Windows.Forms.Label
     Friend WithEvents lblCurrentAmountPersonal As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentAmountOvertime As System.Windows.Forms.Label
     Friend WithEvents lblCurrentAmountRegular As System.Windows.Forms.Label
     Friend WithEvents lblCurrentAmountField As System.Windows.Forms.Label
-    Friend WithEvents lblCurrentHoursHoliday As System.Windows.Forms.Label
     Friend WithEvents lblCurrentHoursVacation As System.Windows.Forms.Label
     Friend WithEvents lblCurrentHoursPersonal As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentHoursOvertime As System.Windows.Forms.Label
     Friend WithEvents lblCurrentHoursRegular As System.Windows.Forms.Label
     Friend WithEvents lblCurrentHoursField As System.Windows.Forms.Label
-    Friend WithEvents lblHolidayPayField As System.Windows.Forms.Label
     Friend WithEvents lblVacationPayField As System.Windows.Forms.Label
     Friend WithEvents lblPersonalPayField As System.Windows.Forms.Label
+    Friend WithEvents lblOvertimePayField As System.Windows.Forms.Label
     Friend WithEvents lblRegularPayField As System.Windows.Forms.Label
     Friend WithEvents lblDescriptionField As System.Windows.Forms.Label
     Friend WithEvents lblHoursAndEarnings As System.Windows.Forms.Label
@@ -2092,5 +2110,10 @@ Partial Class Form1
     Friend WithEvents calManageVacations As System.Windows.Forms.MonthCalendar
     Friend WithEvents grpChangePassword As System.Windows.Forms.GroupBox
     Friend WithEvents dgvManageVacations As System.Windows.Forms.DataGridView
+    Friend WithEvents lblHolidayPayField As System.Windows.Forms.Label
+    Friend WithEvents lblYTDAmountHoliday As System.Windows.Forms.Label
+    Friend WithEvents lblYTDHoursHoliday As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentAmountHoliday As System.Windows.Forms.Label
+    Friend WithEvents lblCurrentHoursHoliday As System.Windows.Forms.Label
 
 End Class
