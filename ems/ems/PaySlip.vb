@@ -193,9 +193,14 @@
 
     Public Sub initPaySlipPanel()
         If employedDates.Count < 1 Then
-            getEmployedDates()
+            _employedDates = time.getEmployedDates(admin.workStartDate, user.hire_date)
+            _workPeriodStart = _employedDates.Item(1)
+            _workPeriodEnd = _workPeriodStart.AddDays(time.workPeriodLength).AddMinutes(-1)
+            For Each payPeriod In _employedDates
+                Form1.cboWorkPeriod.Items.Add("Pay Period: " & payPeriod.date & " - " & payPeriod.addDays(time.workPeriodLength).addMinutes(-1).date)
+            Next
         End If
-        getHours(_workPeriodStart)
+        getHours(user.id, _workPeriodStart)
         'employee information
         Form1.lblEmployeeName.Text = user.first_name & " " & user.last_name
         Form1.lblHireDate.Text = user.hire_date
@@ -231,7 +236,7 @@
         Form1.lblNetPayCurrent.Text = (currentGross - currentTaxes).ToString("C2")
         Form1.lblNetPayYTD.Text = (YTDGross - YTDTaxes).ToString("C2")
 
-        getHours(_workPeriodStart)
+        getHours(user.id, _workPeriodStart)
         'current hours
         Form1.lblCurrentHoursRegular.Text = FormatNumber(CDec(hoursRegular), 4)
         Form1.lblCurrentHoursOvertime.Text = FormatNumber(CDec(hoursOvertime), 4)
@@ -260,58 +265,40 @@
         Form1.pnlPaySlip.Visible = True
     End Sub
 
-    Private Sub getEmployedDates()
-        Dim length As Integer = time.workPeriodLength
-        Dim dates As New Collection
-        _employedDates = New Collection
-        dates = time.getCompanyPayPeriods(admin.workStartDate)
-        For Each payPeriod In dates
-            If payPeriod.AddDays(length).AddMinutes(-1) > user.hire_date Then
-                _employedDates.Add(payPeriod)
-            End If
-        Next
-        For Each payPeriod In _employedDates
-            Form1.cboWorkPeriod.Items.Add("Pay Period: " & payPeriod.date & " - " & payPeriod.addDays(length).addMinutes(-1).date)
-        Next
-
-        _workPeriodStart = _employedDates.Item(1)
-        _workPeriodEnd = workPeriodStart.AddDays(length).AddMinutes(-1)
-    End Sub
-
-    Private Sub getHours(ByVal workStart As Date)
+    Public Sub getHours(ByVal userID As Integer, ByVal workStart As Date)
         _hoursOvertime = 0
-        _hoursRegular = getRegularHours(workStart)
-        _hoursOvertime = getOvertimeHours(workStart)
+        _hoursRegular = getRegularHours(userID, workStart)
+        _hoursOvertime = getOvertimeHours(userID, workStart)
 
-        _hoursPersonal = dbems.getHoursWorked(user.id, "Personal", _workPeriodStart, _workPeriodEnd).TotalHours
-        _hoursVacation = dbems.getHoursWorked(user.id, "Vacation", _workPeriodStart, _workPeriodEnd).TotalHours
-        _hoursHoliday = dbems.getHoursWorked(user.id, "Holiday", _workPeriodStart, _workPeriodEnd).TotalHours
+        _hoursPersonal = dbems.getHoursWorked(userID, "Personal", time.workPeriodStart, time.workPeriodEnd).TotalHours
+        _hoursVacation = dbems.getHoursWorked(userID, "Vacation", time.workPeriodStart, time.workPeriodEnd).TotalHours
+        _hoursHoliday = dbems.getHoursWorked(userID, "Holiday", time.workPeriodStart, time.workPeriodEnd).TotalHours
         _hoursTotal = _hoursRegular + _hoursPersonal + _hoursVacation + _hoursHoliday
         _YTDRegular = 0
         _YTDOvertime = 0
         For Each d In employedDates
             'gets the pay periods up to the current pay period
-            If d <= _workPeriodStart And _workPeriodStart.Year = d.year Then
-                _YTDRegular += getRegularHours(d)
-                _YTDOvertime += getOvertimeHours(d)
+            If d <= time.workPeriodStart And time.workPeriodStart.Year = d.year Then
+                _YTDRegular += getRegularHours(userID, d)
+                _YTDOvertime += getOvertimeHours(userID, d)
             End If
         Next
-        _YTDPersonal = dbems.getHoursWorked(user.id, "Personal", time.workYearStart, _workPeriodEnd).TotalHours
-        _YTDVacation = dbems.getHoursWorked(user.id, "Vacation", time.workYearStart, _workPeriodEnd).TotalHours
-        _YTDHoliday = dbems.getHoursWorked(user.id, "Holiday", time.workYearStart, _workPeriodEnd).TotalHours
+        _YTDPersonal = dbems.getHoursWorked(userID, "Personal", time.workYearStart, time.workPeriodEnd).TotalHours
+        _YTDVacation = dbems.getHoursWorked(userID, "Vacation", time.workYearStart, time.workPeriodEnd).TotalHours
+        _YTDHoliday = dbems.getHoursWorked(userID, "Holiday", time.workYearStart, time.workPeriodEnd).TotalHours
         _YTDTotal = _YTDRegular + _YTDPersonal + _YTDVacation + _YTDHoliday
 
-        _annualPay = dbems.getPeriodPayRate(user.id, workStart)
+        _annualPay = dbems.getPeriodPayRate(userID, workStart)
         _hourlyPay = annualPay / 52 / 40
     End Sub
 
     'gets the regular hours (adjusted for overtime) for the pay period starting on the workStart date
-    Private Function getRegularHours(ByVal workStart As Date) As Decimal
+    Private Function getRegularHours(ByVal userID As Integer, ByVal workStart As Date) As Decimal
         Dim regWeek As Decimal = 0
         Dim regPayPeriod As Decimal = 0
         Dim timeLeft As Integer = time.workPeriodLength
         While timeLeft > 0
-            regWeek = dbems.getHoursWorked(user.id, "Regular", workStart, workStart.AddDays(7).AddMinutes(-1)).TotalHours
+            regWeek = dbems.getHoursWorked(userID, "Regular", workStart, workStart.AddDays(7).AddMinutes(-1)).TotalHours
             If regWeek > 40 Then
                 regWeek = 40
             End If
@@ -324,13 +311,13 @@
     End Function
 
     'gets the overtime hours for the pay period starting on the workStart date
-    Private Function getOvertimeHours(ByVal workStart As Date) As Decimal
+    Private Function getOvertimeHours(ByVal userID As Integer, ByVal workStart As Date) As Decimal
         Dim regWeek As Decimal = 0
         Dim otWeek As Decimal = 0
         Dim otPayPeriod As Decimal = 0
         Dim timeLeft As Integer = time.workPeriodLength
         While timeLeft > 0
-            regWeek = dbems.getHoursWorked(user.id, "Regular", workStart, workStart.AddDays(7).AddMinutes(-1)).TotalHours
+            regWeek = dbems.getHoursWorked(userID, "Regular", workStart, workStart.AddDays(7).AddMinutes(-1)).TotalHours
             If regWeek > 40 Then
                 otWeek = regWeek - 40
             End If
@@ -343,7 +330,7 @@
     End Function
 
     Private Function getTaxes(ByVal workStart As Date) As Decimal
-        getHours(workStart)
+        getHours(user.id, workStart)
         Dim taxableIncome As Decimal = ((_hoursTotal * _hourlyPay) + (_hoursOvertime * (_hourlyPay * 1.5)))
         Dim taxes As Decimal = 0
         Dim payPeriods As Integer = 0

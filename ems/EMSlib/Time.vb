@@ -105,7 +105,7 @@ Namespace EMS
         End Function
 
         'returns a collection of the start dates for each work period in company history
-        Public Function getCompanyPayPeriods(ByVal workStartDate As Date) As Collection
+        Private Function getCompanyPayPeriods(ByVal workStartDate As Date) As Collection
             Dim dates As New Collection
             Dim startDate As Date = findMondayDate(workStartDate)
             Dim today As Date = Date.Now
@@ -128,6 +128,19 @@ Namespace EMS
                 Return True
             End If
             Return False
+        End Function
+
+        Public Function getEmployedDates(ByVal workStartDate As Date, ByVal hireDate As Date) As Collection
+            Dim length As Integer = _workPeriodLength
+            Dim dates As New Collection
+            Dim empDates As New Collection()
+            dates = getCompanyPayPeriods(workStartDate)
+            For Each payPeriod In dates
+                If payPeriod.AddDays(length).AddMinutes(-1) > hireDate Then
+                    empDates.Add(payPeriod)
+                End If
+            Next
+            Return empDates
         End Function
 
     End Class

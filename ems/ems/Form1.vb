@@ -44,7 +44,7 @@ Public Class Form1
         SplitContainer1.Visible = True
     End Sub
 
-    Private Sub hidePanels()
+    Public Sub hidePanels()
         pnlPaySlip.Visible = False
         pnlRequestVacation.Visible = False
         pnlMessages.Visible = False
@@ -120,6 +120,7 @@ Public Class Form1
     Private Sub tmiReports_Click(sender As Object, e As EventArgs) Handles tmiReports.Click, btnReports.Click
         hidePanels()
         report.initReportsPanel()
+        report.cboReports.SelectedIndex = 0
     End Sub
 
     Private Sub calVacation_DateSelected(sender As Object, e As DateRangeEventArgs) Handles calVacation.DateSelected
@@ -264,5 +265,4 @@ Public Class Form1
         End If
     End Sub
 
-    
 End Class

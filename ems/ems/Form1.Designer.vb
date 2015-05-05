@@ -101,7 +101,6 @@ Partial Class Form1
         Me.lblEmployeeNameField = New System.Windows.Forms.Label()
         Me.lblPaySlip = New System.Windows.Forms.Label()
         Me.pnlReports = New System.Windows.Forms.Panel()
-        Me.lblReports = New System.Windows.Forms.Label()
         Me.pnlManageVacations = New System.Windows.Forms.Panel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.dgvManageVacations = New System.Windows.Forms.DataGridView()
@@ -200,7 +199,6 @@ Partial Class Form1
         Me.pnlNavigationManager.SuspendLayout()
         Me.pnlNavigationEmployee.SuspendLayout()
         Me.pnlPaySlip.SuspendLayout()
-        Me.pnlReports.SuspendLayout()
         Me.pnlManageVacations.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvManageVacations, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -237,7 +235,6 @@ Partial Class Form1
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlReports)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlManageVacations)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlEditEmployee)
@@ -245,6 +242,7 @@ Partial Class Form1
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlRequestVacation)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlChangePassword)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
         Me.SplitContainer1.Size = New System.Drawing.Size(826, 461)
         Me.SplitContainer1.SplitterDistance = 156
         Me.SplitContainer1.TabIndex = 1
@@ -479,7 +477,7 @@ Partial Class Form1
         'cboWorkPeriod
         '
         Me.cboWorkPeriod.FormattingEnabled = True
-        Me.cboWorkPeriod.Location = New System.Drawing.Point(423, 17)
+        Me.cboWorkPeriod.Location = New System.Drawing.Point(423, 12)
         Me.cboWorkPeriod.Name = "cboWorkPeriod"
         Me.cboWorkPeriod.Size = New System.Drawing.Size(203, 21)
         Me.cboWorkPeriod.TabIndex = 1
@@ -1041,22 +1039,12 @@ Partial Class Form1
         '
         'pnlReports
         '
-        Me.pnlReports.Controls.Add(Me.lblReports)
+        Me.pnlReports.AutoScroll = True
         Me.pnlReports.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlReports.Location = New System.Drawing.Point(0, 0)
         Me.pnlReports.Name = "pnlReports"
         Me.pnlReports.Size = New System.Drawing.Size(664, 459)
         Me.pnlReports.TabIndex = 65
-        '
-        'lblReports
-        '
-        Me.lblReports.AutoSize = True
-        Me.lblReports.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblReports.Location = New System.Drawing.Point(21, 12)
-        Me.lblReports.Name = "lblReports"
-        Me.lblReports.Size = New System.Drawing.Size(75, 24)
-        Me.lblReports.TabIndex = 0
-        Me.lblReports.Text = "Reports"
         '
         'pnlManageVacations
         '
@@ -1908,8 +1896,6 @@ Partial Class Form1
         Me.pnlNavigationEmployee.ResumeLayout(False)
         Me.pnlPaySlip.ResumeLayout(False)
         Me.pnlPaySlip.PerformLayout()
-        Me.pnlReports.ResumeLayout(False)
-        Me.pnlReports.PerformLayout()
         Me.pnlManageVacations.ResumeLayout(False)
         Me.pnlManageVacations.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
@@ -2101,7 +2087,6 @@ Partial Class Form1
     Friend WithEvents btnAddEmployee As System.Windows.Forms.Button
     Friend WithEvents lblMessagesView As System.Windows.Forms.Label
     Friend WithEvents lblManageVacations As System.Windows.Forms.Label
-    Friend WithEvents lblReports As System.Windows.Forms.Label
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents txtScheduledList As System.Windows.Forms.TextBox
     Friend WithEvents lblScheduledVacation As System.Windows.Forms.Label

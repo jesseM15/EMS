@@ -471,12 +471,29 @@ Namespace DBSQL
             Return dt
         End Function
 
+        'returns a collection of ids for users by manager id
+        Public Function getEmployeeIds(ByVal manager_id As Integer) As Collection
+            initCommand()
+            _cmd.CommandText = "SELECT id FROM Users WHERE manager_id=@manager_id"
+            _cmd.Parameters.AddWithValue("@manager_id", manager_id)
+            _cmd.Connection.Open()
+            Dim employees As New Collection()
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            While reader.Read
+                employees.Add(reader("id"))
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return employees
+        End Function
+
         'returns a collection of ids of users with manager-level or greater permission
         Public Function getManagers() As Collection
             initCommand()
             _cmd.CommandText = "SELECT * FROM Users WHERE user_type='Manager' OR user_type='Administrator'"
             _cmd.Connection.Open()
-            Dim managers As New Collection
+            Dim managers As New Collection()
             Dim r As IAsyncResult = _cmd.BeginExecuteReader
             Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
             While reader.Read
