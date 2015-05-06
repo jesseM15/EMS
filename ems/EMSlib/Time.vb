@@ -6,6 +6,7 @@ Namespace EMS
         Private _time_start As Date
         Private _time_end As Date
         Private _hours_type As String
+        Private _pay_rate As decimal
         Private _workPeriodLength As Integer
         Private _workPeriodStart As Date
         Private _workPeriodEnd As Date
@@ -20,7 +21,7 @@ Namespace EMS
             _workPeriodLength = 14
             _workPeriodStart = findMondayDate(Date.Today)
             _workPeriodEnd = findSundayDate()
-            _workYearStart = findFirstMonday()
+            _workYearStart = findFirstMonday(Date.Today)
 
         End Sub
 
@@ -48,6 +49,15 @@ Namespace EMS
             End Get
             Set(ByVal value As String)
                 _hours_type = value
+            End Set
+        End Property
+
+        Public Property pay_rate() As Decimal
+            Get
+                Return _pay_rate
+            End Get
+            Set(value As Decimal)
+                _pay_rate = value
             End Set
         End Property
 
@@ -90,17 +100,15 @@ Namespace EMS
         End Function
 
         'finds the date for monday of the current year
-        Public Function findFirstMonday() As Date
-            Dim currentYear As Integer = Date.Today.Year
-            Dim firstDay As New Date(currentYear, 1, 1)
-
+        Public Function findFirstMonday(ByVal inputDate As Date) As Date
+            Dim firstDay As New Date(inputDate.Year, 1, 1)
             If firstDay.DayOfWeek = DayOfWeek.Monday Then
                 Return firstDay
             Else
                 While firstDay.DayOfWeek <> DayOfWeek.Monday
                     firstDay = firstDay.AddDays(1)
                 End While
-                Return firstDay
+                Return firstDay.Date
             End If
         End Function
 
@@ -130,6 +138,7 @@ Namespace EMS
             Return False
         End Function
 
+        'returns a collection of the dates representing employed pay periods 
         Public Function getEmployedDates(ByVal workStartDate As Date, ByVal hireDate As Date) As Collection
             Dim length As Integer = _workPeriodLength
             Dim dates As New Collection

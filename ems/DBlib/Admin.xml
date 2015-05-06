@@ -5,8 +5,7 @@
       <AllowAutoLogin>True</AllowAutoLogin>
     </User>
     <Time>
-      <WorkPeriod>14</WorkPeriod>
-      <WorkStartDate>#06/28/2004#</WorkStartDate>
+      <WorkPeriod>7</WorkPeriod>
     </Time>
   </Settings>
 </Admin>

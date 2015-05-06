@@ -22,9 +22,6 @@ Namespace EMS
                             Case "WorkPeriod"
                                 _workPeriod = reader.Value
                                 Exit Select
-                            Case "WorkStartDate"
-                                _workStartDate = reader.Value
-                                Exit Select
                             Case "AllowAutoLogin"
                                 _allowAutoLogin = reader.Value
                         End Select

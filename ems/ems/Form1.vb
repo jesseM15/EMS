@@ -17,6 +17,7 @@ Public Class Form1
         '**Uncomment and remove following lines during testing**
         initSession()
         user = dbems.getSession(5)
+        time.workPeriodLength = admin.workPeriod
         initNavigationPanel()
     End Sub
 
@@ -83,6 +84,7 @@ Public Class Form1
     End Sub
 
     Private Sub tmiExit_Click(sender As Object, e As EventArgs) Handles tmiExit.Click
+        MessageBox.Show(time.findMondayDate(dbems.getFirstWorkDate()))
         Me.Close()
     End Sub
 
@@ -219,23 +221,19 @@ Public Class Form1
         Dim name As String = dgvManageVacations.Rows(e.RowIndex).Cells.Item(4).Value & " " & dgvManageVacations.Rows(e.RowIndex).Cells.Item(5).Value
         Dim rDate As Date = dgvManageVacations.Rows(e.RowIndex).Cells.Item(6).Value
         If e.ColumnIndex = 0 Then
-            dbems.approveVacationRequest(tid)
-            Dim m As New Message
-            m.userId = uid
-            m.senderId = user.id
-            m.message = "Your vacation request for " & rDate & " has been approved."
-            dbems.sendMessage(m)
-            MessageBox.Show("Vacation request for " & name & " on " & rDate & " has been approved.")
-            mngVac.initManageVacationsPanel()
+            If dbems.getVacationTime(uid) >= 8 Then
+                mngVac.approveVacation(uid, tid, _
+                    "Your vacation request for " & rDate & " has been approved.", _
+                    "Vacation request for " & name & " on " & rDate & " has been approved.")
+            Else
+                mngVac.denyVacation(uid, tid, _
+                    "Your vacation request for " & rDate & " has been denied.", _
+                    "Not enough vacation time remaining.")
+            End If
         ElseIf e.ColumnIndex = 1 Then
-            dbems.denyVacationRequest(tid)
-            Dim m As New Message
-            m.userId = uid
-            m.senderId = user.id
-            m.message = "Your vacation request for " & rDate & " has been denied."
-            dbems.sendMessage(m)
-            MessageBox.Show("Vacation request for " & name & " on " & rDate & " has been denied.")
-            mngVac.initManageVacationsPanel()
+            mngVac.denyVacation(uid, tid, _
+                "Your vacation request for " & rDate & " has been denied.", _
+                "Vacation request for " & name & " on " & rDate & " has been denied.")
         End If
     End Sub
 

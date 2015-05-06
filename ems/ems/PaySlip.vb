@@ -193,7 +193,7 @@
 
     Public Sub initPaySlipPanel()
         If employedDates.Count < 1 Then
-            _employedDates = time.getEmployedDates(admin.workStartDate, user.hire_date)
+            _employedDates = time.getEmployedDates(dbems.getFirstWorkDate(), user.hire_date)
             _workPeriodStart = _employedDates.Item(1)
             _workPeriodEnd = _workPeriodStart.AddDays(time.workPeriodLength).AddMinutes(-1)
             For Each payPeriod In _employedDates
@@ -207,9 +207,9 @@
         Form1.lblEmployeeAddress1.Text = user.address
         Form1.lblEmployeeAddress2.Text = user.city & ", " & user.state & " " & user.zip
         'pay period and salary
-        If admin.workPeriod = 7 Then
+        If time.workPeriodLength = 7 Then
             Form1.lblPayPeriod.Text = "Weekly"
-        ElseIf admin.workPeriod = 14 Then
+        ElseIf time.workPeriodLength = 14 Then
             Form1.lblPayPeriod.Text = "Bi-Weekly"
         End If
         Form1.lblPaymentDate.Text = _workPeriodEnd.AddDays(5).Date
@@ -266,7 +266,6 @@
     End Sub
 
     Public Sub getHours(ByVal userID As Integer, ByVal workStart As Date)
-        _hoursOvertime = 0
         _hoursRegular = getRegularHours(userID, workStart)
         _hoursOvertime = getOvertimeHours(userID, workStart)
 
@@ -278,18 +277,18 @@
         _YTDOvertime = 0
         For Each d In employedDates
             'gets the pay periods up to the current pay period
-            If d <= time.workPeriodStart And time.workPeriodStart.Year = d.year Then
+            If d <= workStart And workStart.Year = d.year Then
                 _YTDRegular += getRegularHours(userID, d)
                 _YTDOvertime += getOvertimeHours(userID, d)
             End If
         Next
-        _YTDPersonal = dbems.getHoursWorked(userID, "Personal", time.workYearStart, time.workPeriodEnd).TotalHours
-        _YTDVacation = dbems.getHoursWorked(userID, "Vacation", time.workYearStart, time.workPeriodEnd).TotalHours
+        _YTDPersonal = dbems.getHoursWorked(userID, "Personal", time.findFirstMonday(workStart), time.workPeriodEnd).TotalHours
+        _YTDVacation = dbems.getHoursWorked(userID, "Vacation", time.findFirstMonday(workStart), time.workPeriodEnd).TotalHours
         _YTDHoliday = dbems.getHoursWorked(userID, "Holiday", time.workYearStart, time.workPeriodEnd).TotalHours
         _YTDTotal = _YTDRegular + _YTDPersonal + _YTDVacation + _YTDHoliday
 
-        _annualPay = dbems.getPeriodPayRate(userID, workStart)
-        _hourlyPay = annualPay / 52 / 40
+        _annualPay = getAnnualPay(userID, workStart)
+        _hourlyPay = _annualPay / 52 / 40
     End Sub
 
     'gets the regular hours (adjusted for overtime) for the pay period starting on the workStart date
@@ -360,5 +359,24 @@
         Return taxes
     End Function
 
+    'returns the pay rate on the specified date. If no pay rate is found
+    'the workdays of each week are iterated through until one is found
+    Private Function getAnnualPay(ByVal userID As Integer, ByVal workStart As Date) As Decimal
+        Dim pay As Decimal = 0
+        Dim inputDate As Date = workStart
+        While pay = 0
+            For i = 0 To 4
+                If pay = 0 Then
+                    pay = dbems.getPeriodPayRate(userID, inputDate.AddDays(i))
+                End If
+            Next
+            inputDate = inputDate.AddDays(-7)
+            'if no pay rate is found before the user's hire date is reached then exit the function
+            If inputDate < dbems.getHireDate(userID) Then
+                Exit While
+            End If
+        End While
+        Return pay
+    End Function
 
 End Class

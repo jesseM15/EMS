@@ -1,4 +1,6 @@
-﻿Public Class ManageVacations
+﻿Imports EMSlib.EMS
+
+Public Class ManageVacations
     Private _dgvInitialized As Boolean
 
     Public Sub New()
@@ -43,6 +45,29 @@
         End If
 
         Form1.pnlManageVacations.Visible = True
+    End Sub
+
+    Public Sub approveVacation(ByVal user_id As Integer, ByVal time_id As Integer, ByVal employeeMessage As String, ByVal managerMessage As String)
+        dbems.subtractVacationTime(user_id)
+        dbems.approveVacationRequest(time_id)
+        Dim m As New Message
+        m.userId = user_id
+        m.senderId = user.id
+        m.message = employeeMessage
+        dbems.sendMessage(m)
+        MessageBox.Show(managerMessage)
+        mngVac.initManageVacationsPanel()
+    End Sub
+
+    Public Sub denyVacation(ByVal user_id As Integer, ByVal time_id As Integer, ByVal employeeMessage As String, ByVal managerMessage As String)
+        dbems.denyVacationRequest(time_id)
+        Dim m As New Message
+        m.userId = user_id
+        m.senderId = user.id
+        m.message = employeeMessage
+        dbems.sendMessage(m)
+        MessageBox.Show(managerMessage)
+        mngVac.initManageVacationsPanel()
     End Sub
 
 End Class

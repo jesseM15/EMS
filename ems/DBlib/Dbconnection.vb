@@ -153,6 +153,44 @@ Namespace DBSQL
             _cmd.Connection.Close()
         End Sub
 
+        'gets the vacation time remaining for the user
+        Public Function getVacationTime(ByVal id As Integer)
+            initCommand()
+            _cmd.CommandText = "SELECT vacation_time FROM Users WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            Dim vHours As Integer = CInt(_cmd.ExecuteScalar)
+            _cmd.Connection.Close()
+            Return vHours
+        End Function
+
+        'subtracts 8 hours from the users vacation time
+        Public Sub subtractVacationTime(ByVal id As Integer)
+            initCommand()
+            _cmd.CommandText = "UPDATE Users SET vacation_time=vacation_time-8 WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
+        'gets the hire date for a user
+        Public Function getHireDate(ByVal id As Integer)
+            initCommand()
+            _cmd.CommandText = "SELECT hire_date FROM Users WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            Dim r As IAsyncResult = _cmd.BeginExecuteReader
+            Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
+            Dim hireDate As Date
+            While reader.Read
+                hireDate = reader("hire_date")
+            End While
+            reader.Close()
+            _cmd.Connection.Close()
+            Return hireDate
+        End Function
 
         '===LogIn/Out==============================================================================
 
@@ -236,6 +274,7 @@ Namespace DBSQL
             _cmd.Connection.Close()
         End Sub
 
+        'gets the hours worked for a user during a specified span of time
         Public Function getHoursWorked(ByVal user_id As Integer, ByVal hours_type As String, ByVal HoursStart As Date, ByVal HoursEnd As Date) As TimeSpan
             initCommand()
             _cmd.CommandText = "SELECT * FROM Times WHERE user_id=@user_id AND hours_type=@hours_type AND time_end IS NOT NULL AND time_start BETWEEN @HoursStart AND @HoursEnd"
@@ -255,6 +294,7 @@ Namespace DBSQL
             Return ts
         End Function
 
+        'gets the pay rate on the specified day of the work period
         Public Function getPeriodPayRate(ByVal user_id As Integer, ByVal workStart As Date) As Decimal
             initCommand()
             _cmd.CommandText = "SELECT * FROM Times WHERE user_id=@user_id AND time_start BETWEEN @workDayStart AND @workDayEnd"
@@ -266,11 +306,23 @@ Namespace DBSQL
             Dim reader As SqlDataReader = _cmd.EndExecuteReader(r)
             Dim payRate As Decimal = 0
             While reader.Read
-                payRate = reader(5)
+                If IsDBNull(reader(5)) = False Then
+                    payRate = reader(5)
+                End If
             End While
             reader.Close()
             _cmd.Connection.Close()
             Return payRate
+        End Function
+
+        'gets the first recorded work date
+        Public Function getFirstWorkDate() As Date
+            initCommand()
+            _cmd.CommandText = "SELECT MIN(time_start) FROM Times"
+            _cmd.Connection.Open()
+            Dim firstDate As Date = _cmd.ExecuteScalar()
+            _cmd.Connection.Close()
+            Return firstDate.Date
         End Function
 
         '===Vacation Requests====================================================================

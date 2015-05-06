@@ -50,7 +50,7 @@
 
     Public Sub initReportsPanel()
         If employedDates.Count < 1 Then
-            _employedDates = time.getEmployedDates(admin.workStartDate, user.hire_date)
+            _employedDates = time.getEmployedDates(dbems.getFirstWorkDate(), user.hire_date)
             For Each payPeriod In _employedDates
                 cboReports.Items.Add("Pay Report: " & payPeriod.date & " - " & payPeriod.addDays(time.workPeriodLength).addMinutes(-1).date)
             Next
