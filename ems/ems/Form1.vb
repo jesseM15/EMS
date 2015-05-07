@@ -16,7 +16,7 @@ Public Class Form1
         'End If
         '**Uncomment and remove following lines during testing**
         initSession()
-        user = dbems.getSession(5)
+        user = dbems.getSession(7)
         time.workPeriodLength = admin.workPeriod
         initNavigationPanel()
     End Sub
@@ -33,14 +33,17 @@ Public Class Form1
         lblName.Text = user.first_name + " " + user.last_name
         lblPosition.Text = user.position
         pnlNavigationManager.Visible = False
+        pnlNavigationAdministrator.Visible = False
         tmiManage.Visible = False
+        tmiSettings.Visible = False
         If user.user_type = "Manager" Then
             pnlNavigationManager.Visible = True
             tmiManage.Visible = True
         ElseIf user.user_type = "Administrator" Then
             pnlNavigationManager.Visible = True
+            pnlNavigationAdministrator.Visible = True
             tmiManage.Visible = True
-
+            tmiSettings.Visible = True
         End If
         SplitContainer1.Visible = True
     End Sub
@@ -54,6 +57,8 @@ Public Class Form1
         pnlEditEmployee.Visible = False
         pnlManageVacations.Visible = False
         pnlReports.Visible = False
+        pnlBusinessData.Visible = False
+        pnlConfigureSettings.Visible = False
     End Sub
 
     Private Sub tmiLogInOut_Click(sender As Object, e As EventArgs) Handles tmiLogInOut.Click
@@ -123,6 +128,16 @@ Public Class Form1
         hidePanels()
         report.initReportsPanel()
         report.cboReports.SelectedIndex = 0
+    End Sub
+
+    Private Sub tmiBusinessData_Click(sender As Object, e As EventArgs) Handles tmiBusinessData.Click, btnBusinessData.Click
+        hidePanels()
+        busDat.initBusinessDataPanel()
+    End Sub
+
+    Private Sub tmiConfigureSettings_Click(sender As Object, e As EventArgs) Handles tmiConfigureSettings.Click, btnConfigureSettings.Click
+        hidePanels()
+        conSet.initConfigureSettingsPanel()
     End Sub
 
     Private Sub calVacation_DateSelected(sender As Object, e As DateRangeEventArgs) Handles calVacation.DateSelected
@@ -263,4 +278,8 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub btnUpdateBusinessData_Click(sender As Object, e As EventArgs) Handles btnUpdateBusinessData.Click
+        busDat.setXMLData()
+        MessageBox.Show("Business data updated.")
+    End Sub
 End Class

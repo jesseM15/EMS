@@ -202,15 +202,22 @@
         End If
         getHours(user.id, _workPeriodStart)
         'employee information
+        busDat.getXMLData()
         Form1.lblEmployeeName.Text = user.first_name & " " & user.last_name
         Form1.lblHireDate.Text = user.hire_date
         Form1.lblEmployeeAddress1.Text = user.address
         Form1.lblEmployeeAddress2.Text = user.city & ", " & user.state & " " & user.zip
+        'employer information
+
+        Form1.lblEmployerName.Text = busDat.companyName
+        Form1.lblEmployerPhone.Text = busDat.companyPhone
+        Form1.lblEmployerAddress1.Text = busDat.companyAddress
+        Form1.lblEmployerAddress2.Text = busDat.companyCity & ", " & busDat.companyState & " " & busDat.companyZip
         'pay period and salary
         If time.workPeriodLength = 7 Then
             Form1.lblPayPeriod.Text = "Weekly"
         ElseIf time.workPeriodLength = 14 Then
-            Form1.lblPayPeriod.Text = "Bi-Weekly"
+            Form1.lblPayPeriod.Text = "Biweekly"
         End If
         Form1.lblPaymentDate.Text = _workPeriodEnd.AddDays(5).Date
         Form1.lblPayStartDate.Text = _workPeriodStart.Date

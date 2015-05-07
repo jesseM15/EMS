@@ -85,6 +85,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessData.vb" />
+    <Compile Include="ConfigureSettings.vb" />
     <Compile Include="EditEmployee.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>

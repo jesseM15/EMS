@@ -13,6 +13,8 @@ Module globals
     Public employees As ViewEmployees
     Public mngVac As ManageVacations
     Public report As Reports
+    Public busDat As BusinessData
+    Public conSet As ConfigureSettings
 
     Public Sub initSession()
         admin = New Admin
@@ -26,6 +28,8 @@ Module globals
         employees = New ViewEmployees
         mngVac = New ManageVacations
         report = New Reports
+        busDat = New BusinessData
+        conSet = New ConfigureSettings
     End Sub
 
 End Module

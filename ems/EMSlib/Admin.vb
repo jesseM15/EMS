@@ -28,6 +28,8 @@ Namespace EMS
                         Exit Select
                 End Select
             End While
+            reader.Close()
+            reader.Dispose()
         End Sub
 
         Public Property workPeriod() As Integer
