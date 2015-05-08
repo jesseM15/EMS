@@ -19,7 +19,7 @@ Public Class BusinessData
         _companyState = ""
         _companyZip = ""
 
-        _WorkPeriodLength = 7
+        _WorkPeriodLength = 0
     End Sub
 
     Public Property companyName As String
@@ -86,7 +86,6 @@ Public Class BusinessData
     End Property
 
     Public Sub initBusinessDataPanel()
-        getXMLData()
         Form1.txtCompanyName.Text = _companyName
         Form1.mtxCompanyPhone.Text = _companyPhone
         Form1.txtCompanyAddress.Text = _companyAddress

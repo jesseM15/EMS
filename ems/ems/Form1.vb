@@ -17,7 +17,7 @@ Public Class Form1
         '**Uncomment and remove following lines during testing**
         initSession()
         user = dbems.getSession(7)
-        time.workPeriodLength = admin.workPeriod
+        time.workPeriodLength = busDat.workPeriodLength
         initNavigationPanel()
     End Sub
 
@@ -63,7 +63,7 @@ Public Class Form1
 
     Private Sub tmiLogInOut_Click(sender As Object, e As EventArgs) Handles tmiLogInOut.Click
         If user.id > 0 Then
-            user = New User
+            initSession()
             tmiClockInOut.Enabled = False
             tmiEmployee.Enabled = False
             tmiLogInOut.Text = "Log In"
@@ -89,7 +89,6 @@ Public Class Form1
     End Sub
 
     Private Sub tmiExit_Click(sender As Object, e As EventArgs) Handles tmiExit.Click
-        MessageBox.Show(time.findMondayDate(dbems.getFirstWorkDate()))
         Me.Close()
     End Sub
 
@@ -149,26 +148,7 @@ Public Class Form1
     End Sub
 
     Private Sub btnSubmitRequest_Click(sender As Object, e As EventArgs) Handles btnSubmitRequest.Click
-        For Each d In vacReq.datesRequested
-            dbems.submitVacationRequest(user.id, d)
-        Next
-        Dim m As New Message
-        m.userId = user.manager_id
-        m.senderId = user.id
-        m.message = user.first_name & " " & user.last_name & " has requested the following vacation days: "
-        Dim c As Integer = 1
-        While c <= vacReq.datesRequested.Count
-            m.message += vacReq.datesRequested(c).date
-            If c < vacReq.datesRequested.Count Then
-                m.message += ", "
-            Else
-                m.message += "."
-            End If
-            c += 1
-        End While
-        dbems.sendMessage(m)
-        MessageBox.Show("Vacation request submitted.")
-        vacReq.initVacationRequestPanel()
+        vacReq.submitRequest()
     End Sub
 
     Private Sub btnInbox_Click(sender As Object, e As EventArgs) Handles btnInbox.Click
@@ -187,6 +167,10 @@ Public Class Form1
         If msgs.view = "Viewed" Then Exit Sub
         msgs.view = "Viewed"
         msgs.initMessagesPanel()
+    End Sub
+
+    Private Sub lsvMessages_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lsvMessages.MouseDoubleClick
+        msgs.displayMessage(e)
     End Sub
 
     Private Sub btnChangePasswordOK_Click(sender As Object, e As EventArgs) Handles btnChangePasswordOK.Click
@@ -268,18 +252,9 @@ Public Class Form1
         employees.initEditEmployeePanel()
     End Sub
 
-    Private Sub lsvMessages_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles lsvMessages.ItemSelectionChanged
-        If e.IsSelected Then
-            Dim caption As String = msgs.view & " Message"
-            Dim msg As String = lsvMessages.Columns(0).Text & ": " & e.Item.SubItems(0).Text & " on "
-            msg += e.Item.SubItems(1).Text & vbCrLf & vbCrLf
-            msg += e.Item.SubItems(2).Text
-            MessageBox.Show(msg, caption)
-        End If
-    End Sub
-
     Private Sub btnUpdateBusinessData_Click(sender As Object, e As EventArgs) Handles btnUpdateBusinessData.Click
         busDat.setXMLData()
         MessageBox.Show("Business data updated.")
     End Sub
+
 End Class

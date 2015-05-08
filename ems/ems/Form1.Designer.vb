@@ -38,7 +38,19 @@ Partial Class Form1
         Me.lblPosition = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
         Me.pnlBusinessData = New System.Windows.Forms.Panel()
+        Me.btnUpdateBusinessData = New System.Windows.Forms.Button()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.radWorkPeriodBiweekly = New System.Windows.Forms.RadioButton()
+        Me.radWorkPeriodWeekly = New System.Windows.Forms.RadioButton()
+        Me.lblWorkPeriodLength = New System.Windows.Forms.Label()
         Me.grpCompanyInfo = New System.Windows.Forms.GroupBox()
+        Me.mtxCompanyPhone = New System.Windows.Forms.MaskedTextBox()
+        Me.txtCompanyZip = New System.Windows.Forms.TextBox()
+        Me.lblCompanyInfoZip = New System.Windows.Forms.Label()
+        Me.txtCompanyState = New System.Windows.Forms.TextBox()
+        Me.lblCompanyInfoState = New System.Windows.Forms.Label()
+        Me.txtCompanyCity = New System.Windows.Forms.TextBox()
+        Me.lblCompanyInfoCity = New System.Windows.Forms.Label()
         Me.txtCompanyAddress = New System.Windows.Forms.TextBox()
         Me.lblCompanyInfoAddress = New System.Windows.Forms.Label()
         Me.lblCompanyInfoPhone = New System.Windows.Forms.Label()
@@ -108,6 +120,7 @@ Partial Class Form1
         Me.lblSubmittedRequests = New System.Windows.Forms.Label()
         Me.txtRequestList = New System.Windows.Forms.TextBox()
         Me.grpRequestVacationDays = New System.Windows.Forms.GroupBox()
+        Me.lblVacationHoursRemaining = New System.Windows.Forms.Label()
         Me.calVacation = New System.Windows.Forms.MonthCalendar()
         Me.lblDatesRequested = New System.Windows.Forms.Label()
         Me.txtDateList = New System.Windows.Forms.TextBox()
@@ -125,6 +138,13 @@ Partial Class Form1
         Me.txtRetypePassword = New System.Windows.Forms.TextBox()
         Me.lblChangePassword = New System.Windows.Forms.Label()
         Me.pnlPaySlip = New System.Windows.Forms.Panel()
+        Me.lblEmployerAddress2 = New System.Windows.Forms.Label()
+        Me.lblEmployerAddress1 = New System.Windows.Forms.Label()
+        Me.lblEmployerAddressField = New System.Windows.Forms.Label()
+        Me.lblEmployerPhone = New System.Windows.Forms.Label()
+        Me.lblEmployerPhoneField = New System.Windows.Forms.Label()
+        Me.lblEmployerName = New System.Windows.Forms.Label()
+        Me.lblEmployerNameField = New System.Windows.Forms.Label()
         Me.lblYTDAmountHoliday = New System.Windows.Forms.Label()
         Me.lblYTDHoursHoliday = New System.Windows.Forms.Label()
         Me.lblCurrentAmountHoliday = New System.Windows.Forms.Label()
@@ -208,25 +228,6 @@ Partial Class Form1
         Me.tmiBusinessData = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiConfigureSettings = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.lblCompanyInfoCity = New System.Windows.Forms.Label()
-        Me.txtCompanyCity = New System.Windows.Forms.TextBox()
-        Me.lblCompanyInfoState = New System.Windows.Forms.Label()
-        Me.txtCompanyState = New System.Windows.Forms.TextBox()
-        Me.lblCompanyInfoZip = New System.Windows.Forms.Label()
-        Me.txtCompanyZip = New System.Windows.Forms.TextBox()
-        Me.mtxCompanyPhone = New System.Windows.Forms.MaskedTextBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.lblWorkPeriodLength = New System.Windows.Forms.Label()
-        Me.radWorkPeriodWeekly = New System.Windows.Forms.RadioButton()
-        Me.radWorkPeriodBiweekly = New System.Windows.Forms.RadioButton()
-        Me.btnUpdateBusinessData = New System.Windows.Forms.Button()
-        Me.lblEmployerNameField = New System.Windows.Forms.Label()
-        Me.lblEmployerName = New System.Windows.Forms.Label()
-        Me.lblEmployerPhoneField = New System.Windows.Forms.Label()
-        Me.lblEmployerPhone = New System.Windows.Forms.Label()
-        Me.lblEmployerAddressField = New System.Windows.Forms.Label()
-        Me.lblEmployerAddress1 = New System.Windows.Forms.Label()
-        Me.lblEmployerAddress2 = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -235,6 +236,7 @@ Partial Class Form1
         Me.pnlNavigationManager.SuspendLayout()
         Me.pnlNavigationEmployee.SuspendLayout()
         Me.pnlBusinessData.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.grpCompanyInfo.SuspendLayout()
         Me.pnlManageVacations.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -255,7 +257,6 @@ Partial Class Form1
         Me.grpChangePassword.SuspendLayout()
         Me.pnlPaySlip.SuspendLayout()
         Me.mnuNavigation.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -276,6 +277,9 @@ Partial Class Form1
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlRequestVacation)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlChangePassword)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlBusinessData)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlReports)
@@ -283,9 +287,6 @@ Partial Class Form1
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlEditEmployee)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlConfigureSettings)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlRequestVacation)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlChangePassword)
         Me.SplitContainer1.Size = New System.Drawing.Size(826, 461)
         Me.SplitContainer1.SplitterDistance = 156
         Me.SplitContainer1.TabIndex = 1
@@ -438,6 +439,58 @@ Partial Class Form1
         Me.pnlBusinessData.Size = New System.Drawing.Size(664, 459)
         Me.pnlBusinessData.TabIndex = 67
         '
+        'btnUpdateBusinessData
+        '
+        Me.btnUpdateBusinessData.Location = New System.Drawing.Point(512, 420)
+        Me.btnUpdateBusinessData.Name = "btnUpdateBusinessData"
+        Me.btnUpdateBusinessData.Size = New System.Drawing.Size(132, 23)
+        Me.btnUpdateBusinessData.TabIndex = 16
+        Me.btnUpdateBusinessData.Text = "Update Business Data"
+        Me.btnUpdateBusinessData.UseVisualStyleBackColor = True
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.radWorkPeriodBiweekly)
+        Me.GroupBox3.Controls.Add(Me.radWorkPeriodWeekly)
+        Me.GroupBox3.Controls.Add(Me.lblWorkPeriodLength)
+        Me.GroupBox3.Location = New System.Drawing.Point(25, 314)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(221, 100)
+        Me.GroupBox3.TabIndex = 3
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Work Period"
+        '
+        'radWorkPeriodBiweekly
+        '
+        Me.radWorkPeriodBiweekly.AutoSize = True
+        Me.radWorkPeriodBiweekly.Location = New System.Drawing.Point(124, 60)
+        Me.radWorkPeriodBiweekly.Name = "radWorkPeriodBiweekly"
+        Me.radWorkPeriodBiweekly.Size = New System.Drawing.Size(67, 17)
+        Me.radWorkPeriodBiweekly.TabIndex = 14
+        Me.radWorkPeriodBiweekly.TabStop = True
+        Me.radWorkPeriodBiweekly.Text = "Biweekly"
+        Me.radWorkPeriodBiweekly.UseVisualStyleBackColor = True
+        '
+        'radWorkPeriodWeekly
+        '
+        Me.radWorkPeriodWeekly.AutoSize = True
+        Me.radWorkPeriodWeekly.Location = New System.Drawing.Point(124, 30)
+        Me.radWorkPeriodWeekly.Name = "radWorkPeriodWeekly"
+        Me.radWorkPeriodWeekly.Size = New System.Drawing.Size(61, 17)
+        Me.radWorkPeriodWeekly.TabIndex = 14
+        Me.radWorkPeriodWeekly.TabStop = True
+        Me.radWorkPeriodWeekly.Text = "Weekly"
+        Me.radWorkPeriodWeekly.UseVisualStyleBackColor = True
+        '
+        'lblWorkPeriodLength
+        '
+        Me.lblWorkPeriodLength.AutoSize = True
+        Me.lblWorkPeriodLength.Location = New System.Drawing.Point(13, 30)
+        Me.lblWorkPeriodLength.Name = "lblWorkPeriodLength"
+        Me.lblWorkPeriodLength.Size = New System.Drawing.Size(105, 13)
+        Me.lblWorkPeriodLength.TabIndex = 13
+        Me.lblWorkPeriodLength.Text = "Work Period Length:"
+        '
         'grpCompanyInfo
         '
         Me.grpCompanyInfo.Controls.Add(Me.mtxCompanyPhone)
@@ -458,6 +511,62 @@ Partial Class Form1
         Me.grpCompanyInfo.TabIndex = 2
         Me.grpCompanyInfo.TabStop = False
         Me.grpCompanyInfo.Text = "Company Info"
+        '
+        'mtxCompanyPhone
+        '
+        Me.mtxCompanyPhone.Location = New System.Drawing.Point(67, 57)
+        Me.mtxCompanyPhone.Mask = "(999) 000-0000"
+        Me.mtxCompanyPhone.Name = "mtxCompanyPhone"
+        Me.mtxCompanyPhone.Size = New System.Drawing.Size(130, 20)
+        Me.mtxCompanyPhone.TabIndex = 4
+        '
+        'txtCompanyZip
+        '
+        Me.txtCompanyZip.Location = New System.Drawing.Point(67, 176)
+        Me.txtCompanyZip.Name = "txtCompanyZip"
+        Me.txtCompanyZip.Size = New System.Drawing.Size(130, 20)
+        Me.txtCompanyZip.TabIndex = 12
+        '
+        'lblCompanyInfoZip
+        '
+        Me.lblCompanyInfoZip.AutoSize = True
+        Me.lblCompanyInfoZip.Location = New System.Drawing.Point(13, 180)
+        Me.lblCompanyInfoZip.Name = "lblCompanyInfoZip"
+        Me.lblCompanyInfoZip.Size = New System.Drawing.Size(25, 13)
+        Me.lblCompanyInfoZip.TabIndex = 11
+        Me.lblCompanyInfoZip.Text = "Zip:"
+        '
+        'txtCompanyState
+        '
+        Me.txtCompanyState.Location = New System.Drawing.Point(67, 147)
+        Me.txtCompanyState.Name = "txtCompanyState"
+        Me.txtCompanyState.Size = New System.Drawing.Size(130, 20)
+        Me.txtCompanyState.TabIndex = 10
+        '
+        'lblCompanyInfoState
+        '
+        Me.lblCompanyInfoState.AutoSize = True
+        Me.lblCompanyInfoState.Location = New System.Drawing.Point(13, 150)
+        Me.lblCompanyInfoState.Name = "lblCompanyInfoState"
+        Me.lblCompanyInfoState.Size = New System.Drawing.Size(35, 13)
+        Me.lblCompanyInfoState.TabIndex = 9
+        Me.lblCompanyInfoState.Text = "State:"
+        '
+        'txtCompanyCity
+        '
+        Me.txtCompanyCity.Location = New System.Drawing.Point(67, 119)
+        Me.txtCompanyCity.Name = "txtCompanyCity"
+        Me.txtCompanyCity.Size = New System.Drawing.Size(130, 20)
+        Me.txtCompanyCity.TabIndex = 8
+        '
+        'lblCompanyInfoCity
+        '
+        Me.lblCompanyInfoCity.AutoSize = True
+        Me.lblCompanyInfoCity.Location = New System.Drawing.Point(13, 120)
+        Me.lblCompanyInfoCity.Name = "lblCompanyInfoCity"
+        Me.lblCompanyInfoCity.Size = New System.Drawing.Size(27, 13)
+        Me.lblCompanyInfoCity.TabIndex = 7
+        Me.lblCompanyInfoCity.Text = "City:"
         '
         'txtCompanyAddress
         '
@@ -1110,20 +1219,30 @@ Partial Class Form1
         '
         'grpRequestVacationDays
         '
+        Me.grpRequestVacationDays.Controls.Add(Me.lblVacationHoursRemaining)
         Me.grpRequestVacationDays.Controls.Add(Me.calVacation)
         Me.grpRequestVacationDays.Controls.Add(Me.lblDatesRequested)
         Me.grpRequestVacationDays.Controls.Add(Me.txtDateList)
         Me.grpRequestVacationDays.Controls.Add(Me.btnSubmitRequest)
         Me.grpRequestVacationDays.Location = New System.Drawing.Point(25, 72)
         Me.grpRequestVacationDays.Name = "grpRequestVacationDays"
-        Me.grpRequestVacationDays.Size = New System.Drawing.Size(251, 321)
+        Me.grpRequestVacationDays.Size = New System.Drawing.Size(251, 348)
         Me.grpRequestVacationDays.TabIndex = 8
         Me.grpRequestVacationDays.TabStop = False
         Me.grpRequestVacationDays.Text = "Request Vacation Days"
         '
+        'lblVacationHoursRemaining
+        '
+        Me.lblVacationHoursRemaining.AutoSize = True
+        Me.lblVacationHoursRemaining.Location = New System.Drawing.Point(9, 24)
+        Me.lblVacationHoursRemaining.Name = "lblVacationHoursRemaining"
+        Me.lblVacationHoursRemaining.Size = New System.Drawing.Size(126, 13)
+        Me.lblVacationHoursRemaining.TabIndex = 6
+        Me.lblVacationHoursRemaining.Text = "Vacation hours remaining"
+        '
         'calVacation
         '
-        Me.calVacation.Location = New System.Drawing.Point(12, 19)
+        Me.calVacation.Location = New System.Drawing.Point(12, 49)
         Me.calVacation.MaxSelectionCount = 14
         Me.calVacation.Name = "calVacation"
         Me.calVacation.TabIndex = 1
@@ -1131,7 +1250,7 @@ Partial Class Form1
         'lblDatesRequested
         '
         Me.lblDatesRequested.AutoSize = True
-        Me.lblDatesRequested.Location = New System.Drawing.Point(9, 190)
+        Me.lblDatesRequested.Location = New System.Drawing.Point(9, 220)
         Me.lblDatesRequested.Name = "lblDatesRequested"
         Me.lblDatesRequested.Size = New System.Drawing.Size(99, 13)
         Me.lblDatesRequested.TabIndex = 2
@@ -1139,7 +1258,7 @@ Partial Class Form1
         '
         'txtDateList
         '
-        Me.txtDateList.Location = New System.Drawing.Point(157, 190)
+        Me.txtDateList.Location = New System.Drawing.Point(157, 220)
         Me.txtDateList.Multiline = True
         Me.txtDateList.Name = "txtDateList"
         Me.txtDateList.ReadOnly = True
@@ -1149,7 +1268,7 @@ Partial Class Form1
         '
         'btnSubmitRequest
         '
-        Me.btnSubmitRequest.Location = New System.Drawing.Point(148, 287)
+        Me.btnSubmitRequest.Location = New System.Drawing.Point(148, 313)
         Me.btnSubmitRequest.Name = "btnSubmitRequest"
         Me.btnSubmitRequest.Size = New System.Drawing.Size(91, 23)
         Me.btnSubmitRequest.TabIndex = 4
@@ -1350,6 +1469,73 @@ Partial Class Form1
         Me.pnlPaySlip.Name = "pnlPaySlip"
         Me.pnlPaySlip.Size = New System.Drawing.Size(664, 459)
         Me.pnlPaySlip.TabIndex = 0
+        '
+        'lblEmployerAddress2
+        '
+        Me.lblEmployerAddress2.AutoSize = True
+        Me.lblEmployerAddress2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmployerAddress2.Location = New System.Drawing.Point(484, 166)
+        Me.lblEmployerAddress2.Name = "lblEmployerAddress2"
+        Me.lblEmployerAddress2.Size = New System.Drawing.Size(88, 13)
+        Me.lblEmployerAddress2.TabIndex = 73
+        Me.lblEmployerAddress2.Text = "City, State Zip"
+        '
+        'lblEmployerAddress1
+        '
+        Me.lblEmployerAddress1.AutoSize = True
+        Me.lblEmployerAddress1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmployerAddress1.Location = New System.Drawing.Point(484, 134)
+        Me.lblEmployerAddress1.Name = "lblEmployerAddress1"
+        Me.lblEmployerAddress1.Size = New System.Drawing.Size(86, 13)
+        Me.lblEmployerAddress1.TabIndex = 72
+        Me.lblEmployerAddress1.Text = "Stree Address"
+        '
+        'lblEmployerAddressField
+        '
+        Me.lblEmployerAddressField.AutoSize = True
+        Me.lblEmployerAddressField.Location = New System.Drawing.Point(381, 134)
+        Me.lblEmployerAddressField.Name = "lblEmployerAddressField"
+        Me.lblEmployerAddressField.Size = New System.Drawing.Size(94, 13)
+        Me.lblEmployerAddressField.TabIndex = 71
+        Me.lblEmployerAddressField.Text = "Employer Address:"
+        '
+        'lblEmployerPhone
+        '
+        Me.lblEmployerPhone.AutoSize = True
+        Me.lblEmployerPhone.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmployerPhone.Location = New System.Drawing.Point(484, 102)
+        Me.lblEmployerPhone.Name = "lblEmployerPhone"
+        Me.lblEmployerPhone.Size = New System.Drawing.Size(98, 13)
+        Me.lblEmployerPhone.TabIndex = 70
+        Me.lblEmployerPhone.Text = "Employer Phone"
+        '
+        'lblEmployerPhoneField
+        '
+        Me.lblEmployerPhoneField.AutoSize = True
+        Me.lblEmployerPhoneField.Location = New System.Drawing.Point(381, 102)
+        Me.lblEmployerPhoneField.Name = "lblEmployerPhoneField"
+        Me.lblEmployerPhoneField.Size = New System.Drawing.Size(87, 13)
+        Me.lblEmployerPhoneField.TabIndex = 69
+        Me.lblEmployerPhoneField.Text = "Employer Phone:"
+        '
+        'lblEmployerName
+        '
+        Me.lblEmployerName.AutoSize = True
+        Me.lblEmployerName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmployerName.Location = New System.Drawing.Point(484, 72)
+        Me.lblEmployerName.Name = "lblEmployerName"
+        Me.lblEmployerName.Size = New System.Drawing.Size(94, 13)
+        Me.lblEmployerName.TabIndex = 68
+        Me.lblEmployerName.Text = "Employer Name"
+        '
+        'lblEmployerNameField
+        '
+        Me.lblEmployerNameField.AutoSize = True
+        Me.lblEmployerNameField.Location = New System.Drawing.Point(381, 72)
+        Me.lblEmployerNameField.Name = "lblEmployerNameField"
+        Me.lblEmployerNameField.Size = New System.Drawing.Size(84, 13)
+        Me.lblEmployerNameField.TabIndex = 67
+        Me.lblEmployerNameField.Text = "Employer Name:"
         '
         'lblYTDAmountHoliday
         '
@@ -2076,181 +2262,6 @@ Partial Class Form1
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'lblCompanyInfoCity
-        '
-        Me.lblCompanyInfoCity.AutoSize = True
-        Me.lblCompanyInfoCity.Location = New System.Drawing.Point(13, 120)
-        Me.lblCompanyInfoCity.Name = "lblCompanyInfoCity"
-        Me.lblCompanyInfoCity.Size = New System.Drawing.Size(27, 13)
-        Me.lblCompanyInfoCity.TabIndex = 7
-        Me.lblCompanyInfoCity.Text = "City:"
-        '
-        'txtCompanyCity
-        '
-        Me.txtCompanyCity.Location = New System.Drawing.Point(67, 119)
-        Me.txtCompanyCity.Name = "txtCompanyCity"
-        Me.txtCompanyCity.Size = New System.Drawing.Size(130, 20)
-        Me.txtCompanyCity.TabIndex = 8
-        '
-        'lblCompanyInfoState
-        '
-        Me.lblCompanyInfoState.AutoSize = True
-        Me.lblCompanyInfoState.Location = New System.Drawing.Point(13, 150)
-        Me.lblCompanyInfoState.Name = "lblCompanyInfoState"
-        Me.lblCompanyInfoState.Size = New System.Drawing.Size(35, 13)
-        Me.lblCompanyInfoState.TabIndex = 9
-        Me.lblCompanyInfoState.Text = "State:"
-        '
-        'txtCompanyState
-        '
-        Me.txtCompanyState.Location = New System.Drawing.Point(67, 147)
-        Me.txtCompanyState.Name = "txtCompanyState"
-        Me.txtCompanyState.Size = New System.Drawing.Size(130, 20)
-        Me.txtCompanyState.TabIndex = 10
-        '
-        'lblCompanyInfoZip
-        '
-        Me.lblCompanyInfoZip.AutoSize = True
-        Me.lblCompanyInfoZip.Location = New System.Drawing.Point(13, 180)
-        Me.lblCompanyInfoZip.Name = "lblCompanyInfoZip"
-        Me.lblCompanyInfoZip.Size = New System.Drawing.Size(25, 13)
-        Me.lblCompanyInfoZip.TabIndex = 11
-        Me.lblCompanyInfoZip.Text = "Zip:"
-        '
-        'txtCompanyZip
-        '
-        Me.txtCompanyZip.Location = New System.Drawing.Point(67, 176)
-        Me.txtCompanyZip.Name = "txtCompanyZip"
-        Me.txtCompanyZip.Size = New System.Drawing.Size(130, 20)
-        Me.txtCompanyZip.TabIndex = 12
-        '
-        'mtxCompanyPhone
-        '
-        Me.mtxCompanyPhone.Location = New System.Drawing.Point(67, 57)
-        Me.mtxCompanyPhone.Mask = "(999) 000-0000"
-        Me.mtxCompanyPhone.Name = "mtxCompanyPhone"
-        Me.mtxCompanyPhone.Size = New System.Drawing.Size(130, 20)
-        Me.mtxCompanyPhone.TabIndex = 4
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.radWorkPeriodBiweekly)
-        Me.GroupBox3.Controls.Add(Me.radWorkPeriodWeekly)
-        Me.GroupBox3.Controls.Add(Me.lblWorkPeriodLength)
-        Me.GroupBox3.Location = New System.Drawing.Point(25, 314)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(221, 100)
-        Me.GroupBox3.TabIndex = 3
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Work Period"
-        '
-        'lblWorkPeriodLength
-        '
-        Me.lblWorkPeriodLength.AutoSize = True
-        Me.lblWorkPeriodLength.Location = New System.Drawing.Point(13, 30)
-        Me.lblWorkPeriodLength.Name = "lblWorkPeriodLength"
-        Me.lblWorkPeriodLength.Size = New System.Drawing.Size(105, 13)
-        Me.lblWorkPeriodLength.TabIndex = 13
-        Me.lblWorkPeriodLength.Text = "Work Period Length:"
-        '
-        'radWorkPeriodWeekly
-        '
-        Me.radWorkPeriodWeekly.AutoSize = True
-        Me.radWorkPeriodWeekly.Location = New System.Drawing.Point(124, 30)
-        Me.radWorkPeriodWeekly.Name = "radWorkPeriodWeekly"
-        Me.radWorkPeriodWeekly.Size = New System.Drawing.Size(61, 17)
-        Me.radWorkPeriodWeekly.TabIndex = 14
-        Me.radWorkPeriodWeekly.TabStop = True
-        Me.radWorkPeriodWeekly.Text = "Weekly"
-        Me.radWorkPeriodWeekly.UseVisualStyleBackColor = True
-        '
-        'radWorkPeriodBiweekly
-        '
-        Me.radWorkPeriodBiweekly.AutoSize = True
-        Me.radWorkPeriodBiweekly.Location = New System.Drawing.Point(124, 60)
-        Me.radWorkPeriodBiweekly.Name = "radWorkPeriodBiweekly"
-        Me.radWorkPeriodBiweekly.Size = New System.Drawing.Size(67, 17)
-        Me.radWorkPeriodBiweekly.TabIndex = 14
-        Me.radWorkPeriodBiweekly.TabStop = True
-        Me.radWorkPeriodBiweekly.Text = "Biweekly"
-        Me.radWorkPeriodBiweekly.UseVisualStyleBackColor = True
-        '
-        'btnUpdateBusinessData
-        '
-        Me.btnUpdateBusinessData.Location = New System.Drawing.Point(512, 420)
-        Me.btnUpdateBusinessData.Name = "btnUpdateBusinessData"
-        Me.btnUpdateBusinessData.Size = New System.Drawing.Size(132, 23)
-        Me.btnUpdateBusinessData.TabIndex = 16
-        Me.btnUpdateBusinessData.Text = "Update Business Data"
-        Me.btnUpdateBusinessData.UseVisualStyleBackColor = True
-        '
-        'lblEmployerNameField
-        '
-        Me.lblEmployerNameField.AutoSize = True
-        Me.lblEmployerNameField.Location = New System.Drawing.Point(381, 72)
-        Me.lblEmployerNameField.Name = "lblEmployerNameField"
-        Me.lblEmployerNameField.Size = New System.Drawing.Size(84, 13)
-        Me.lblEmployerNameField.TabIndex = 67
-        Me.lblEmployerNameField.Text = "Employer Name:"
-        '
-        'lblEmployerName
-        '
-        Me.lblEmployerName.AutoSize = True
-        Me.lblEmployerName.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEmployerName.Location = New System.Drawing.Point(484, 72)
-        Me.lblEmployerName.Name = "lblEmployerName"
-        Me.lblEmployerName.Size = New System.Drawing.Size(94, 13)
-        Me.lblEmployerName.TabIndex = 68
-        Me.lblEmployerName.Text = "Employer Name"
-        '
-        'lblEmployerPhoneField
-        '
-        Me.lblEmployerPhoneField.AutoSize = True
-        Me.lblEmployerPhoneField.Location = New System.Drawing.Point(381, 102)
-        Me.lblEmployerPhoneField.Name = "lblEmployerPhoneField"
-        Me.lblEmployerPhoneField.Size = New System.Drawing.Size(87, 13)
-        Me.lblEmployerPhoneField.TabIndex = 69
-        Me.lblEmployerPhoneField.Text = "Employer Phone:"
-        '
-        'lblEmployerPhone
-        '
-        Me.lblEmployerPhone.AutoSize = True
-        Me.lblEmployerPhone.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEmployerPhone.Location = New System.Drawing.Point(484, 102)
-        Me.lblEmployerPhone.Name = "lblEmployerPhone"
-        Me.lblEmployerPhone.Size = New System.Drawing.Size(98, 13)
-        Me.lblEmployerPhone.TabIndex = 70
-        Me.lblEmployerPhone.Text = "Employer Phone"
-        '
-        'lblEmployerAddressField
-        '
-        Me.lblEmployerAddressField.AutoSize = True
-        Me.lblEmployerAddressField.Location = New System.Drawing.Point(381, 134)
-        Me.lblEmployerAddressField.Name = "lblEmployerAddressField"
-        Me.lblEmployerAddressField.Size = New System.Drawing.Size(94, 13)
-        Me.lblEmployerAddressField.TabIndex = 71
-        Me.lblEmployerAddressField.Text = "Employer Address:"
-        '
-        'lblEmployerAddress1
-        '
-        Me.lblEmployerAddress1.AutoSize = True
-        Me.lblEmployerAddress1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEmployerAddress1.Location = New System.Drawing.Point(484, 134)
-        Me.lblEmployerAddress1.Name = "lblEmployerAddress1"
-        Me.lblEmployerAddress1.Size = New System.Drawing.Size(86, 13)
-        Me.lblEmployerAddress1.TabIndex = 72
-        Me.lblEmployerAddress1.Text = "Stree Address"
-        '
-        'lblEmployerAddress2
-        '
-        Me.lblEmployerAddress2.AutoSize = True
-        Me.lblEmployerAddress2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEmployerAddress2.Location = New System.Drawing.Point(484, 166)
-        Me.lblEmployerAddress2.Name = "lblEmployerAddress2"
-        Me.lblEmployerAddress2.Size = New System.Drawing.Size(88, 13)
-        Me.lblEmployerAddress2.TabIndex = 73
-        Me.lblEmployerAddress2.Text = "City, State Zip"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2272,6 +2283,8 @@ Partial Class Form1
         Me.pnlNavigationEmployee.ResumeLayout(False)
         Me.pnlBusinessData.ResumeLayout(False)
         Me.pnlBusinessData.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.grpCompanyInfo.ResumeLayout(False)
         Me.grpCompanyInfo.PerformLayout()
         Me.pnlManageVacations.ResumeLayout(False)
@@ -2308,8 +2321,6 @@ Partial Class Form1
         Me.pnlPaySlip.PerformLayout()
         Me.mnuNavigation.ResumeLayout(False)
         Me.mnuNavigation.PerformLayout()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2519,5 +2530,6 @@ Partial Class Form1
     Friend WithEvents lblEmployerAddress2 As System.Windows.Forms.Label
     Friend WithEvents lblEmployerAddress1 As System.Windows.Forms.Label
     Friend WithEvents lblEmployerAddressField As System.Windows.Forms.Label
+    Friend WithEvents lblVacationHoursRemaining As System.Windows.Forms.Label
 
 End Class

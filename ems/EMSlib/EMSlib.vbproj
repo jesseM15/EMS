@@ -62,7 +62,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.vb" />
     <Compile Include="Message.vb" />
     <Compile Include="Time.vb" />
     <Compile Include="User.vb" />

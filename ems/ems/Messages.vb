@@ -1,10 +1,12 @@
 ﻿Imports EMSlib.EMS
 
 Public Class Messages
-    Dim _view As String
+    Private _view As String
+    Private _messageList As Collection
 
     Public Sub New()
         _view = "Inbox"
+        _messageList = New Collection()
     End Sub
 
     Public Property view() As String
@@ -13,6 +15,15 @@ Public Class Messages
         End Get
         Set(value As String)
             _view = value
+        End Set
+    End Property
+
+    Public Property messageList As Collection
+        Get
+            Return _messageList
+        End Get
+        Set(value As Collection)
+            _messageList = value
         End Set
     End Property
 
@@ -37,10 +48,10 @@ Public Class Messages
     End Sub
 
     Private Sub initInbox()
-        Dim msgs As Collection = dbems.getInboxMessages(user.id)
+        _messageList = dbems.getInboxMessages(user.id)
         Dim msgstr(2) As String
         Dim lvi As New ListViewItem
-        For Each msg In msgs
+        For Each msg In _messageList
             msgstr(0) = dbems.getUserName(msg.senderId)
             msgstr(1) = msg.timeStamp.ToString()
             msgstr(2) = msg.message
@@ -50,10 +61,10 @@ Public Class Messages
     End Sub
 
     Private Sub initSent()
-        Dim msgs As Collection = dbems.getSentMessages(user.id)
+        _messageList = dbems.getSentMessages(user.id)
         Dim msgstr(2) As String
         Dim lvi As New ListViewItem
-        For Each msg In msgs
+        For Each msg In _messageList
             msgstr(0) = dbems.getUserName(msg.userId)
             msgstr(1) = msg.timeStamp.ToString()
             msgstr(2) = msg.message
@@ -63,16 +74,29 @@ Public Class Messages
     End Sub
 
     Private Sub initViewed()
-        Dim msgs As Collection = dbems.getViewedMessages(user.id)
+        _messageList = dbems.getViewedMessages(user.id)
         Dim msgstr(2) As String
         Dim lvi As New ListViewItem
-        For Each msg In msgs
+        For Each msg In _messageList
             msgstr(0) = dbems.getUserName(msg.senderId)
             msgstr(1) = msg.timeStamp.ToString()
             msgstr(2) = msg.message
             lvi = New ListViewItem(msgstr)
             Form1.lsvMessages.Items.Add(lvi)
         Next
+    End Sub
+
+    Public Sub displayMessage(ByVal e As MouseEventArgs)
+        Dim msgItem As ListViewItem = Form1.lsvMessages.GetItemAt(e.X, e.Y)
+        Dim caption As String = _view & " Message"
+        Dim msg As String = Form1.lsvMessages.Columns(0).Text & ": " & msgItem.SubItems(0).Text & " on "
+        msg += msgItem.SubItems(1).Text & vbCrLf & vbCrLf
+        msg += msgItem.SubItems(2).Text
+        MessageBox.Show(msg, caption)
+        If _view = "Inbox" Then
+            dbems.setMessageViewed(_messageList(msgItem.Index + 1).id())
+            initMessagesPanel()
+        End If
     End Sub
 
 End Class

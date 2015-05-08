@@ -2,7 +2,6 @@
 Imports EMSlib.EMS
 
 Module globals
-    Public admin As Admin
     Public dbems As DbConnection
     Public time As Time
     Public user As User
@@ -17,7 +16,6 @@ Module globals
     Public conSet As ConfigureSettings
 
     Public Sub initSession()
-        admin = New Admin
         dbems = New DbConnection(My.Settings.DbEmsConnectionString)
         time = New Time
         user = New User
@@ -29,6 +27,7 @@ Module globals
         mngVac = New ManageVacations
         report = New Reports
         busDat = New BusinessData
+        busDat.getXMLData()
         conSet = New ConfigureSettings
     End Sub
 

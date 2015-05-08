@@ -202,13 +202,11 @@
         End If
         getHours(user.id, _workPeriodStart)
         'employee information
-        busDat.getXMLData()
         Form1.lblEmployeeName.Text = user.first_name & " " & user.last_name
         Form1.lblHireDate.Text = user.hire_date
         Form1.lblEmployeeAddress1.Text = user.address
         Form1.lblEmployeeAddress2.Text = user.city & ", " & user.state & " " & user.zip
         'employer information
-
         Form1.lblEmployerName.Text = busDat.companyName
         Form1.lblEmployerPhone.Text = busDat.companyPhone
         Form1.lblEmployerAddress1.Text = busDat.companyAddress
@@ -289,9 +287,9 @@
                 _YTDOvertime += getOvertimeHours(userID, d)
             End If
         Next
-        _YTDPersonal = dbems.getHoursWorked(userID, "Personal", time.findFirstMonday(workStart), time.workPeriodEnd).TotalHours
-        _YTDVacation = dbems.getHoursWorked(userID, "Vacation", time.findFirstMonday(workStart), time.workPeriodEnd).TotalHours
-        _YTDHoliday = dbems.getHoursWorked(userID, "Holiday", time.workYearStart, time.workPeriodEnd).TotalHours
+        _YTDPersonal = dbems.getHoursWorked(userID, "Personal", time.findFirstWorkPeriod(workStart, _employedDates), time.workPeriodEnd).TotalHours
+        _YTDVacation = dbems.getHoursWorked(userID, "Vacation", time.findFirstWorkPeriod(workStart, _employedDates), time.workPeriodEnd).TotalHours
+        _YTDHoliday = dbems.getHoursWorked(userID, "Holiday", time.findFirstWorkPeriod(workStart, _employedDates), time.workPeriodEnd).TotalHours
         _YTDTotal = _YTDRegular + _YTDPersonal + _YTDVacation + _YTDHoliday
 
         _annualPay = getAnnualPay(userID, workStart)
@@ -377,11 +375,18 @@
                     pay = dbems.getPeriodPayRate(userID, inputDate.AddDays(i))
                 End If
             Next
-            inputDate = inputDate.AddDays(-7)
+            If busDat.workPeriodLength = 14 Then
+                For i = 7 To 11
+                    If pay = 0 Then
+                        pay = dbems.getPeriodPayRate(userID, inputDate.AddDays(i))
+                    End If
+                Next
+            End If
             'if no pay rate is found before the user's hire date is reached then exit the function
             If inputDate < dbems.getHireDate(userID) Then
                 Exit While
             End If
+            inputDate = inputDate.AddDays(-busDat.workPeriodLength)
         End While
         Return pay
     End Function

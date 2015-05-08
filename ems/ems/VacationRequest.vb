@@ -1,4 +1,6 @@
-﻿Public Class VacationRequest
+﻿Imports EMSlib.EMS
+
+Public Class VacationRequest
     Private _datesRequested As Collection
 
     Public Sub New()
@@ -15,6 +17,7 @@
     End Property
 
     Public Sub initVacationRequestPanel()
+        Form1.lblVacationHoursRemaining.Text = "Vacation hours remaining: " & user.vacation_time
         Dim req As Collection = dbems.getVacationRequests(user.id)
         Form1.txtRequestList.Text = ""
         For Each d In req
@@ -66,5 +69,43 @@
         If DateAndTime.Now.AddYears(1) < dateToCheck Then available = False
         Return available
     End Function
+
+    'submits a vacation request
+    Public Sub submitRequest()
+        If user.manager_id = 0 Then
+            If datesRequested.Count * 8 > user.vacation_time Then
+                MessageBox.Show("Not enough vacation time remaining.")
+                Exit Sub
+            End If
+            For Each d In datesRequested
+                dbems.submitVacationRequest(user.id, d, user.current_pay_rate)
+                dbems.approveVacationRequest(user.id, d)
+                dbems.subtractVacationTime(user.id)
+                user.vacation_time -= 8
+            Next
+            MessageBox.Show("Vacation days approved.")
+            Exit Sub
+        End If
+        For Each d In datesRequested
+            dbems.submitVacationRequest(user.id, d, user.current_pay_rate)
+        Next
+        Dim m As New Message
+        m.userId = user.manager_id
+        m.senderId = user.id
+        m.message = user.first_name & " " & user.last_name & " has requested the following vacation days: "
+        Dim c As Integer = 1
+        While c <= vacReq.datesRequested.Count
+            m.message += vacReq.datesRequested(c).date
+            If c < vacReq.datesRequested.Count Then
+                m.message += ", "
+            Else
+                m.message += "."
+            End If
+            c += 1
+        End While
+        dbems.sendMessage(m)
+        MessageBox.Show("Vacation request submitted.")
+        initVacationRequestPanel()
+    End Sub
 
 End Class

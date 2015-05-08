@@ -362,12 +362,13 @@ Namespace DBSQL
         End Function
 
         'submits a vacation request
-        Public Sub submitVacationRequest(ByVal user_id As Integer, ByVal dateRequested As Date)
+        Public Sub submitVacationRequest(ByVal user_id As Integer, ByVal dateRequested As Date, ByVal pay_rate As Decimal)
             initCommand()
-            _cmd.CommandText = "INSERT INTO Times (user_id,time_start,time_end,hours_type) VALUES (@user_id,@time_start,@time_end,'Requested')"
+            _cmd.CommandText = "INSERT INTO Times (user_id,time_start,time_end,hours_type,pay_rate) VALUES (@user_id,@time_start,@time_end,'Requested',@pay_rate)"
             _cmd.Parameters.AddWithValue("@user_id", user_id)
             _cmd.Parameters.AddWithValue("@time_start", dateRequested)
             _cmd.Parameters.AddWithValue("@time_end", dateRequested.AddHours(8))
+            _cmd.Parameters.AddWithValue("@pay_rate", pay_rate)
             _cmd.Connection.Open()
             _cmd.ExecuteNonQuery()
             _cmd.Connection.Close()
@@ -378,6 +379,17 @@ Namespace DBSQL
             initCommand()
             _cmd.CommandText = "UPDATE Times SET hours_type='Vacation' WHERE id=@id"
             _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
+        'schedules a requested vacation day
+        Public Sub approveVacationRequest(ByVal user_id As Integer, ByVal time_start As Date)
+            initCommand()
+            _cmd.CommandText = "UPDATE Times SET hours_type='Vacation' WHERE user_id=@user_id AND hours_type='Requested' AND time_start=@time_start"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Parameters.AddWithValue("@time_start", time_start)
             _cmd.Connection.Open()
             _cmd.ExecuteNonQuery()
             _cmd.Connection.Close()
@@ -423,19 +435,18 @@ Namespace DBSQL
                 m.senderId = reader("sender_id")
                 m.message = reader("message")
                 m.timeStamp = reader("time_stamp")
-                'm.viewed = reader("viewed")
                 m.viewed = True
                 messages.Add(m)
             End While
             reader.Close()
             _cmd.Connection.Close()
-            For Each m In messages
-                setMessageViewed(m.id)
-            Next
+            'For Each m In messages
+            '    setMessageViewed(m.id)
+            'Next
             Return messages
         End Function
 
-        Private Sub setMessageViewed(ByVal id As Integer)
+        Public Sub setMessageViewed(ByVal id As Integer)
             initCommand()
             _cmd.CommandText = "UPDATE Messages SET viewed='True' WHERE id=@id"
             _cmd.Parameters.AddWithValue("@id", id)

@@ -10,7 +10,6 @@ Namespace EMS
         Private _workPeriodLength As Integer
         Private _workPeriodStart As Date
         Private _workPeriodEnd As Date
-        Private _workYearStart As Date
 
         Private _companyPayPeriods As Collection
 
@@ -18,11 +17,9 @@ Namespace EMS
             _time_start = New Date
             _time_end = New Date
             _hours_type = "Regular"
-            _workPeriodLength = 14
+            _workPeriodLength = 7
             _workPeriodStart = findMondayDate(Date.Today)
-            _workPeriodEnd = findSundayDate()
-            _workYearStart = findFirstMonday(Date.Today)
-
+            _workPeriodEnd = _workPeriodStart.AddDays(_workPeriodLength).AddMinutes(-1)
         End Sub
 
         Public Property time_start() As Date
@@ -82,12 +79,6 @@ Namespace EMS
             End Get
         End Property
 
-        Public ReadOnly Property workYearStart() As Date
-            Get
-                Return _workYearStart
-            End Get
-        End Property
-
         'finds the date for monday of the current week
         Public Function findMondayDate(ByVal inputDate As Date) As Date
             Dim dayDiff As Integer = inputDate.DayOfWeek - DayOfWeek.Monday
@@ -95,21 +86,23 @@ Namespace EMS
             Return monday
         End Function
 
-        Public Function findSundayDate() As Date
-            Return _workPeriodStart.AddDays(_workPeriodLength).AddMinutes(-1)
+        'checks to see if the day is on the weekend
+        Public Function isWeekDay(ByVal checkDate As Date) As Boolean
+            If checkDate.DayOfWeek <> DayOfWeek.Saturday And checkDate.DayOfWeek <> DayOfWeek.Sunday Then
+                Return True
+            End If
+            Return False
         End Function
 
-        'finds the date for monday of the current year
-        Public Function findFirstMonday(ByVal inputDate As Date) As Date
-            Dim firstDay As New Date(inputDate.Year, 1, 1)
-            If firstDay.DayOfWeek = DayOfWeek.Monday Then
-                Return firstDay
-            Else
-                While firstDay.DayOfWeek <> DayOfWeek.Monday
-                    firstDay = firstDay.AddDays(1)
-                End While
-                Return firstDay.Date
-            End If
+        'finds the date for work period of the specified year
+        Public Function findFirstWorkPeriod(ByVal inputDate As Date, ByVal workPeriods As Collection) As Date
+            Dim firstWorkPeriod As Date = inputDate
+            For Each period In workPeriods
+                If period.year = inputDate.Year And period < firstWorkPeriod Then
+                    firstWorkPeriod = period
+                End If
+            Next
+            Return firstWorkPeriod
         End Function
 
         'returns a collection of the start dates for each work period in company history
@@ -128,14 +121,6 @@ Namespace EMS
                 count -= 1
             Loop
             Return reorder
-        End Function
-
-        'checks to see if the day is on the weekend
-        Public Function isWeekDay(ByVal checkDate As Date) As Boolean
-            If checkDate.DayOfWeek <> DayOfWeek.Saturday And checkDate.DayOfWeek <> DayOfWeek.Sunday Then
-                Return True
-            End If
-            Return False
         End Function
 
         'returns a collection of the dates representing employed pay periods 
