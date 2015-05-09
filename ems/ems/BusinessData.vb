@@ -9,7 +9,7 @@ Public Class BusinessData
     Private _companyState As String
     Private _companyZip As String
 
-    Private _WorkPeriodLength As Integer
+    Private _workPeriodLength As Integer
 
     Public Sub New()
         _companyName = ""
@@ -19,7 +19,7 @@ Public Class BusinessData
         _companyState = ""
         _companyZip = ""
 
-        _WorkPeriodLength = 0
+        _workPeriodLength = 0
     End Sub
 
     Public Property companyName As String
@@ -78,10 +78,10 @@ Public Class BusinessData
 
     Public Property workPeriodLength As Integer
         Get
-            Return _WorkPeriodLength
+            Return _workPeriodLength
         End Get
         Set(value As Integer)
-            _WorkPeriodLength = value
+            _workPeriodLength = value
         End Set
     End Property
 
@@ -92,9 +92,9 @@ Public Class BusinessData
         Form1.txtCompanyCity.Text = _companyCity
         Form1.txtCompanyState.Text = _companyState
         Form1.txtCompanyZip.Text = _companyZip
-        If _WorkPeriodLength = 7 Then
+        If _workPeriodLength = 7 Then
             Form1.radWorkPeriodWeekly.Checked = True
-        ElseIf _WorkPeriodLength = 14 Then
+        ElseIf _workPeriodLength = 14 Then
             Form1.radWorkPeriodBiweekly.Checked = True
         End If
 
@@ -131,7 +131,7 @@ Public Class BusinessData
                             _companyZip = reader.Value
                             Exit Select
                         Case "WorkPeriod"
-                            _WorkPeriodLength = reader.Value
+                            _workPeriodLength = reader.Value
                             Exit Select
                     End Select
                     Exit Select
@@ -155,6 +155,7 @@ Public Class BusinessData
         ElseIf Form1.radWorkPeriodBiweekly.Checked = True Then
             doc.SelectSingleNode("Admin/Business/WorkPeriod").InnerText = 14
         End If
+        
         doc.Save("C:\Users\J\Documents\ems_repository\ems\DBlib\Admin.xml")
 
     End Sub

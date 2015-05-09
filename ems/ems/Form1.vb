@@ -1,5 +1,6 @@
 ﻿Imports DBlib.DBSQL
 Imports EMSlib.EMS
+Imports System.IO
 
 Public Class Form1
 
@@ -9,16 +10,22 @@ Public Class Form1
         tmiClockInOut.Enabled = False
         tmiEmployee.Enabled = False
         hidePanels()
-        '**Disabled for development**
-        'Login.ShowDialog()
-        'If user.id > 0 Then
-        'initializeNavigationPanel()
-        'End If
-        '**Uncomment and remove following lines during testing**
         initSession()
-        user = dbems.getSession(7)
         time.workPeriodLength = busDat.workPeriodLength
-        initNavigationPanel()
+        conSet.getXMLData()
+        If conSet.allowAutoLogIn = True And System.IO.File.Exists(Application.StartupPath & "\autologin.txt") Then
+            Dim reader As StreamReader = My.Computer.FileSystem.OpenTextFileReader(Application.StartupPath & "\autologin.txt")
+            Dim username As String = reader.ReadLine
+            Dim password As String = reader.ReadLine
+            reader.Close()
+            user = dbems.getSession(dbems.getLogInID(username, password))
+        End If
+        If user.id = 0 Then
+            Login.ShowDialog()
+        End If
+        If user.id > 0 Then
+            initNavigationPanel()
+        End If
     End Sub
 
     Private Sub initNavigationPanel()
@@ -257,4 +264,8 @@ Public Class Form1
         MessageBox.Show("Business data updated.")
     End Sub
 
+    Private Sub btnUpdateSettings_Click(sender As Object, e As EventArgs) Handles btnUpdateSettings.Click
+        conSet.setXMLData()
+        MessageBox.Show("Settings updated.")
+    End Sub
 End Class

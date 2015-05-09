@@ -67,11 +67,6 @@
       <ProjName>ems</ProjName>
     </ProjBinary>
   </Binaries>
-  <Reports>
-    <Report>
-      <Path>ems150505.vsp</Path>
-    </Report>
-  </Reports>
   <Launches>
     <ProjBinary>
       <Path>:PB:{73C2E8B1-6B55-4453-973B-7459BE2F7838}|ems\ems.vbproj</Path>
