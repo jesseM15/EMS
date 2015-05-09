@@ -15,6 +15,8 @@ Module globals
     Public busDat As BusinessData
     Public conSet As ConfigureSettings
 
+    Public err As ErrorHandler
+
     Public Sub initSession()
         dbems = New DbConnection(My.Settings.DbEmsConnectionString)
         time = New Time
@@ -29,6 +31,21 @@ Module globals
         busDat = New BusinessData
         busDat.getXMLData()
         conSet = New ConfigureSettings
+
+        err = New ErrorHandler
+
+        firstTimeProgramInitialization()
+    End Sub
+
+    Public Sub firstTimeProgramInitialization()
+        'if no users exist in the database
+        If dbems.getTableCount("Users") < 1 Then
+            Dim u As New User
+            u.user_name = "Admin"
+            u.password = "password"
+            u.user_type = "Administrator"
+            dbems.addUser(u)
+        End If
     End Sub
 
 End Module

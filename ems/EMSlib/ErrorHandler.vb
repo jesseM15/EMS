@@ -1,4 +1,5 @@
 ﻿Imports System.Windows.Forms
+Imports System.IO
 
 Namespace EMS
 
@@ -31,6 +32,16 @@ Namespace EMS
 
         Public Sub outputMessage()
             MessageBox.Show(_exceptionMessage, "Error: " & _errorMessage)
+            Try
+                Dim objWriter As New System.IO.StreamWriter(Application.StartupPath & "\errorlog.txt", True)
+                objWriter.WriteLine("Error: " & DateAndTime.Now)
+                objWriter.WriteLine(_errorMessage)
+                objWriter.WriteLine(_exceptionMessage)
+                objWriter.WriteLine(vbCrLf)
+                objWriter.Close()
+            Catch ex As Exception
+                MessageBox.Show("Error logging failed.")
+            End Try
         End Sub
 
     End Class

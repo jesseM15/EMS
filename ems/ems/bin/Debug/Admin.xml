@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Admin>
+  <Business>
+    <Info>
+      <CompanyName>Acme</CompanyName>
+      <CompanyPhone>(330) 497-2189</CompanyPhone>
+      <CompanyAddress>5151 Sherman Dr.</CompanyAddress>
+      <CompanyCity>Canton</CompanyCity>
+      <CompanyState>OH</CompanyState>
+      <CompanyZip>43161</CompanyZip>
+    </Info>
+    <WorkPeriod>14</WorkPeriod>
+  </Business>
+  <Settings>
+    <User>
+      <AllowAutoLogIn>True</AllowAutoLogIn>
+    </User>
+  </Settings>
+</Admin>

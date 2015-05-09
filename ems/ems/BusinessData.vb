@@ -1,5 +1,4 @@
 ﻿Imports System.Xml
-Imports System.IO
 
 Public Class BusinessData
     Private _companyName As String
@@ -86,6 +85,7 @@ Public Class BusinessData
     End Property
 
     Public Sub initBusinessDataPanel()
+        getXMLData()
         Form1.txtCompanyName.Text = _companyName
         Form1.mtxCompanyPhone.Text = _companyPhone
         Form1.txtCompanyAddress.Text = _companyAddress
@@ -102,62 +102,76 @@ Public Class BusinessData
     End Sub
 
     Public Sub getXMLData()
-        'Create the XmlDocument. 
-        Dim reader As New XmlTextReader("C:\Users\J\Documents\ems_repository\ems\DBlib\Admin.xml")
-        Dim elemName As String = ""
-        While reader.Read()
-            Select Case reader.NodeType
-                Case XmlNodeType.Element
-                    elemName = reader.Name
-                    Exit Select
-                Case XmlNodeType.Text
-                    Select Case elemName
-                        Case "CompanyName"
-                            _companyName = reader.Value
+        Try
+            'Create the XmlDocument. 
+            If System.IO.File.Exists(Application.StartupPath & "\Admin.xml") Then
+                Dim reader As New XmlTextReader(Application.StartupPath & "\Admin.xml")
+                Dim elemName As String = ""
+                While reader.Read()
+                    Select Case reader.NodeType
+                        Case XmlNodeType.Element
+                            elemName = reader.Name
                             Exit Select
-                        Case "CompanyPhone"
-                            _companyPhone = reader.Value
-                            Exit Select
-                        Case "CompanyAddress"
-                            _companyAddress = reader.Value
-                            Exit Select
-                        Case "CompanyCity"
-                            _companyCity = reader.Value
-                            Exit Select
-                        Case "CompanyState"
-                            _companyState = reader.Value
-                            Exit Select
-                        Case "CompanyZip"
-                            _companyZip = reader.Value
-                            Exit Select
-                        Case "WorkPeriod"
-                            _workPeriodLength = reader.Value
+                        Case XmlNodeType.Text
+                            Select Case elemName
+                                Case "CompanyName"
+                                    _companyName = reader.Value
+                                    Exit Select
+                                Case "CompanyPhone"
+                                    _companyPhone = reader.Value
+                                    Exit Select
+                                Case "CompanyAddress"
+                                    _companyAddress = reader.Value
+                                    Exit Select
+                                Case "CompanyCity"
+                                    _companyCity = reader.Value
+                                    Exit Select
+                                Case "CompanyState"
+                                    _companyState = reader.Value
+                                    Exit Select
+                                Case "CompanyZip"
+                                    _companyZip = reader.Value
+                                    Exit Select
+                                Case "WorkPeriod"
+                                    _workPeriodLength = reader.Value
+                                    Exit Select
+                            End Select
                             Exit Select
                     End Select
-                    Exit Select
-            End Select
-        End While
-        reader.Close()
-        reader.Dispose()
+                End While
+                reader.Close()
+                reader.Dispose()
+            End If
+        Catch ex As Exception
+            err.errorMessage = "Failed to read XML file."
+            err.exceptionMessage = ex.Message
+            err.outputMessage()
+        End Try
     End Sub
 
     Public Sub setXMLData()
-        Dim doc As New XmlDocument()
-        doc.Load("C:\Users\J\Documents\ems_repository\ems\DBlib\Admin.xml")
-        doc.SelectSingleNode("Admin/Business/Info/CompanyName").InnerText = Form1.txtCompanyName.Text
-        doc.SelectSingleNode("Admin/Business/Info/CompanyPhone").InnerText = Form1.mtxCompanyPhone.Text
-        doc.SelectSingleNode("Admin/Business/Info/CompanyAddress").InnerText = Form1.txtCompanyAddress.Text
-        doc.SelectSingleNode("Admin/Business/Info/CompanyCity").InnerText = Form1.txtCompanyCity.Text
-        doc.SelectSingleNode("Admin/Business/Info/CompanyState").InnerText = Form1.txtCompanyState.Text
-        doc.SelectSingleNode("Admin/Business/Info/CompanyZip").InnerText = Form1.txtCompanyZip.Text
-        If Form1.radWorkPeriodWeekly.Checked = True Then
-            doc.SelectSingleNode("Admin/Business/WorkPeriod").InnerText = 7
-        ElseIf Form1.radWorkPeriodBiweekly.Checked = True Then
-            doc.SelectSingleNode("Admin/Business/WorkPeriod").InnerText = 14
-        End If
-        
-        doc.Save("C:\Users\J\Documents\ems_repository\ems\DBlib\Admin.xml")
-
+        Try
+            Dim doc As New XmlDocument()
+            If System.IO.File.Exists(Application.StartupPath & "\Admin.xml") Then
+                doc.Load(Application.StartupPath & "\Admin.xml")
+                doc.SelectSingleNode("Admin/Business/Info/CompanyName").InnerText = Form1.txtCompanyName.Text
+                doc.SelectSingleNode("Admin/Business/Info/CompanyPhone").InnerText = Form1.mtxCompanyPhone.Text
+                doc.SelectSingleNode("Admin/Business/Info/CompanyAddress").InnerText = Form1.txtCompanyAddress.Text
+                doc.SelectSingleNode("Admin/Business/Info/CompanyCity").InnerText = Form1.txtCompanyCity.Text
+                doc.SelectSingleNode("Admin/Business/Info/CompanyState").InnerText = Form1.txtCompanyState.Text
+                doc.SelectSingleNode("Admin/Business/Info/CompanyZip").InnerText = Form1.txtCompanyZip.Text
+                If Form1.radWorkPeriodWeekly.Checked = True Then
+                    doc.SelectSingleNode("Admin/Business/WorkPeriod").InnerText = 7
+                ElseIf Form1.radWorkPeriodBiweekly.Checked = True Then
+                    doc.SelectSingleNode("Admin/Business/WorkPeriod").InnerText = 14
+                End If
+                doc.Save(Application.StartupPath & "\Admin.xml")
+            End If
+        Catch ex As Exception
+            err.errorMessage = "Failed to write to XML file."
+            err.exceptionMessage = ex.Message
+            err.outputMessage()
+        End Try
     End Sub
 
 End Class

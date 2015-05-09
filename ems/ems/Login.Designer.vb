@@ -92,6 +92,7 @@ Partial Class Login
         Me.chkAutoLogIn.TabIndex = 4
         Me.chkAutoLogIn.Text = "Log in automatically"
         Me.chkAutoLogIn.UseVisualStyleBackColor = True
+        Me.chkAutoLogIn.Visible = False
         '
         'Login
         '

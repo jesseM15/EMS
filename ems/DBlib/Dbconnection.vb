@@ -237,7 +237,7 @@ Namespace DBSQL
             End Try
         End Sub
 
-        'subtracts 8 hours from the users persoanl time
+        'subtracts 8 hours from the users personal time
         Public Sub subtractPersonalTime(ByVal id As Integer, ByVal hours As Integer)
             initCommand()
             Try
@@ -276,6 +276,24 @@ Namespace DBSQL
                 _err.outputMessage()
             End Try
             Return hireDate
+        End Function
+
+        'returns the number of rows in a table
+        Public Function getTableCount(ByVal table As String) As Integer
+            initCommand()
+            Dim numEmployees As Integer = 0
+            Try
+                _cmd.CommandText = "SELECT COUNT(*) FROM " + table
+                _cmd.Connection.Open()
+                _cmd.ExecuteNonQuery()
+                numEmployees = CInt(_cmd.ExecuteScalar)
+                _cmd.Connection.Close()
+            Catch ex As Exception
+                _err.errorMessage = "Failed to get number of rows in table."
+                _err.exceptionMessage = ex.Message
+                _err.outputMessage()
+            End Try
+            Return numEmployees
         End Function
 
         '===LogIn/Out==============================================================================
