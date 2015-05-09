@@ -10,7 +10,8 @@
       <CompanyZip>43161</CompanyZip>
     </Info>
     <WorkPeriod>14</WorkPeriod>
-    <Holidays></Holidays>
+    <Holidays>
+    </Holidays>
   </Business>
   <Settings>
     <User>

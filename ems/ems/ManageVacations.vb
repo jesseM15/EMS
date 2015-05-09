@@ -49,20 +49,28 @@ Public Class ManageVacations
     End Sub
 
     Public Sub initManageVacationsPanel()
+        Form1.dgvManageVacations.DataSource = dbems.getEmployeeRequests(user.id)
+        If _dgvInitialized = False Then
+            initDGV()
+        End If
+        _employees = dbems.getEmployeeIds(user.id)
+        For Each employee In _employees
+            For Each rDay In dbems.getVacationRequests(employee)
+                Form1.calManageVacations.AddBoldedDate(rDay)
+            Next
+            For Each vDay In dbems.getScheduledVacation(employee)
+                Form1.calManageVacations.AddBoldedDate(vDay)
+            Next
+        Next
+
         Form1.cboPersonalTimeEmployees.Items.Clear()
         Form1.datPersonalTime.Value = Date.Now.Date
         Form1.numPersonalTime.Value = 8
-        _employees = dbems.getEmployeeIds(user.id)
         For Each employee In employees
             Form1.cboPersonalTimeEmployees.Items.Add(dbems.getUserName(employee))
         Next
         If Form1.cboPersonalTimeEmployees.Items.Count > 0 Then
             Form1.cboPersonalTimeEmployees.SelectedIndex = 0
-        End If
-
-        Form1.dgvManageVacations.DataSource = dbems.getEmployeeRequests(user.id)
-        If _dgvInitialized = False Then
-            initDGV()
         End If
 
         Form1.pnlManageVacations.Visible = True

@@ -25,7 +25,6 @@ Public Class ConfigureSettings
             Form1.radAutoLogInDeny.Checked = True
         End If
 
-
         Form1.pnlConfigureSettings.Visible = True
     End Sub
 

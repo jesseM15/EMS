@@ -175,6 +175,11 @@ Partial Class Form1
         Me.lblBusinessData = New System.Windows.Forms.Label()
         Me.pnlReports = New System.Windows.Forms.Panel()
         Me.pnlManageVacations = New System.Windows.Forms.Panel()
+        Me.grpManagePersonalTime = New System.Windows.Forms.GroupBox()
+        Me.btnSubmitPersonalTime = New System.Windows.Forms.Button()
+        Me.numPersonalTime = New System.Windows.Forms.NumericUpDown()
+        Me.datPersonalTime = New System.Windows.Forms.DateTimePicker()
+        Me.cboPersonalTimeEmployees = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.dgvManageVacations = New System.Windows.Forms.DataGridView()
         Me.calManageVacations = New System.Windows.Forms.MonthCalendar()
@@ -234,11 +239,6 @@ Partial Class Form1
         Me.tmiConfigureSettings = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.staClockedInOut = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.grpManagePersonalTime = New System.Windows.Forms.GroupBox()
-        Me.cboPersonalTimeEmployees = New System.Windows.Forms.ComboBox()
-        Me.datPersonalTime = New System.Windows.Forms.DateTimePicker()
-        Me.numPersonalTime = New System.Windows.Forms.NumericUpDown()
-        Me.btnSubmitPersonalTime = New System.Windows.Forms.Button()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -262,6 +262,8 @@ Partial Class Form1
         Me.GroupBox3.SuspendLayout()
         Me.grpCompanyInfo.SuspendLayout()
         Me.pnlManageVacations.SuspendLayout()
+        Me.grpManagePersonalTime.SuspendLayout()
+        CType(Me.numPersonalTime, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.dgvManageVacations, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlEditEmployee.SuspendLayout()
@@ -270,8 +272,6 @@ Partial Class Form1
         Me.grpPersonalInfo.SuspendLayout()
         Me.mnuNavigation.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
-        Me.grpManagePersonalTime.SuspendLayout()
-        CType(Me.numPersonalTime, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -292,8 +292,6 @@ Partial Class Form1
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlManageVacations)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlEditEmployee)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlConfigureSettings)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
@@ -302,6 +300,8 @@ Partial Class Form1
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlBusinessData)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlReports)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlManageVacations)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlEditEmployee)
         Me.SplitContainer1.Size = New System.Drawing.Size(826, 461)
         Me.SplitContainer1.SplitterDistance = 156
         Me.SplitContainer1.TabIndex = 1
@@ -1839,6 +1839,53 @@ Partial Class Form1
         Me.pnlManageVacations.Size = New System.Drawing.Size(664, 459)
         Me.pnlManageVacations.TabIndex = 64
         '
+        'grpManagePersonalTime
+        '
+        Me.grpManagePersonalTime.Controls.Add(Me.btnSubmitPersonalTime)
+        Me.grpManagePersonalTime.Controls.Add(Me.numPersonalTime)
+        Me.grpManagePersonalTime.Controls.Add(Me.datPersonalTime)
+        Me.grpManagePersonalTime.Controls.Add(Me.cboPersonalTimeEmployees)
+        Me.grpManagePersonalTime.Location = New System.Drawing.Point(25, 280)
+        Me.grpManagePersonalTime.Name = "grpManagePersonalTime"
+        Me.grpManagePersonalTime.Size = New System.Drawing.Size(251, 163)
+        Me.grpManagePersonalTime.TabIndex = 2
+        Me.grpManagePersonalTime.TabStop = False
+        Me.grpManagePersonalTime.Text = "Manage Personal Time"
+        '
+        'btnSubmitPersonalTime
+        '
+        Me.btnSubmitPersonalTime.Location = New System.Drawing.Point(138, 124)
+        Me.btnSubmitPersonalTime.Name = "btnSubmitPersonalTime"
+        Me.btnSubmitPersonalTime.Size = New System.Drawing.Size(75, 23)
+        Me.btnSubmitPersonalTime.TabIndex = 3
+        Me.btnSubmitPersonalTime.Text = "Submit"
+        Me.btnSubmitPersonalTime.UseVisualStyleBackColor = True
+        '
+        'numPersonalTime
+        '
+        Me.numPersonalTime.Location = New System.Drawing.Point(173, 89)
+        Me.numPersonalTime.Maximum = New Decimal(New Integer() {8, 0, 0, 0})
+        Me.numPersonalTime.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.numPersonalTime.Name = "numPersonalTime"
+        Me.numPersonalTime.Size = New System.Drawing.Size(40, 20)
+        Me.numPersonalTime.TabIndex = 2
+        Me.numPersonalTime.Value = New Decimal(New Integer() {8, 0, 0, 0})
+        '
+        'datPersonalTime
+        '
+        Me.datPersonalTime.Location = New System.Drawing.Point(13, 60)
+        Me.datPersonalTime.Name = "datPersonalTime"
+        Me.datPersonalTime.Size = New System.Drawing.Size(200, 20)
+        Me.datPersonalTime.TabIndex = 1
+        '
+        'cboPersonalTimeEmployees
+        '
+        Me.cboPersonalTimeEmployees.FormattingEnabled = True
+        Me.cboPersonalTimeEmployees.Location = New System.Drawing.Point(13, 30)
+        Me.cboPersonalTimeEmployees.Name = "cboPersonalTimeEmployees"
+        Me.cboPersonalTimeEmployees.Size = New System.Drawing.Size(200, 21)
+        Me.cboPersonalTimeEmployees.TabIndex = 0
+        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.dgvManageVacations)
@@ -2339,53 +2386,6 @@ Partial Class Form1
         Me.staClockedInOut.Size = New System.Drawing.Size(73, 17)
         Me.staClockedInOut.Text = "Clocked Out"
         '
-        'grpManagePersonalTime
-        '
-        Me.grpManagePersonalTime.Controls.Add(Me.btnSubmitPersonalTime)
-        Me.grpManagePersonalTime.Controls.Add(Me.numPersonalTime)
-        Me.grpManagePersonalTime.Controls.Add(Me.datPersonalTime)
-        Me.grpManagePersonalTime.Controls.Add(Me.cboPersonalTimeEmployees)
-        Me.grpManagePersonalTime.Location = New System.Drawing.Point(25, 280)
-        Me.grpManagePersonalTime.Name = "grpManagePersonalTime"
-        Me.grpManagePersonalTime.Size = New System.Drawing.Size(251, 163)
-        Me.grpManagePersonalTime.TabIndex = 2
-        Me.grpManagePersonalTime.TabStop = False
-        Me.grpManagePersonalTime.Text = "Manage Personal Time"
-        '
-        'cboPersonalTimeEmployees
-        '
-        Me.cboPersonalTimeEmployees.FormattingEnabled = True
-        Me.cboPersonalTimeEmployees.Location = New System.Drawing.Point(13, 30)
-        Me.cboPersonalTimeEmployees.Name = "cboPersonalTimeEmployees"
-        Me.cboPersonalTimeEmployees.Size = New System.Drawing.Size(200, 21)
-        Me.cboPersonalTimeEmployees.TabIndex = 0
-        '
-        'datPersonalTime
-        '
-        Me.datPersonalTime.Location = New System.Drawing.Point(13, 60)
-        Me.datPersonalTime.Name = "datPersonalTime"
-        Me.datPersonalTime.Size = New System.Drawing.Size(200, 20)
-        Me.datPersonalTime.TabIndex = 1
-        '
-        'numPersonalTime
-        '
-        Me.numPersonalTime.Location = New System.Drawing.Point(173, 89)
-        Me.numPersonalTime.Maximum = New Decimal(New Integer() {8, 0, 0, 0})
-        Me.numPersonalTime.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.numPersonalTime.Name = "numPersonalTime"
-        Me.numPersonalTime.Size = New System.Drawing.Size(40, 20)
-        Me.numPersonalTime.TabIndex = 2
-        Me.numPersonalTime.Value = New Decimal(New Integer() {8, 0, 0, 0})
-        '
-        'btnSubmitPersonalTime
-        '
-        Me.btnSubmitPersonalTime.Location = New System.Drawing.Point(138, 124)
-        Me.btnSubmitPersonalTime.Name = "btnSubmitPersonalTime"
-        Me.btnSubmitPersonalTime.Size = New System.Drawing.Size(75, 23)
-        Me.btnSubmitPersonalTime.TabIndex = 3
-        Me.btnSubmitPersonalTime.Text = "Submit"
-        Me.btnSubmitPersonalTime.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2435,6 +2435,8 @@ Partial Class Form1
         Me.grpCompanyInfo.PerformLayout()
         Me.pnlManageVacations.ResumeLayout(False)
         Me.pnlManageVacations.PerformLayout()
+        Me.grpManagePersonalTime.ResumeLayout(False)
+        CType(Me.numPersonalTime, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         CType(Me.dgvManageVacations, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlEditEmployee.ResumeLayout(False)
@@ -2449,8 +2451,6 @@ Partial Class Form1
         Me.mnuNavigation.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        Me.grpManagePersonalTime.ResumeLayout(False)
-        CType(Me.numPersonalTime, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

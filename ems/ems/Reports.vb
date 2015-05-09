@@ -59,7 +59,6 @@
         End If
 
         initReportsPanelFramework()
-        refreshLabels()
 
         Form1.pnlReports.Visible = True
     End Sub
@@ -106,18 +105,21 @@
         Next
 
         'averages and totals
-        Dim avgEarnedHours As Decimal = totalEarnedHours / _employeeIds.Count()
-        Dim avgPayRate As Decimal = totalPayRate / _employeeIds.Count()
-        Dim avgWagesPaid As Decimal = totalWagesPaid / _employeeIds.Count()
+        Dim avgEarnedHours As Decimal = 0
+        Dim avgPayRate As Decimal = 0
+        Dim avgWagesPaid As Decimal = 0
+        If _employeeIds.Count > 0 Then
+            avgEarnedHours = totalEarnedHours / _employeeIds.Count()
+            avgPayRate = totalPayRate / _employeeIds.Count()
+            avgWagesPaid = totalWagesPaid / _employeeIds.Count()
+        End If
 
         Form1.pnlReports.Controls.Item(Form1.pnlReports.Controls.Count - 6).Text = FormatNumber(CDec(avgEarnedHours), 4)
         Form1.pnlReports.Controls.Item(Form1.pnlReports.Controls.Count - 5).Text = avgPayRate.ToString("C5")
         Form1.pnlReports.Controls.Item(Form1.pnlReports.Controls.Count - 4).Text = avgWagesPaid.ToString("C2")
         Form1.pnlReports.Controls.Item(Form1.pnlReports.Controls.Count - 2).Text = FormatNumber(CDec(totalEarnedHours), 4)
         Form1.pnlReports.Controls.Item(Form1.pnlReports.Controls.Count - 1).Text = totalWagesPaid.ToString("C2")
-
     End Sub
-
 
     Private Sub initReportsPanelFramework()
         Form1.pnlReports.Controls.Clear()
@@ -148,6 +150,13 @@
         lblReportsWagesPaidField.Text = "Wages Paid"
         lblReportsWagesPaidField.Font = New Font("Microsoft Sans Serif", 8.25, FontStyle.Bold)
 
+        Form1.pnlReports.Controls.Add(lblReports)
+        Form1.pnlReports.Controls.Add(cboReports)
+        Form1.pnlReports.Controls.Add(lblReportsEmployeeField)
+        Form1.pnlReports.Controls.Add(lblReportsEarnedHoursField)
+        Form1.pnlReports.Controls.Add(lblReportsPayRateField)
+        Form1.pnlReports.Controls.Add(lblReportsWagesPaidField)
+
         Dim rowY As Integer = 102
         If _ctrls.Count < _employeeIds.Count Then
             _ctrls.Clear()
@@ -168,7 +177,14 @@
             Next
         End If
 
-        rowY = _ctrls(_ctrls.Count).location.y + 60
+        For Each ctrl In _ctrls
+            Form1.pnlReports.Controls.Add(ctrl)
+        Next
+
+        rowY = 120
+        If _ctrls.Count > 0 Then
+            rowY = _ctrls(_ctrls.Count).location.y + 60
+        End If
         Dim lblReportsAverageField As New Label
         lblReportsAverageField.Location = New Point(22, rowY)
         lblReportsAverageField.Text = "Average"
@@ -189,17 +205,6 @@
         Dim lblReportsTotalWagesPaid As New Label
         lblReportsTotalWagesPaid.Location = New Point(322, rowY)
 
-        Form1.pnlReports.Controls.Add(lblReports)
-        Form1.pnlReports.Controls.Add(cboReports)
-        Form1.pnlReports.Controls.Add(lblReportsEmployeeField)
-        Form1.pnlReports.Controls.Add(lblReportsEarnedHoursField)
-        Form1.pnlReports.Controls.Add(lblReportsPayRateField)
-        Form1.pnlReports.Controls.Add(lblReportsWagesPaidField)
-
-        For Each ctrl In _ctrls
-            Form1.pnlReports.Controls.Add(ctrl)
-        Next
-
         Form1.pnlReports.Controls.Add(lblReportsAverageField)
         Form1.pnlReports.Controls.Add(lblReportsAverageEarnedHours)
         Form1.pnlReports.Controls.Add(lblReportsAveragePayRate)
@@ -207,7 +212,6 @@
         Form1.pnlReports.Controls.Add(lblReportsTotalField)
         Form1.pnlReports.Controls.Add(lblReportsTotalEarnedHours)
         Form1.pnlReports.Controls.Add(lblReportsTotalWagesPaid)
-
     End Sub
 
 End Class
