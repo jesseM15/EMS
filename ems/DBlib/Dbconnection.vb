@@ -165,11 +165,34 @@ Namespace DBSQL
             Return vHours
         End Function
 
+        'gets the personal time remaining for the user
+        Public Function getPersonalTime(ByVal id As Integer)
+            initCommand()
+            _cmd.CommandText = "SELECT personal_time FROM Users WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            Dim vHours As Integer = CInt(_cmd.ExecuteScalar)
+            _cmd.Connection.Close()
+            Return vHours
+        End Function
+
         'subtracts 8 hours from the users vacation time
         Public Sub subtractVacationTime(ByVal id As Integer)
             initCommand()
             _cmd.CommandText = "UPDATE Users SET vacation_time=vacation_time-8 WHERE id=@id"
             _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
+        'subtracts 8 hours from the users persoanl time
+        Public Sub subtractPersonalTime(ByVal id As Integer, ByVal hours As Integer)
+            initCommand()
+            _cmd.CommandText = "UPDATE Users SET personal_time=personal_time-@hours WHERE id=@id"
+            _cmd.Parameters.AddWithValue("@id", id)
+            _cmd.Parameters.AddWithValue("@hours", hours)
             _cmd.Connection.Open()
             _cmd.ExecuteNonQuery()
             _cmd.Connection.Close()
@@ -368,6 +391,19 @@ Namespace DBSQL
             _cmd.Parameters.AddWithValue("@user_id", user_id)
             _cmd.Parameters.AddWithValue("@time_start", dateRequested)
             _cmd.Parameters.AddWithValue("@time_end", dateRequested.AddHours(8))
+            _cmd.Parameters.AddWithValue("@pay_rate", pay_rate)
+            _cmd.Connection.Open()
+            _cmd.ExecuteNonQuery()
+            _cmd.Connection.Close()
+        End Sub
+
+        'submits personal time
+        Public Sub submitPersonalTime(ByVal user_id As Integer, ByVal dateRequested As Date, ByVal hours As Integer, ByVal pay_rate As Decimal)
+            initCommand()
+            _cmd.CommandText = "INSERT INTO Times (user_id,time_start,time_end,hours_type,pay_rate) VALUES (@user_id,@time_start,@time_end,'Personal',@pay_rate)"
+            _cmd.Parameters.AddWithValue("@user_id", user_id)
+            _cmd.Parameters.AddWithValue("@time_start", dateRequested)
+            _cmd.Parameters.AddWithValue("@time_end", dateRequested.AddHours(hours))
             _cmd.Parameters.AddWithValue("@pay_rate", pay_rate)
             _cmd.Connection.Open()
             _cmd.ExecuteNonQuery()
@@ -658,7 +694,7 @@ Namespace DBSQL
         'returns a list of employee names in xml format
         Public Function getXML() As String
             initCommand()
-            _cmd.CommandText = "Select firstname,lastname from employees for XML Auto"
+            _cmd.CommandText = "Select * from Users for XML Auto"
             _cmd.Connection.Open()
             Dim reader As XmlReader = _cmd.ExecuteXmlReader()
             Dim myXML As String = ""

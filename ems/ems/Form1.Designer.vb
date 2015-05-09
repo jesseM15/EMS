@@ -37,6 +37,17 @@ Partial Class Form1
         Me.btnViewPaySlip = New System.Windows.Forms.Button()
         Me.lblPosition = New System.Windows.Forms.Label()
         Me.lblName = New System.Windows.Forms.Label()
+        Me.pnlConfigureSettings = New System.Windows.Forms.Panel()
+        Me.btnUpdateSettings = New System.Windows.Forms.Button()
+        Me.grpSettingsLogIn = New System.Windows.Forms.GroupBox()
+        Me.radAutoLogInDeny = New System.Windows.Forms.RadioButton()
+        Me.radAutoLogInAllow = New System.Windows.Forms.RadioButton()
+        Me.lblAutoLogIn = New System.Windows.Forms.Label()
+        Me.lblConfigureSettings = New System.Windows.Forms.Label()
+        Me.pnlViewEmployees = New System.Windows.Forms.Panel()
+        Me.btnAddEmployee = New System.Windows.Forms.Button()
+        Me.dgvEmployees = New System.Windows.Forms.DataGridView()
+        Me.lblViewEmployees = New System.Windows.Forms.Label()
         Me.pnlMessages = New System.Windows.Forms.Panel()
         Me.lblMessagesView = New System.Windows.Forms.Label()
         Me.pnlMessageNavigation = New System.Windows.Forms.Panel()
@@ -204,12 +215,6 @@ Partial Class Form1
         Me.lblEditFirstName = New System.Windows.Forms.Label()
         Me.btnEditEmployee = New System.Windows.Forms.Button()
         Me.lblEditEmployee = New System.Windows.Forms.Label()
-        Me.pnlConfigureSettings = New System.Windows.Forms.Panel()
-        Me.lblConfigureSettings = New System.Windows.Forms.Label()
-        Me.pnlViewEmployees = New System.Windows.Forms.Panel()
-        Me.btnAddEmployee = New System.Windows.Forms.Button()
-        Me.dgvEmployees = New System.Windows.Forms.DataGridView()
-        Me.lblViewEmployees = New System.Windows.Forms.Label()
         Me.mnuNavigation = New System.Windows.Forms.MenuStrip()
         Me.tmiFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiLogInOut = New System.Windows.Forms.ToolStripMenuItem()
@@ -228,11 +233,12 @@ Partial Class Form1
         Me.tmiBusinessData = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmiConfigureSettings = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.grpSettingsLogIn = New System.Windows.Forms.GroupBox()
-        Me.lblAutoLogIn = New System.Windows.Forms.Label()
-        Me.radAutoLogInAllow = New System.Windows.Forms.RadioButton()
-        Me.radAutoLogInDeny = New System.Windows.Forms.RadioButton()
-        Me.btnUpdateSettings = New System.Windows.Forms.Button()
+        Me.staClockedInOut = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.grpManagePersonalTime = New System.Windows.Forms.GroupBox()
+        Me.cboPersonalTimeEmployees = New System.Windows.Forms.ComboBox()
+        Me.datPersonalTime = New System.Windows.Forms.DateTimePicker()
+        Me.numPersonalTime = New System.Windows.Forms.NumericUpDown()
+        Me.btnSubmitPersonalTime = New System.Windows.Forms.Button()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -240,6 +246,10 @@ Partial Class Form1
         Me.pnlNavigationAdministrator.SuspendLayout()
         Me.pnlNavigationManager.SuspendLayout()
         Me.pnlNavigationEmployee.SuspendLayout()
+        Me.pnlConfigureSettings.SuspendLayout()
+        Me.grpSettingsLogIn.SuspendLayout()
+        Me.pnlViewEmployees.SuspendLayout()
+        CType(Me.dgvEmployees, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlMessages.SuspendLayout()
         Me.pnlMessageNavigation.SuspendLayout()
         Me.pnlRequestVacation.SuspendLayout()
@@ -258,11 +268,10 @@ Partial Class Form1
         Me.grpUserInfo.SuspendLayout()
         Me.grpEmployeeInfo.SuspendLayout()
         Me.grpPersonalInfo.SuspendLayout()
-        Me.pnlConfigureSettings.SuspendLayout()
-        Me.pnlViewEmployees.SuspendLayout()
-        CType(Me.dgvEmployees, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.mnuNavigation.SuspendLayout()
-        Me.grpSettingsLogIn.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
+        Me.grpManagePersonalTime.SuspendLayout()
+        CType(Me.numPersonalTime, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainer1
@@ -283,6 +292,8 @@ Partial Class Form1
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlManageVacations)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlEditEmployee)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlConfigureSettings)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlViewEmployees)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
@@ -291,8 +302,6 @@ Partial Class Form1
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlPaySlip)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlBusinessData)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlReports)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlManageVacations)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlEditEmployee)
         Me.SplitContainer1.Size = New System.Drawing.Size(826, 461)
         Me.SplitContainer1.SplitterDistance = 156
         Me.SplitContainer1.TabIndex = 1
@@ -432,6 +441,121 @@ Partial Class Form1
         Me.lblName.Size = New System.Drawing.Size(61, 24)
         Me.lblName.TabIndex = 0
         Me.lblName.Text = "Name"
+        '
+        'pnlConfigureSettings
+        '
+        Me.pnlConfigureSettings.Controls.Add(Me.btnUpdateSettings)
+        Me.pnlConfigureSettings.Controls.Add(Me.grpSettingsLogIn)
+        Me.pnlConfigureSettings.Controls.Add(Me.lblConfigureSettings)
+        Me.pnlConfigureSettings.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlConfigureSettings.Location = New System.Drawing.Point(0, 0)
+        Me.pnlConfigureSettings.Name = "pnlConfigureSettings"
+        Me.pnlConfigureSettings.Size = New System.Drawing.Size(664, 459)
+        Me.pnlConfigureSettings.TabIndex = 68
+        '
+        'btnUpdateSettings
+        '
+        Me.btnUpdateSettings.Location = New System.Drawing.Point(537, 420)
+        Me.btnUpdateSettings.Name = "btnUpdateSettings"
+        Me.btnUpdateSettings.Size = New System.Drawing.Size(100, 23)
+        Me.btnUpdateSettings.TabIndex = 3
+        Me.btnUpdateSettings.Text = "Update Settings"
+        Me.btnUpdateSettings.UseVisualStyleBackColor = True
+        '
+        'grpSettingsLogIn
+        '
+        Me.grpSettingsLogIn.Controls.Add(Me.radAutoLogInDeny)
+        Me.grpSettingsLogIn.Controls.Add(Me.radAutoLogInAllow)
+        Me.grpSettingsLogIn.Controls.Add(Me.lblAutoLogIn)
+        Me.grpSettingsLogIn.Location = New System.Drawing.Point(25, 72)
+        Me.grpSettingsLogIn.Name = "grpSettingsLogIn"
+        Me.grpSettingsLogIn.Size = New System.Drawing.Size(221, 100)
+        Me.grpSettingsLogIn.TabIndex = 2
+        Me.grpSettingsLogIn.TabStop = False
+        Me.grpSettingsLogIn.Text = "Log In"
+        '
+        'radAutoLogInDeny
+        '
+        Me.radAutoLogInDeny.AutoSize = True
+        Me.radAutoLogInDeny.Location = New System.Drawing.Point(84, 60)
+        Me.radAutoLogInDeny.Name = "radAutoLogInDeny"
+        Me.radAutoLogInDeny.Size = New System.Drawing.Size(50, 17)
+        Me.radAutoLogInDeny.TabIndex = 2
+        Me.radAutoLogInDeny.TabStop = True
+        Me.radAutoLogInDeny.Text = "Deny"
+        Me.radAutoLogInDeny.UseVisualStyleBackColor = True
+        '
+        'radAutoLogInAllow
+        '
+        Me.radAutoLogInAllow.AutoSize = True
+        Me.radAutoLogInAllow.Location = New System.Drawing.Point(84, 30)
+        Me.radAutoLogInAllow.Name = "radAutoLogInAllow"
+        Me.radAutoLogInAllow.Size = New System.Drawing.Size(50, 17)
+        Me.radAutoLogInAllow.TabIndex = 1
+        Me.radAutoLogInAllow.TabStop = True
+        Me.radAutoLogInAllow.Text = "Allow"
+        Me.radAutoLogInAllow.UseVisualStyleBackColor = True
+        '
+        'lblAutoLogIn
+        '
+        Me.lblAutoLogIn.AutoSize = True
+        Me.lblAutoLogIn.Location = New System.Drawing.Point(13, 30)
+        Me.lblAutoLogIn.Name = "lblAutoLogIn"
+        Me.lblAutoLogIn.Size = New System.Drawing.Size(65, 13)
+        Me.lblAutoLogIn.TabIndex = 0
+        Me.lblAutoLogIn.Text = "Auto Log In:"
+        '
+        'lblConfigureSettings
+        '
+        Me.lblConfigureSettings.AutoSize = True
+        Me.lblConfigureSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblConfigureSettings.Location = New System.Drawing.Point(21, 12)
+        Me.lblConfigureSettings.Name = "lblConfigureSettings"
+        Me.lblConfigureSettings.Size = New System.Drawing.Size(163, 24)
+        Me.lblConfigureSettings.TabIndex = 1
+        Me.lblConfigureSettings.Text = "Configure Settings"
+        '
+        'pnlViewEmployees
+        '
+        Me.pnlViewEmployees.Controls.Add(Me.btnAddEmployee)
+        Me.pnlViewEmployees.Controls.Add(Me.dgvEmployees)
+        Me.pnlViewEmployees.Controls.Add(Me.lblViewEmployees)
+        Me.pnlViewEmployees.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlViewEmployees.Location = New System.Drawing.Point(0, 0)
+        Me.pnlViewEmployees.Name = "pnlViewEmployees"
+        Me.pnlViewEmployees.Size = New System.Drawing.Size(664, 459)
+        Me.pnlViewEmployees.TabIndex = 63
+        '
+        'btnAddEmployee
+        '
+        Me.btnAddEmployee.Location = New System.Drawing.Point(551, 430)
+        Me.btnAddEmployee.Name = "btnAddEmployee"
+        Me.btnAddEmployee.Size = New System.Drawing.Size(93, 23)
+        Me.btnAddEmployee.TabIndex = 2
+        Me.btnAddEmployee.Text = "Add Employee"
+        Me.btnAddEmployee.UseVisualStyleBackColor = True
+        '
+        'dgvEmployees
+        '
+        Me.dgvEmployees.AllowUserToAddRows = False
+        Me.dgvEmployees.AllowUserToDeleteRows = False
+        Me.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvEmployees.Location = New System.Drawing.Point(25, 72)
+        Me.dgvEmployees.Name = "dgvEmployees"
+        Me.dgvEmployees.ReadOnly = True
+        Me.dgvEmployees.RowHeadersVisible = False
+        Me.dgvEmployees.Size = New System.Drawing.Size(619, 352)
+        Me.dgvEmployees.TabIndex = 1
+        '
+        'lblViewEmployees
+        '
+        Me.lblViewEmployees.AutoSize = True
+        Me.lblViewEmployees.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblViewEmployees.Location = New System.Drawing.Point(21, 12)
+        Me.lblViewEmployees.Name = "lblViewEmployees"
+        Me.lblViewEmployees.Size = New System.Drawing.Size(152, 24)
+        Me.lblViewEmployees.TabIndex = 0
+        Me.lblViewEmployees.Text = "View Employees"
         '
         'pnlMessages
         '
@@ -1706,6 +1830,7 @@ Partial Class Form1
         '
         'pnlManageVacations
         '
+        Me.pnlManageVacations.Controls.Add(Me.grpManagePersonalTime)
         Me.pnlManageVacations.Controls.Add(Me.GroupBox2)
         Me.pnlManageVacations.Controls.Add(Me.lblManageVacations)
         Me.pnlManageVacations.Dock = System.Windows.Forms.DockStyle.Fill
@@ -2090,69 +2215,6 @@ Partial Class Form1
         Me.lblEditEmployee.TabIndex = 0
         Me.lblEditEmployee.Text = "Edit Employee"
         '
-        'pnlConfigureSettings
-        '
-        Me.pnlConfigureSettings.Controls.Add(Me.btnUpdateSettings)
-        Me.pnlConfigureSettings.Controls.Add(Me.grpSettingsLogIn)
-        Me.pnlConfigureSettings.Controls.Add(Me.lblConfigureSettings)
-        Me.pnlConfigureSettings.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlConfigureSettings.Location = New System.Drawing.Point(0, 0)
-        Me.pnlConfigureSettings.Name = "pnlConfigureSettings"
-        Me.pnlConfigureSettings.Size = New System.Drawing.Size(664, 459)
-        Me.pnlConfigureSettings.TabIndex = 68
-        '
-        'lblConfigureSettings
-        '
-        Me.lblConfigureSettings.AutoSize = True
-        Me.lblConfigureSettings.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblConfigureSettings.Location = New System.Drawing.Point(21, 12)
-        Me.lblConfigureSettings.Name = "lblConfigureSettings"
-        Me.lblConfigureSettings.Size = New System.Drawing.Size(163, 24)
-        Me.lblConfigureSettings.TabIndex = 1
-        Me.lblConfigureSettings.Text = "Configure Settings"
-        '
-        'pnlViewEmployees
-        '
-        Me.pnlViewEmployees.Controls.Add(Me.btnAddEmployee)
-        Me.pnlViewEmployees.Controls.Add(Me.dgvEmployees)
-        Me.pnlViewEmployees.Controls.Add(Me.lblViewEmployees)
-        Me.pnlViewEmployees.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlViewEmployees.Location = New System.Drawing.Point(0, 0)
-        Me.pnlViewEmployees.Name = "pnlViewEmployees"
-        Me.pnlViewEmployees.Size = New System.Drawing.Size(664, 459)
-        Me.pnlViewEmployees.TabIndex = 63
-        '
-        'btnAddEmployee
-        '
-        Me.btnAddEmployee.Location = New System.Drawing.Point(551, 430)
-        Me.btnAddEmployee.Name = "btnAddEmployee"
-        Me.btnAddEmployee.Size = New System.Drawing.Size(93, 23)
-        Me.btnAddEmployee.TabIndex = 2
-        Me.btnAddEmployee.Text = "Add Employee"
-        Me.btnAddEmployee.UseVisualStyleBackColor = True
-        '
-        'dgvEmployees
-        '
-        Me.dgvEmployees.AllowUserToAddRows = False
-        Me.dgvEmployees.AllowUserToDeleteRows = False
-        Me.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvEmployees.Location = New System.Drawing.Point(25, 72)
-        Me.dgvEmployees.Name = "dgvEmployees"
-        Me.dgvEmployees.ReadOnly = True
-        Me.dgvEmployees.RowHeadersVisible = False
-        Me.dgvEmployees.Size = New System.Drawing.Size(619, 352)
-        Me.dgvEmployees.TabIndex = 1
-        '
-        'lblViewEmployees
-        '
-        Me.lblViewEmployees.AutoSize = True
-        Me.lblViewEmployees.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblViewEmployees.Location = New System.Drawing.Point(21, 12)
-        Me.lblViewEmployees.Name = "lblViewEmployees"
-        Me.lblViewEmployees.Size = New System.Drawing.Size(152, 24)
-        Me.lblViewEmployees.TabIndex = 0
-        Me.lblViewEmployees.Text = "View Employees"
-        '
         'mnuNavigation
         '
         Me.mnuNavigation.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tmiFile, Me.tmiEmployee, Me.tmiManage, Me.tmiSettings})
@@ -2264,63 +2326,65 @@ Partial Class Form1
         '
         'StatusStrip1
         '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.staClockedInOut})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 485)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(826, 22)
         Me.StatusStrip1.TabIndex = 3
         Me.StatusStrip1.Text = "StatusStrip1"
         '
-        'grpSettingsLogIn
+        'staClockedInOut
         '
-        Me.grpSettingsLogIn.Controls.Add(Me.radAutoLogInDeny)
-        Me.grpSettingsLogIn.Controls.Add(Me.radAutoLogInAllow)
-        Me.grpSettingsLogIn.Controls.Add(Me.lblAutoLogIn)
-        Me.grpSettingsLogIn.Location = New System.Drawing.Point(25, 72)
-        Me.grpSettingsLogIn.Name = "grpSettingsLogIn"
-        Me.grpSettingsLogIn.Size = New System.Drawing.Size(221, 100)
-        Me.grpSettingsLogIn.TabIndex = 2
-        Me.grpSettingsLogIn.TabStop = False
-        Me.grpSettingsLogIn.Text = "Log In"
+        Me.staClockedInOut.Name = "staClockedInOut"
+        Me.staClockedInOut.Size = New System.Drawing.Size(73, 17)
+        Me.staClockedInOut.Text = "Clocked Out"
         '
-        'lblAutoLogIn
+        'grpManagePersonalTime
         '
-        Me.lblAutoLogIn.AutoSize = True
-        Me.lblAutoLogIn.Location = New System.Drawing.Point(13, 30)
-        Me.lblAutoLogIn.Name = "lblAutoLogIn"
-        Me.lblAutoLogIn.Size = New System.Drawing.Size(65, 13)
-        Me.lblAutoLogIn.TabIndex = 0
-        Me.lblAutoLogIn.Text = "Auto Log In:"
+        Me.grpManagePersonalTime.Controls.Add(Me.btnSubmitPersonalTime)
+        Me.grpManagePersonalTime.Controls.Add(Me.numPersonalTime)
+        Me.grpManagePersonalTime.Controls.Add(Me.datPersonalTime)
+        Me.grpManagePersonalTime.Controls.Add(Me.cboPersonalTimeEmployees)
+        Me.grpManagePersonalTime.Location = New System.Drawing.Point(25, 280)
+        Me.grpManagePersonalTime.Name = "grpManagePersonalTime"
+        Me.grpManagePersonalTime.Size = New System.Drawing.Size(251, 163)
+        Me.grpManagePersonalTime.TabIndex = 2
+        Me.grpManagePersonalTime.TabStop = False
+        Me.grpManagePersonalTime.Text = "Manage Personal Time"
         '
-        'radAutoLogInAllow
+        'cboPersonalTimeEmployees
         '
-        Me.radAutoLogInAllow.AutoSize = True
-        Me.radAutoLogInAllow.Location = New System.Drawing.Point(84, 30)
-        Me.radAutoLogInAllow.Name = "radAutoLogInAllow"
-        Me.radAutoLogInAllow.Size = New System.Drawing.Size(50, 17)
-        Me.radAutoLogInAllow.TabIndex = 1
-        Me.radAutoLogInAllow.TabStop = True
-        Me.radAutoLogInAllow.Text = "Allow"
-        Me.radAutoLogInAllow.UseVisualStyleBackColor = True
+        Me.cboPersonalTimeEmployees.FormattingEnabled = True
+        Me.cboPersonalTimeEmployees.Location = New System.Drawing.Point(13, 30)
+        Me.cboPersonalTimeEmployees.Name = "cboPersonalTimeEmployees"
+        Me.cboPersonalTimeEmployees.Size = New System.Drawing.Size(200, 21)
+        Me.cboPersonalTimeEmployees.TabIndex = 0
         '
-        'radAutoLogInDeny
+        'datPersonalTime
         '
-        Me.radAutoLogInDeny.AutoSize = True
-        Me.radAutoLogInDeny.Location = New System.Drawing.Point(84, 60)
-        Me.radAutoLogInDeny.Name = "radAutoLogInDeny"
-        Me.radAutoLogInDeny.Size = New System.Drawing.Size(50, 17)
-        Me.radAutoLogInDeny.TabIndex = 2
-        Me.radAutoLogInDeny.TabStop = True
-        Me.radAutoLogInDeny.Text = "Deny"
-        Me.radAutoLogInDeny.UseVisualStyleBackColor = True
+        Me.datPersonalTime.Location = New System.Drawing.Point(13, 60)
+        Me.datPersonalTime.Name = "datPersonalTime"
+        Me.datPersonalTime.Size = New System.Drawing.Size(200, 20)
+        Me.datPersonalTime.TabIndex = 1
         '
-        'btnUpdateSettings
+        'numPersonalTime
         '
-        Me.btnUpdateSettings.Location = New System.Drawing.Point(537, 420)
-        Me.btnUpdateSettings.Name = "btnUpdateSettings"
-        Me.btnUpdateSettings.Size = New System.Drawing.Size(100, 23)
-        Me.btnUpdateSettings.TabIndex = 3
-        Me.btnUpdateSettings.Text = "Update Settings"
-        Me.btnUpdateSettings.UseVisualStyleBackColor = True
+        Me.numPersonalTime.Location = New System.Drawing.Point(173, 89)
+        Me.numPersonalTime.Maximum = New Decimal(New Integer() {8, 0, 0, 0})
+        Me.numPersonalTime.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.numPersonalTime.Name = "numPersonalTime"
+        Me.numPersonalTime.Size = New System.Drawing.Size(40, 20)
+        Me.numPersonalTime.TabIndex = 2
+        Me.numPersonalTime.Value = New Decimal(New Integer() {8, 0, 0, 0})
+        '
+        'btnSubmitPersonalTime
+        '
+        Me.btnSubmitPersonalTime.Location = New System.Drawing.Point(138, 124)
+        Me.btnSubmitPersonalTime.Name = "btnSubmitPersonalTime"
+        Me.btnSubmitPersonalTime.Size = New System.Drawing.Size(75, 23)
+        Me.btnSubmitPersonalTime.TabIndex = 3
+        Me.btnSubmitPersonalTime.Text = "Submit"
+        Me.btnSubmitPersonalTime.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -2341,6 +2405,13 @@ Partial Class Form1
         Me.pnlNavigationAdministrator.ResumeLayout(False)
         Me.pnlNavigationManager.ResumeLayout(False)
         Me.pnlNavigationEmployee.ResumeLayout(False)
+        Me.pnlConfigureSettings.ResumeLayout(False)
+        Me.pnlConfigureSettings.PerformLayout()
+        Me.grpSettingsLogIn.ResumeLayout(False)
+        Me.grpSettingsLogIn.PerformLayout()
+        Me.pnlViewEmployees.ResumeLayout(False)
+        Me.pnlViewEmployees.PerformLayout()
+        CType(Me.dgvEmployees, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlMessages.ResumeLayout(False)
         Me.pnlMessages.PerformLayout()
         Me.pnlMessageNavigation.ResumeLayout(False)
@@ -2374,15 +2445,12 @@ Partial Class Form1
         Me.grpEmployeeInfo.PerformLayout()
         Me.grpPersonalInfo.ResumeLayout(False)
         Me.grpPersonalInfo.PerformLayout()
-        Me.pnlConfigureSettings.ResumeLayout(False)
-        Me.pnlConfigureSettings.PerformLayout()
-        Me.pnlViewEmployees.ResumeLayout(False)
-        Me.pnlViewEmployees.PerformLayout()
-        CType(Me.dgvEmployees, System.ComponentModel.ISupportInitialize).EndInit()
         Me.mnuNavigation.ResumeLayout(False)
         Me.mnuNavigation.PerformLayout()
-        Me.grpSettingsLogIn.ResumeLayout(False)
-        Me.grpSettingsLogIn.PerformLayout()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
+        Me.grpManagePersonalTime.ResumeLayout(False)
+        CType(Me.numPersonalTime, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2598,5 +2666,11 @@ Partial Class Form1
     Friend WithEvents radAutoLogInDeny As System.Windows.Forms.RadioButton
     Friend WithEvents radAutoLogInAllow As System.Windows.Forms.RadioButton
     Friend WithEvents lblAutoLogIn As System.Windows.Forms.Label
+    Friend WithEvents staClockedInOut As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents grpManagePersonalTime As System.Windows.Forms.GroupBox
+    Friend WithEvents datPersonalTime As System.Windows.Forms.DateTimePicker
+    Friend WithEvents cboPersonalTimeEmployees As System.Windows.Forms.ComboBox
+    Friend WithEvents numPersonalTime As System.Windows.Forms.NumericUpDown
+    Friend WithEvents btnSubmitPersonalTime As System.Windows.Forms.Button
 
 End Class

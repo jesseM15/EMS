@@ -88,11 +88,12 @@ Public Class Form1
         If dbems.isClockedIn(user.id) = True Then
             dbems.clockOut(user.id)
             tmiClockInOut.Text = "Clock In"
+            staClockedInOut.Text = "Clocked Out"
         Else
             dbems.clockIn(user.id, user.current_pay_rate)
             tmiClockInOut.Text = "Clock Out"
+            staClockedInOut.Text = "Clocked In"
         End If
-
     End Sub
 
     Private Sub tmiExit_Click(sender As Object, e As EventArgs) Handles tmiExit.Click
@@ -243,6 +244,10 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub btnSubmitPersonalTime_Click(sender As Object, e As EventArgs) Handles btnSubmitPersonalTime.Click
+        mngVac.submitPersonalTime()
+    End Sub
+
     Private Sub btnEditEmployee_Click(sender As Object, e As EventArgs) Handles btnEditEmployee.Click
         If employees.employeeID = 0 Then
             dbems.addUser(employees.getFormData())
@@ -268,4 +273,5 @@ Public Class Form1
         conSet.setXMLData()
         MessageBox.Show("Settings updated.")
     End Sub
+
 End Class
