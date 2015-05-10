@@ -795,6 +795,26 @@ Namespace DBSQL
             Return dt
         End Function
 
+        'returns a datatable from Users containing all users
+        Public Function getAllEmployees() As DataTable
+            initCommand()
+            Dim dt As New DataTable()
+            Try
+                _cmd.CommandText = "SELECT id, first_name, last_name, position, current_pay_rate, vacation_time, personal_time FROM Users"
+                Dim da As SqlDataAdapter
+                _cmd.Connection.Open()
+                _cmd.ExecuteNonQuery()
+                da = New SqlDataAdapter(_cmd)
+                da.Fill(dt)
+                _cmd.Connection.Close()
+            Catch ex As Exception
+                _err.errorMessage = "Failed to get all employees."
+                _err.exceptionMessage = ex.Message
+                _err.outputMessage()
+            End Try
+            Return dt
+        End Function
+
         'returns a collection of ids for users by manager id
         Public Function getEmployeeIds(ByVal manager_id As Integer) As Collection
             initCommand()

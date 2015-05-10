@@ -193,13 +193,20 @@
 
     Public Sub initPaySlipPanel()
         If employedDates.Count < 1 Then
-            _employedDates = time.getEmployedDates(dbems.getFirstWorkDate(), user.hire_date)
-            _workPeriodStart = _employedDates.Item(1)
-            _workPeriodEnd = _workPeriodStart.AddDays(time.workPeriodLength).AddMinutes(-1)
-            For Each payPeriod In _employedDates
-                Form1.cboWorkPeriod.Items.Add("Pay Period: " & payPeriod.date & " - " & payPeriod.addDays(time.workPeriodLength).addMinutes(-1).date)
-            Next
+            Try
+                _employedDates = time.getEmployedDates(dbems.getFirstWorkDate(), user.hire_date)
+                _workPeriodStart = _employedDates.Item(1)
+                _workPeriodEnd = _workPeriodStart.AddDays(time.workPeriodLength).AddMinutes(-1)
+                For Each payPeriod In _employedDates
+                    Form1.cboWorkPeriod.Items.Add("Pay Period: " & payPeriod.date & " - " & payPeriod.addDays(time.workPeriodLength).addMinutes(-1).date)
+                Next
+            Catch ex As Exception
+                err.errorMessage = "Failed to initialize pay slip."
+                err.exceptionMessage = ex.Message
+                err.outputMessage()
+            End Try
         End If
+        If employedDates.Count < 1 Then Exit Sub
         getHours(user.id, _workPeriodStart)
         'employee information
         Form1.lblEmployeeName.Text = user.first_name & " " & user.last_name

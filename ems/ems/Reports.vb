@@ -50,14 +50,20 @@
 
     Public Sub initReportsPanel()
         If employedDates.Count < 1 Then
-            _employedDates = time.getEmployedDates(dbems.getFirstWorkDate(), user.hire_date)
-            For Each payPeriod In _employedDates
-                cboReports.Items.Add("Pay Report: " & payPeriod.date & " - " & payPeriod.addDays(time.workPeriodLength).addMinutes(-1).date)
-            Next
-            _workPeriodStart = _employedDates.Item(1)
-            _employeeIds = dbems.getEmployeeIds(user.id)
+            Try
+                _employedDates = time.getEmployedDates(dbems.getFirstWorkDate(), user.hire_date)
+                For Each payPeriod In _employedDates
+                    cboReports.Items.Add("Pay Report: " & payPeriod.date & " - " & payPeriod.addDays(time.workPeriodLength).addMinutes(-1).date)
+                Next
+                _workPeriodStart = _employedDates.Item(1)
+                _employeeIds = dbems.getEmployeeIds(user.id)
+            Catch ex As Exception
+                err.errorMessage = "Failed to initialize reports."
+                err.exceptionMessage = ex.Message
+                err.outputMessage()
+            End Try
         End If
-
+        If employedDates.Count < 1 Then Exit Sub
         initReportsPanelFramework()
 
         Form1.pnlReports.Visible = True

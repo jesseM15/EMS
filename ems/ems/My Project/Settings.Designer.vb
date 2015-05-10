@@ -57,11 +57,21 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\App_Data\DbEms.mdf;I"& _ 
-            "ntegrated Security=True")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=J-PC;Initial Catalog=DbEms;Integrated Security=True")>  _
         Public ReadOnly Property DbEmsConnectionString() As String
             Get
                 Return CType(Me("DbEmsConnectionString"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\App_Data\EMSDB.mdf;I"& _ 
+            "ntegrated Security=True")>  _
+        Public ReadOnly Property EMSDBConnectionString() As String
+            Get
+                Return CType(Me("EMSDBConnectionString"),String)
             End Get
         End Property
     End Class

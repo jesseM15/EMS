@@ -32,3 +32,5 @@ C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\DBlib.dll
 C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\EMSlib.dll
 C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\EMSlib.pdb
 C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\EMSlib.xml
+C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\App_Data\EMSDB.mdf
+C:\Users\J\Documents\ems_repository\ems\ems\bin\Debug\App_Data\EMSDB_log.ldf

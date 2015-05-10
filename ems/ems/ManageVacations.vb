@@ -100,6 +100,7 @@ Public Class ManageVacations
     End Sub
 
     Public Sub submitPersonalTime()
+        If Form1.cboPersonalTimeEmployees.Items.Count < 1 Then Exit Sub
         Dim employeeID As Integer = _employees(Form1.cboPersonalTimeEmployees.SelectedIndex + 1)
         Dim ptDate As Date = Form1.datPersonalTime.Value.Date
         Dim hours As Integer = Form1.numPersonalTime.Value

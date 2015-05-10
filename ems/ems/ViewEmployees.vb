@@ -49,7 +49,11 @@ Public Class ViewEmployees
     End Sub
 
     Public Sub initViewEmployeesPanel()
-        Form1.dgvEmployees.DataSource = dbems.getEmployees(user.id)
+        If user.user_type = "Administrator" Then
+            Form1.dgvEmployees.DataSource = dbems.getAllEmployees()
+        Else
+            Form1.dgvEmployees.DataSource = dbems.getEmployees(user.id)
+        End If
         If _dgvInitialized = False Then
             initDGV()
         End If

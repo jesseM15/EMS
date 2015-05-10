@@ -103,7 +103,9 @@ Public Class Form1
     Private Sub tmiViewPaySlip_Click(sender As Object, e As EventArgs) Handles tmiViewPaySlip.Click, btnViewPaySlip.Click
         hidePanels()
         pay.initPaySlipPanel()
-        cboWorkPeriod.SelectedIndex = 0
+        If cboWorkPeriod.Items.Count > 0 Then
+            cboWorkPeriod.SelectedIndex = 0
+        End If
     End Sub
 
     Private Sub tmiRequestVacation_Click(sender As Object, e As EventArgs) Handles tmiRequestVacation.Click, btnRequestVacation.Click
@@ -134,7 +136,9 @@ Public Class Form1
     Private Sub tmiReports_Click(sender As Object, e As EventArgs) Handles tmiReports.Click, btnReports.Click
         hidePanels()
         report.initReportsPanel()
-        report.cboReports.SelectedIndex = 0
+        If report.cboReports.Items.Count > 0 Then
+            report.cboReports.SelectedIndex = 0
+        End If
     End Sub
 
     Private Sub tmiBusinessData_Click(sender As Object, e As EventArgs) Handles tmiBusinessData.Click, btnBusinessData.Click

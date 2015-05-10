@@ -18,7 +18,7 @@ Module globals
     Public err As ErrorHandler
 
     Public Sub initSession()
-        dbems = New DbConnection(My.Settings.DbEmsConnectionString)
+        dbems = New DbConnection(My.Settings.EMSDBConnectionString)
         time = New Time
         user = New User
         pay = New PaySlip
@@ -37,13 +37,14 @@ Module globals
         firstTimeProgramInitialization()
     End Sub
 
-    Public Sub firstTimeProgramInitialization()
+    Private Sub firstTimeProgramInitialization()
         'if no users exist in the database
         If dbems.getTableCount("Users") < 1 Then
             Dim u As New User
             u.user_name = "Admin"
             u.password = "password"
             u.user_type = "Administrator"
+            u.hire_date = Date.Now
             dbems.addUser(u)
         End If
     End Sub
